@@ -3,7 +3,7 @@ layout: essay
 type: essay
 published: true
 title: Meteor Gotchas
-date: 19 October 2017
+date: 2017-10-19
 labels:
   - Software Engineering
   - Meteor
