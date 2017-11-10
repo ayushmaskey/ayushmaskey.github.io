@@ -3,7 +3,7 @@ layout: essay
 type: essay
 published: true
 title: Help your future self by following standards
-date: 21 September 2017
+date: 2017-09-21
 labels:
   - coding standards
   - ESLint

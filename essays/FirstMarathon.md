@@ -3,7 +3,7 @@ layout: essay
 type: essay
 published: true
 title: First marathon
-date: 8 December 2013
+date: 2013-12-08
 labels:
   - Honolulu marathon
 ---

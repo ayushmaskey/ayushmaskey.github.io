@@ -3,7 +3,7 @@ layout: essay
 type: essay
 published: true
 title: Semantic UI
-date: 5 October 2017
+date: 2017-10-05
 labels:
   - Semantic UI
   - HTML
