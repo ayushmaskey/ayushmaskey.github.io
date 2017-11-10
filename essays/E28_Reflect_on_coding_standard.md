@@ -2,7 +2,7 @@
 layout: essay
 type: essay
 published: true
-title: Help your future self by following standards
+title: Reflect on coding standard
 date: 2017-09-21
 labels:
   - coding standards
