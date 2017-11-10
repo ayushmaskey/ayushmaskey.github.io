@@ -3,7 +3,7 @@ layout: essay
 type: essay
 published: true
 title: Reflect on Smart Questions
-date: 2017-09-01
+date: 2017-09-07
 labels:
   - open source
   - smart question
