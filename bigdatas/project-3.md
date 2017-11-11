@@ -1,6 +1,6 @@
 ---
 layout: bigdata
-type: project
+type: bigdata
 published: true
 image: images/cotton-square.png
 title: Cotton
