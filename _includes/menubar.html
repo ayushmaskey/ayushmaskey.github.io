@@ -2,8 +2,10 @@
 
 {% assign essay_pages = site.pages | where: "type", "essay"  | where_exp: "page", "page.draft != true" %}
 {% assign project_pages = site.pages | where: "type", "project" | where_exp: "page", "page.draft != true" %}
+{% assign bigdata_pages = site.pages | where: "type", "bigdata" | where_exp: "page", "page.draft != true" %}
 {% assign num_essays = essay_pages.size %}
 {% assign num_projects = project_pages.size %}
+{% assign num_bigdatas = bigdata_pages.size %}
 
 <div class="nonprintable">
   <nav class="ui stackable menu">
@@ -16,6 +18,12 @@
     {% if num_essays > 0 %}
     <a href="{{ site.baseurl }}/essays" class=" {% if include.active == "essays" %} active {% endif %} item">Essays ({{ num_essays }})</a>
     {% endif %}
+
+	  {% if num_bigdatas > 0 %}
+	  <a href="{{ site.baseurl }}/bigdatas" class=" {% if include.active == "bigdatas" %} active {% endif %} item">Big Data ({{ num_essays }})</a>
+	  {% endif %}
+
+
     <a href="{{ site.baseurl }}/bio" class=" {% if include.active == "bio" %} active {% endif %} item">{{ site.bio-page-label }}</a>
   </nav>
 </div>
