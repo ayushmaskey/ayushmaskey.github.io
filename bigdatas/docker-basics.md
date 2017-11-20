@@ -16,6 +16,13 @@ labels:
 summary: build apps in docker containers.
 ---
 
+   * [Installation](#installation)
+   * [Images](#images)
+   * [Dockerfile](#dockerfile)
+   * [Containers](#containers)
+   * [Useful commands](#useful-commands)
+   * [Text editor](#text-editor)
+
 
 intro what is docker? docker vs vm
 
@@ -119,7 +126,7 @@ Using ubuntu image as base image, docker file first changes the password for roo
 
 Dockerfile simplies creation of consistent image which can be used to create container on the fly.
 
-#### Create containers
+#### Containers
 ```
 docker run -d -p 5140:5140/udp \
 -h <hostname> --name <container_name> \
