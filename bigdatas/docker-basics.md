@@ -41,7 +41,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
- * make sure update is from docker repo instead of default ubuntu repo
+ * make sure cache is from docker repo instead of default ubuntu repo
 ```
 apt-cache policy docker-ce
 ```
