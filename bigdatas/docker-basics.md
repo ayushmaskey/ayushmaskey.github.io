@@ -16,7 +16,6 @@ summary: build apps in docker containers.
 what is docker?
 docker vs vm
 
-docker installation
 basic docker commands
 
 Dockerfile
@@ -26,23 +25,41 @@ running containers
 
 Installing docker on ubuntu was fairly straightforward process. There are many step by step instructions online that walk you through installation and testing. [digitalocean.com](https://www.digitalocean.com/community/search?q=docker) has been a great resource for me since I am fairly new to linux ecosystem. I followed instructions to [install docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04) on digit ocean below are the commands I found useful
 
-```
+
  * remove existing docker for fresh install
+```
 sudo apt-get remove docker docker-engine docker.io
+```
  * add gpg key
+```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
  * add docker repository in apt
+```
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt-get udpate
+
+```
  * make sure update is from docker repo instead of default ubuntu repo
+```
 apt-cache policy docker-ce
+```
  * installation
+```
+sudo apt-get udpate
 sudo apt-get install -y docker-ce
+```
  * verify docker is running
+```
 sudo systemctl status docker
 ```
+ * clean up unecessary files
+```
+sudo apt autoclean
+sudo apt autoremove
+sudo rm -rf /var/lib/apt/lists/*
+```
 
-Useful images to build docker containers for the project.
+Useful images to build docker containers for the ELK project.
 
 ```
 docker pull ubuntu
