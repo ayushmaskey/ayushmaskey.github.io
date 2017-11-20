@@ -1,7 +1,7 @@
 ---
 layout: bigdata
 type: bigdata
-published: true
+published: false
 image: images/cotton-square.png
 title: Cotton
 permalink: projects/cotton
