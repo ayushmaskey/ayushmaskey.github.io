@@ -12,19 +12,14 @@ labels:
   - images
   - containers
   - flags
+  - sublime3
 summary: build apps in docker containers.
 ---
 
 
-what is docker?
-docker vs vm
+intro what is docker? docker vs vm
 
-basic docker commands
 
-Dockerfile
-scripts
-building images
-running containers
 
 #### Installation
 Installing docker on ubuntu was fairly straightforward process. There are many step by step instructions online that walk you through installation and testing. [digitalocean.com](https://www.digitalocean.com/community/search?q=docker) has been a great resource for me since I am fairly new to linux ecosystem. I followed instructions to [install docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04) on digit ocean below are the commands I found useful
@@ -68,7 +63,7 @@ sudo rm -rf /var/lib/apt/lists/*
 ```
 
 #### Images
-Command to download some of the useful images I came across as I build docker containers for the syslog analysis. Downloading official images is less of a security risk. I am paranoid when it comes to using anything on internet.
+Command to download some of the useful images I came across as I build docker containers for the syslog analysis. Downloading official images is less of a security risk. I am paranoid when it comes to using scripts from internet.
 
 ```
 docker pull ubuntu
@@ -78,67 +73,115 @@ docker pull logstash
 docker pull kibana
 ```
 
-#### Commands
-Getting used to docker commands takes some time even though they seem to follow syntactical rules of unix. 
+After pulling the base image from [docker hub](https://hub.docker.com/), we can add packages necessary packages and run necessary scripts to create a suitable image for any given project.
+```
+docker build -t <folder>/<image_name> .
+```
 
+The command above builds new image with the given name using Dockerfile in current folder.
+
+#### Dockerfile
+Dockerfile uses existing base image and automates creation of a new images with necessary packages. 
+
+ * Below is an example of a Dockerfile I used to create ubuntu base image.
+
+```
+FROM ubuntu
+
+USER root
+RUN echo "root:password_for_root" | chpasswd
+
+RUN apt-get update
+
+RUN apt-get install -y wget curl tar sudo openssh-server openssh-client rsync
+RUN rm -f /etc/ssh/ssh_host_dsa_key /etc/ssh/ssh_host_rsa_key /root/.ssh/id_rsa
+RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa
+RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+
+RUN apt-get -y install apt-utils
+RUN apt-get -y install vim
+RUN apt-get -y install iputils-ping
+RUN apt-get -y install iproute
+RUN apt-get -y install nano
+RUN apt-get -y install pdsh
+RUN apt-get -y install git
+
+RUN apt-get -y upgrade
+RUN apt-get -y dist-upgrade
+
+RUN apt autoremove
+RUN apt autoclean
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN useradd -m -p amaskey password_for_user
+```
+Using ubuntu image as base image, docker file first changes the password for root and goes on to install all the packages. The first step is to install openssh, remove existing keys and create new keys for passwordless login. Dockerfile proceeds to install basic necessities for administration like apt-utils, vim, iputils-ping, iproute and git. After upgrading the container OS and cleaning up unecessary files, we finally create a new user in the container. 
+
+Dockerfile simplies creation of consistent image which can be used to create container on the fly.
+
+#### Create containers
+```
+docker run -d -p 5140:5140/udp -h <hostname> --name <container_name> --link elasticsearch:elasticsearch -it -v ~/absolute_path/folder:/config-dir logstash -f /config-dir/logstash.conf
+```
+
+Some use flags when creating containers
+ * -d 	--> create container in detached mode
+ * -p 	--> map a udp port in container to localhost
+ * -h 	--> hostname of container
+ * --name 	--> name of container
+ * --link	--> create a cluster with other docker container
+ * -it	--> open interactive terminal of the container
+ * -v 	--> attach folder in localhost as volume in the container
+ * -f 	--> run script when container starts
+
+#### Useful commands
+Getting used to docker commands takes some time even though they seem to follow syntactical rules of unix. 
 
 ```
 docker				# show all available docker commands
-docker sub-cmd --help		# help with syntax and flags for the <sub_cmd>
+docker <sub-cmd> --help		# help with syntax and flags for the <sub_cmd>
 docker info			# system wide info of docker
 
 docker images			# show all available images
-docker rmi image-name		# delete image
+docker rmi <image-name>		# delete image
 
 docker ps			# show all running container
 docker ps -a			# show all container including stopped
 
 docker run ubuntu		# create container from ubuntu image
-docker rename old-name new-name	# rename
-docker rm image-name		# delete container
+docker rm <image-name>		# delete container
 doker start <name>		# start container
 docker stop <name>		# stop container
 docker attach <name>		# attach to the container
 docker inspect <name>		# info about the container in JSON format
 ```
 
-#### Flags
+#### Text editor
+
+If feel lost when coding in text editors like vim and nano. I had to find an alternative to simplify my workflow. If the docker containers are in the my machine then sharing a volume works just fine. However, for most real world scenario, docker is probably installed in the remote machine. Now I was stuck with editing code in vim again until sublime-text3 community came to the rescue with a package called rsub. Installing rsub is a two step process. 
+
+ * On the remote machine
 ```
-docker run -d -p 5140:5140/udp -h <hostname> --name <container_name> --link elasticsearch:elasticsearch -it -v ~/absolute_path/folder:/config-dir logstash -f /config-dir/logstash.conf
+wget -O /usr/local/bin/rsub \https://raw.github.com/aurora/rmate/master/rmate
+chmod a+x /usr/local/bin/rsub
 ```
 
--d 	--> create container in detached mode
+ * On local machine
+   * open package mangager in sublime
+   * seach for rsub
+   * install rsub
 
--p 	--> map a udp port in container to localhost
+ * Finally, open a rsub port when ssh into remote machine
+```
+ssh -R 52698:localhost:52698 user@serverIP
+rsub path_to_file/file.py
+```
 
--h 	--> hostname of container
-
---name 	--> name of container
-
---link	--> create a cluster with other docker container
-
--it	--> open interactive terminal of the container
-
--v 	--> attach folder in localhost as volume in the container
-
--f 	--> run script when container starts
+This opens the file.py in sublime in localhost. Combination of rsub package and shared volumes in docker simplify editing codes a much improved experience.
 
 
-
-I came across two big issue when I started using docker. 
-The first was writing the codes that I planned to run on docker container. I cannot write codes on vim or nano beyond few lines. I am very dependent on ide even if it is just notepad++ with few syntax highlight. One option is manually sync the code in my laptop with the code in docker. But pulling and pushing after every little change would get annoying. I came across sublime plugin rsub that work pretty well with remote files.
-On the server,
-# wget -O /usr/local/bin/rsub \https://raw.github.com/aurora/rmate/master/rmate
-    # chmod a+x /usr/local/bin/rsub
-On my laptop, open package manager in sublime and search for rsub and install. Finally ssh into the server 
-# ssh -R 52698:localhost:52698 user@serverIP
-# rsub path_to_file/file.txt
-This opens the file in sublime. This is good for editing one file at a time but when working on a project there would be need to access whole project. After asking the question on slack, Kyle recommended using a folder in the host machine as volume for the container. DigitalOcean to the rescue again to help with shared volume. 
-Create folders named data and code in the host machine
-docker run -it --name container_with_volume -v ~/abs-path-in-host/data:/data-volume-in-root-of-container ~/abs-path-in-host/code:/code-volume-in-root-of-container ubuntu
-Shared volume together with rsub plugin should allow me to use sublime to edit any code in container in remote server but I still have settled to an optimum workflow yet. 
-
-The second big issue was moving container to different machine. Within few weeks of using docker I have had to move docker container to different machines and that will need will never go away. One option was to create create an image and host it on docker hub. But having patient data on docker hub would not be acceptable. Kyle’s recommendation of mounting the volume to docker container solves this problem as well. All the codes and data stay in a volume shared from the host machine and the container use it as volume. More than one container share the same volume which makes coding even simpler if I need to send same block of code to many containers
-
+conlusion
 I really enjoyed using docker so far. For one, docker is lightweight compared to VM and it is very easy to get up and running. Once I have a good image, I don’t need to worry about troubleshooting errors in my OS. If there is an error discard the container and mont a new one with prebuilt good image and same volume for data and code. Going forward I am thinking about bare minimum OS. I would probably need couple of  ide and web browser. Everything else I can run with isolated docker containers.
 
