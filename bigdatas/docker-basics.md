@@ -50,13 +50,16 @@ apt-cache policy docker-ce
 ```
 sudo apt-get udpate
 sudo apt-get install -y docker-ce
+
 ```
  * verify docker is running
 ```
+
 sudo systemctl status docker
 ```
  * clean up unecessary files
 ```
+
 sudo apt autoclean
 sudo apt autoremove
 sudo rm -rf /var/lib/apt/lists/*
