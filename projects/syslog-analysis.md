@@ -3,7 +3,7 @@ layout: project
 type: project
 published: true
 image: images/Datawarehouse.png
-title: Log Analysis
+title: syslog analysis
 permalink: projects/syslog-analysis
 date: 2017
 labels:
@@ -14,6 +14,9 @@ labels:
   - python
   - cluster
   - syslogs
-summary: Build a docker containers in cluster to analyze syslogs.
+summary: build a docker containers in cluster to analyze syslogs.
 ---
 
+# Table of content
+  * [asa data collection - sqlite3](../bigdatas/data-asa-sqlite3.md)
+  * [asa data collection - ELK](../bigdatas/data-asa-elk.md)
