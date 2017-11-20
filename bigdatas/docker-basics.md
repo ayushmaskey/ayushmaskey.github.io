@@ -8,7 +8,10 @@ permalink: bigdatas/docker-basics
 date: 2017
 labels:
   - docker
-  - useful flags
+  - installation
+  - images
+  - containers
+  - flags
 summary: build apps in docker containers.
 ---
 
@@ -105,20 +108,22 @@ docker run -d -p 5140:5140/udp -h <hostname> --name <container_name> --link elas
 ```
 
 -d 	--> create container in detached mode
+
 -p 	--> map a udp port in container to localhost
+
 -h 	--> hostname of container
+
 --name 	--> name of container
+
 --link	--> create a cluster with other docker container
+
 -it	--> open interactive terminal of the container
+
 -v 	--> attach folder in localhost as volume in the container
+
 -f 	--> run script when container starts
 
-Now back to docker instruction after a little rant. After pulling the images, I created a container using docker run -it ubuntu which opens up terminal access to the container as well. I installed few packages and continued to use docker run -it ubuntu. Old habit of not reading the documentation came back to bite me again. When I finally learnt about docker ps -a I had over 10 container with nothing in there. Turns out there is a command to use existing container docker start <containerName> && docker attach <containerName>
 
-There were times when my docker container failed to install or update packages with following error.
-Err:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpopt0 amd64 1.16-10
-  Temporary failure resolving 'archive.ubuntu.com'
-I suspect the issue was caused by grive running in the background to sync my google drive. I had to reboot my laptop to resolve this issue.  Running docker in my laptop was no longer the best option for me. I had two options, either use uh ics docker server or create my own at work. I plan to use docker for work data so I created my own test docker server at work. I was not in the habit writing instructions to myself during first installation in my laptop. So I had to start from scratch during the second installation in the server. This time I made good notes and used the same note to create DockerFile.
 
 I came across two big issue when I started using docker. 
 The first was writing the codes that I planned to run on docker container. I cannot write codes on vim or nano beyond few lines. I am very dependent on ide even if it is just notepad++ with few syntax highlight. One option is manually sync the code in my laptop with the code in docker. But pulling and pushing after every little change would get annoying. I came across sublime plugin rsub that work pretty well with remote files.
