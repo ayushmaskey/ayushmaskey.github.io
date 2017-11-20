@@ -36,17 +36,17 @@ sudo apt-get remove docker docker-engine docker.io
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
- add docker repository in apt
+ * add docker repository in apt
 ```
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
- make sure update is from docker repo instead of default ubuntu repo
+ * make sure update is from docker repo instead of default ubuntu repo
 ```
 apt-cache policy docker-ce
 ```
 
- installation
+ * installation
 ```
 sudo apt-get udpate
 sudo apt-get install -y docker-ce
@@ -73,9 +73,27 @@ docker pull logstash
 docker pull kibana
 ```
 
- 
+#### Commands
+Getting used to docker commands takes some time even though they seem to follow syntactical rules of unix. 
 
-Getting used to docker commands is taking some time, especially since I am learning many other syntax right now. I started using ubuntu less than a year ago and I am finally comfortable performing most day to day task using terminal. Then there is powershell commands to manage window servers at work. For the classes this semester I am learning docker, hadoop, scala, python, git, Meteor, mongo, javascript etc. and at work I use sql, cisco, GE proprietary languages mel and ccc. It was getting really overwhelming so I started a google doc for each language with frequently used commands and have it open on the side while I work on that language. Infact, homework requirement for this class to document what I do was the inspiration to creating all these syntax documents.
+
+```
+docker				# show all available docker commands
+docker <sub_cmd> --help		# help with syntax and flags for the <sub_cmd>
+docker info			# system wide info of docker
+
+
+docker images			# show all available images
+docker rmi image-name		# delete image
+
+docker ps			# show all running container
+docker ps -a			# show all container including stopped
+
+docker run ubuntu		# create container from ubuntu image
+docker rename old-name new-name	# rename
+docker rm <image_name>		# delete container
+```
+
 
 Now back to docker instruction after a little rant. After pulling the images, I created a container using docker run -it ubuntu which opens up terminal access to the container as well. I installed few packages and continued to use docker run -it ubuntu. Old habit of not reading the documentation came back to bite me again. When I finally learnt about docker ps -a I had over 10 container with nothing in there. Turns out there is a command to use existing container docker start <containerName> && docker attach <containerName>
 
