@@ -86,7 +86,7 @@ Dockerfile uses existing base image and automates creation of a new images with 
 
  * Below is an example of a Dockerfile I used to create ubuntu base image that I use to create all other images.
 
-{% highlight %}
+```
 FROM ubuntu
 
 USER root
@@ -117,7 +117,7 @@ RUN apt autoclean
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -p amaskey password_for_user
-{% endhighlight %}
+```
 
 Using ubuntu image as base image, docker file first changes the password for root and goes on to install all the packages. The first step is to install openssh, remove existing keys and create new keys for passwordless login. Dockerfile proceeds to install basic necessities for administration like apt-utils, vim, iputils-ping, iproute and git. After upgrading the container OS and cleaning up unecessary files, we finally create a new user in the container. 
 
