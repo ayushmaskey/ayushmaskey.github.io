@@ -90,6 +90,7 @@ The command above builds new image with the given name using Dockerfile in curre
 Dockerfile uses existing base image and automates creation of a new images with necessary packages. 
 
  * Below is an example of a Dockerfile I used to create ubuntu base image that I use to create all other images.
+
 ```
 FROM ubuntu
 
