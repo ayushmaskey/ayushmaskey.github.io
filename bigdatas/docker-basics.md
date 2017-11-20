@@ -3,7 +3,7 @@ layout: bigdata
 type: bigdata
 published: true
 image: images/cotton-square.png
-title: Cotton
+title: docker basics
 permalink: bigdatas/docker-basics
 date: 2017
 labels:

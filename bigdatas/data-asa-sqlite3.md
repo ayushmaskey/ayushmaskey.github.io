@@ -3,7 +3,7 @@ layout: bigdata
 type: bigdata
 published: true
 image: images/cotton-square.png
-title: Cotton
+title: cisco asa to sqlite3
 permalink: bigdatas/data-asa-sqlite3
 date: 2017
 labels:

@@ -3,7 +3,7 @@ layout: bigdata
 type: bigdata
 published: true
 image: images/cotton-square.png
-title: Cotton
+title: cisco asa to ELK
 permalink: bigdatas/data-asa-elk
 date: 2017
 labels:
