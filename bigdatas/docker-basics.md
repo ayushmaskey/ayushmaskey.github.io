@@ -63,8 +63,7 @@ sudo rm -rf /var/lib/apt/lists/*
 ```
 
 #### Images
-Command to download some of the useful images I came across as I build docker containers for the syslog analysis. Downloading official images is less of a security risk. I am paranoid when it comes to using scripts from internet.
-
+ * Command to download some of the useful images I came across as I build docker containers for the syslog analysis.
 ```
 docker pull ubuntu
 docker pull centos
@@ -84,7 +83,6 @@ The command above builds new image with the given name using Dockerfile in curre
 Dockerfile uses existing base image and automates creation of a new images with necessary packages. 
 
  * Below is an example of a Dockerfile I used to create ubuntu base image.
-
 ```
 FROM ubuntu
 
@@ -123,7 +121,12 @@ Dockerfile simplies creation of consistent image which can be used to create con
 
 #### Create containers
 ```
-docker run -d -p 5140:5140/udp -h <hostname> --name <container_name> --link elasticsearch:elasticsearch -it -v ~/absolute_path/folder:/config-dir logstash -f /config-dir/logstash.conf
+docker run -d -p 5140:5140/udp \
+-h <hostname> --name <container_name> \
+--link elasticsearch:elasticsearch -it \
+-v ~/absolute_path/folder:/config-dir \
+logstash \
+-f /config-dir/logstash.conf
 ```
 
 Some use flags when creating containers
