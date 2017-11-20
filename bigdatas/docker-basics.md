@@ -81,9 +81,8 @@ Getting used to docker commands takes some time even though they seem to follow 
 
 ```
 docker				# show all available docker commands
-docker <sub_cmd> --help		# help with syntax and flags for the <sub_cmd>
+docker sub-cmd --help		# help with syntax and flags for the <sub_cmd>
 docker info			# system wide info of docker
-
 
 docker images			# show all available images
 docker rmi image-name		# delete image
@@ -93,9 +92,26 @@ docker ps -a			# show all container including stopped
 
 docker run ubuntu		# create container from ubuntu image
 docker rename old-name new-name	# rename
-docker rm <image_name>		# delete container
+docker rm image-name		# delete container
+doker start <name>		# start container
+docker stop <name>		# stop container
+docker attach <name>		# attach to the container
+docker inspect <name>		# info about the container in JSON format
 ```
 
+#### Flags
+```
+docker run -d -p 5140:5140/udp -h <hostname> --name <container_name> --link elasticsearch:elasticsearch -it -v ~/absolute_path/folder:/config-dir logstash -f /config-dir/logstash.conf
+```
+
+-d 	--> create container in detached mode
+-p 	--> map a udp port in container to localhost
+-h 	--> hostname of container
+--name 	--> name of container
+--link	--> create a cluster with other docker container
+-it	--> open interactive terminal of the container
+-v 	--> attach folder in localhost as volume in the container
+-f 	--> run script when container starts
 
 Now back to docker instruction after a little rant. After pulling the images, I created a container using docker run -it ubuntu which opens up terminal access to the container as well. I installed few packages and continued to use docker run -it ubuntu. Old habit of not reading the documentation came back to bite me again. When I finally learnt about docker ps -a I had over 10 container with nothing in there. Turns out there is a command to use existing container docker start <containerName> && docker attach <containerName>
 
