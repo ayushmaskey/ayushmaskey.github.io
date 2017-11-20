@@ -32,13 +32,11 @@ Installing docker on ubuntu was fairly straightforward process. There are many s
 sudo apt-get remove docker docker-engine docker.io
 ```
  * add gpg key
-
 ```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
  * add docker repository in apt
-
 ```
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
@@ -71,7 +69,7 @@ sudo rm -rf /var/lib/apt/lists/*
 ```
 
 #### Images
-Useful images to build docker containers for the syslog analysis.
+Command to download some of the useful images I came across as I build docker containers for the syslog analysis. Downloading official images is less of a security risk. I am paranoid when it comes to using anything on internet.
 
 ```
 docker pull ubuntu
