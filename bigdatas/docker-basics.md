@@ -36,32 +36,26 @@ sudo apt-get remove docker docker-engine docker.io
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
- * add docker repository in apt
+ add docker repository in apt
 ```
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
- * make sure update is from docker repo instead of default ubuntu repo
-
+ make sure update is from docker repo instead of default ubuntu repo
 ```
 apt-cache policy docker-ce
 ```
 
- * installation
-
+ installation
 ```
 sudo apt-get udpate
 sudo apt-get install -y docker-ce
 ```
-
  * verify docker is running
-
 ```
 sudo systemctl status docker
 ```
-
  * clean up unecessary files
-
 ```
 sudo apt autoclean
 sudo apt autoremove
