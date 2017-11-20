@@ -19,9 +19,7 @@ summary: build apps in docker containers.
    * [Text editor](#text-editor)
 
 
-intro what is docker? docker vs vm
-
-
+<img class="ui medium right floated image" src="../images/docker-vm-container.png"> Docker has been a hot topic among developers community for a couple of years now. This infatuation with docker comes as no surpise once you understand the architecture of docker. While docker container seem like an alternative to one of the many virtual machine solution, the picture one the right shows architectural difference betwee the two. Regular virtual machine has individual OS since they are virtualized at the hardware level. Docker on the other hand share the OS making it much more efficient in terms of resource management. Laptop that can run 2 vms can run 4-6 containers.
 
 #### Installation
 Installing docker on ubuntu was fairly straightforward process. There are many step by step instructions online that walk you through installation and testing. [digitalocean.com](https://www.digitalocean.com/community/search?q=docker) has been a great resource for me since I am fairly new to linux ecosystem. I followed instructions to [install docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04) on digit ocean below are the commands I found useful
@@ -189,6 +187,4 @@ rsub path_to_file/file.py
 This opens the file.py in sublime in localhost. Combination of rsub package and shared volumes in docker simplify editing codes a much improved experience.
 
 
-conlusion
-I really enjoyed using docker so far. For one, docker is lightweight compared to VM and it is very easy to get up and running. Once I have a good image, I don’t need to worry about troubleshooting errors in my OS. If there is an error discard the container and mont a new one with prebuilt good image and same volume for data and code. Going forward I am thinking about bare minimum OS. I would probably need couple of  ide and web browser. Everything else I can run with isolated docker containers.
-
+I have really enjoyed using docker for the last couple of months. For one, docker is lightweight compared to a virtual machine and it is very easy to get up and running. I don’t need to test new packages in my local machine and all the errors and troubleshooting that comes with it. If there is an error discard the container and mount a new one with prebuilt good image, using same shared volume for data and code. For a big team it is easy to package and ship the program. It can replicate cluster of machines which makes building apps for clustered environment convienent and cost effective. And it is one of the better solution to deploy in the production environment as well and best of all it is free.
