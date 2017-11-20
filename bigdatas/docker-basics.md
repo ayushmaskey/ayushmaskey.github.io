@@ -2,7 +2,7 @@
 layout: bigdata
 type: bigdata
 published: true
-image: images/cotton-square.png
+image: images/docker-vm-container.png
 title: Docker Basics
 permalink: bigdatas/docker-basics
 date: 2017
