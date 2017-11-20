@@ -8,11 +8,6 @@ permalink: bigdatas/docker-basics
 date: 2017
 labels:
   - docker
-  - installation
-  - images
-  - containers
-  - flags
-  - sublime3
 summary: build apps in docker containers.
 ---
 
