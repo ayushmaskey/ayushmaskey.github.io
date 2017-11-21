@@ -2,7 +2,7 @@
 layout: project
 type: project
 published: true
-image: images/LabTech.png
+image: images/labtech.jpeg
 title: Lab Interface
 permalink: projects/LabInterface
 date: 2014

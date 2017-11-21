@@ -2,7 +2,7 @@
 layout: project
 type: project
 published: true
-image: images/Form.png
+image: images/form.jpg
 title: Clincal Form Development
 permalink: projects/FormDevelopment
 date: 2014
