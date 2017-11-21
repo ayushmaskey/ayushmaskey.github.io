@@ -202,15 +202,12 @@ def main():
 	all_pcap_db()
 	warehousing()
 
-drop_all_table()
+#drop_all_table()
 
 main()
 
-def test_main():
-	sort_col_by_internal_external()
-
-#test_main()
 """
+TCP Flags
 S: SYN - 3 way handshake
 A: ACK -success
 F: FIN - finish
@@ -222,8 +219,9 @@ C: CWR - recieved packet with ECE flag
 .: ACK
 """
 
-
 c.close()
 conn.close()
 {% endhighlight %}
+
+I got firewall traffic imported into the database and it was time to automate the process when I learned about [ELK stack](./dat-asa-elk.md). ELK stack consists of elasticsearch, logstash and kibana. I wanted to give it a try since ELK stack was build to parse logs. I thought I would come back to python and sqlite since I am confortable relational databases. However, after using ELK stack for a day, I hesitate to continue using relational database for log parse.
 
