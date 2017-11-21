@@ -2,7 +2,7 @@
 layout: project
 type: project
 published: true
-image: images/Data-warehouse.jpg
+image: images/Datawarehouse.jpg
 title: Data Warehouse
 permalink: projects/Datawarehouse
 date: 2016
