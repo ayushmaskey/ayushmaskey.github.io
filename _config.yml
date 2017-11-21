@@ -21,5 +21,8 @@ theme-bigdata: theme-bigdatas-builtin-1.html
 
 # YOU NORMALLY NEVER CHANGE THE FOLLOWING
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 include: [_data]
 
