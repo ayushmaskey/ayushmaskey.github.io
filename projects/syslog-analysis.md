@@ -2,7 +2,7 @@
 layout: project
 type: project
 published: true
-image: images/Datawarehouse.png
+image: images/cisco-syslog.png
 title: syslog analysis
 permalink: projects/syslog-analysis
 date: 2017
