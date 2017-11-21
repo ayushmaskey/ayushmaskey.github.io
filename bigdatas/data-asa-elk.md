@@ -2,7 +2,7 @@
 layout: bigdata
 type: bigdata
 published: true
-image: images/cotton-square.png
+image: images/elk.png
 title: cisco asa to ELK
 permalink: bigdatas/data-asa-elk
 date: 2017
