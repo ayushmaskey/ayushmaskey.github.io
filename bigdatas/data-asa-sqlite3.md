@@ -17,9 +17,6 @@ Capturing data from firewall to a database is fairly straight-forward process. F
 
 #### tftp server
 To install and test tftp server in ubuntu, two command below are sufficient. Further details on the tftp server can be found in [ubuntu community page](https://help.ubuntu.com/community/TFTP). 
-```
-
-```
 
 {% highlight bash %}
 sudo apt-get install tftp-hpa
@@ -28,40 +25,40 @@ sudo service tftp-hpa status
 
 #### cisco firewall
 Data can be collected from asa in one of two ways, ssh into the firewall or gui. I will be using ssh since it is easier to automate continuous flow of data. The first step is to make sure firewall is accepting ssh connections.
-```
+{% highlight bash %}
 ssh username@firewall_ip	# ssh into firewall
 enable				# priviledge mode in firewall
-```
+{% endhighlight %}
 
 Once inside the firewall, we can capture traffic data filtered by firewall interface, internal machine and/or external server.
 
  * Below are the command to capture all traffic from my machine to a specific ip in the inside and outside interface of firewall.
-```
+{% highlight bash %}
 capture <filename1> interface inside match ip 192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
 capture <filename2> interface outside match ip 192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
-```
+{% endhighlight %}
 
 Getting down to the specifics is useful when troubleshooting specific issue with a machine but for the project we need capture all traffic from all machines on all interfaces. Tweaking the above command slightly can achieve this.
 
-```
+{% highlight bash %}
 capture <filename1>interface inside match ip any any
 capture <filename2>interface outside match ip any any
-```
+{% endhighlight %}
 
 We can monitor the data collection using following commands
-```
+{% highlight bash %}
 show capture                #shows number of packets captured in each interface
 show capture <filename1>        #shows all the data capture in inside interface
 show capture <filename2>        #shows all the data captured in outside interface
-```
+{% endhighlight %}
 
 The raw data captured can saved in the tfpt sever using following commands
-```
+{% highlight bash %}
 copy /pcap capture:<name1> tftp://<server-ip-address>		# move data to tftp server
 no capture <filename1>						#stop capture
 no capture <filename2>
 clear capture							# clear firewall flash cache
-```
+{% endhighlight %}
 
 Now that we have the files in our tftp server, we can start writing a simple python script to move pcap data generated from firewall into a sqlite3 database. 
 
