@@ -18,9 +18,13 @@ Capturing data from firewall to a database is fairly straight-forward process. F
 #### tftp server
 To install and test tftp server in ubuntu, two command below are sufficient. Further details on the tftp server can be found in [ubuntu community page](https://help.ubuntu.com/community/TFTP). 
 ```
+
+```
+
+{% highlight bash %}
 sudo apt-get install tftp-hpa
 sudo service tftp-hpa status
-```
+{% endhighlight %}
 
 #### cisco firewall
 Data can be collected from asa in one of two ways, ssh into the firewall or gui. I will be using ssh since it is easier to automate continuous flow of data. The first step is to make sure firewall is accepting ssh connections.
@@ -61,7 +65,7 @@ clear capture							# clear firewall flash cache
 
 Now that we have the files in our tftp server, we can start writing a simple python script to move pcap data generated from firewall into a sqlite3 database. 
 
-```python
+{% highlight bash %}
 import sqlite3
 from scapy.all import rdpcap
 from datetime import datetime
@@ -226,5 +230,5 @@ C: CWR - recieved packet with ECE flag
 
 c.close()
 conn.close()
+{% endhighlight %}
 
-```
