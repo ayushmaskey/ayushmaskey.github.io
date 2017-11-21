@@ -65,7 +65,7 @@ clear capture							# clear firewall flash cache
 
 Now that we have the files in our tftp server, we can start writing a simple python script to move pcap data generated from firewall into a sqlite3 database. 
 
-{% highlight bash %}
+{% highlight python %}
 import sqlite3
 from scapy.all import rdpcap
 from datetime import datetime
