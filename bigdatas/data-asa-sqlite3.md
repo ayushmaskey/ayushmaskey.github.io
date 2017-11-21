@@ -30,9 +30,7 @@ ssh username@firewall_ip	# ssh into firewall
 enable				# priviledge mode in firewall
 {% endhighlight %}
 
-Once inside the firewall, we can capture traffic data filtered by firewall interface, internal machine and/or external server.
-
- * Below are the command to capture all traffic from my machine to a specific ip in the inside and outside interface of firewall.
+Once inside the firewall, we can capture traffic data filtered by firewall interface, internal machine and/or external server. Below are the command to capture all traffic from my machine to a specific ip in the inside and outside interface of firewall.
 {% highlight bash %}
 capture <filename1> interface inside match ip 192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
 capture <filename2> interface outside match ip 192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
@@ -47,7 +45,7 @@ capture <filename2>interface outside match ip any any
 
 We can monitor the data collection using following commands
 {% highlight bash %}
-show capture                #shows number of packets captured in each interface
+show capture                	#shows number of packets captured in each interface
 show capture <filename1>        #shows all the data capture in inside interface
 show capture <filename2>        #shows all the data captured in outside interface
 {% endhighlight %}
@@ -62,7 +60,7 @@ clear capture							# clear firewall flash cache
 
 Now that we have the files in our tftp server, we can start writing a simple python script to move pcap data generated from firewall into a sqlite3 database. 
 
-{% highlight python %}
+{% highlight py %}
 import sqlite3
 from scapy.all import rdpcap
 from datetime import datetime
