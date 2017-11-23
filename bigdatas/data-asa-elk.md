@@ -43,7 +43,9 @@ The above command uses elasticsearch image as base to create a container with ho
 #### kibana
 
 ```bash
-docker run -d -p 5601:5601 -h kibana --name kibana --link elasticsearch:elasticsearch kibana
+docker run -d -p 5601:5601 -h kibana --name kibana \
+--link elasticsearch:elasticsearch \
+kibana
 ```
 
 The command to run container is very similar to that of elasticsearch with couple of key differences. The command above uses kibana as base image to create a container named kibana and same hostname. **-h** is the same as **--hostname** and is used to give hostname to a docker container. The command also publishes port 5601 to the docker host and opens up the web interface to manipulate underlying data in elasticsearch. **-d** in kibana command is to simply create a container in detached mode. Finally, **--link** is the most important option when creating kibana container. Since kibana is a web interface to elasticsearch, we need to point kibana container to elasticsearch.
@@ -53,7 +55,10 @@ The command to run container is very similar to that of elasticsearch with coupl
 I kept logstash for the end as it requires more configuration. Command to create logstash container is similar to the other two up to contain extent, the biggest difference being the config file for logstash. 
 
 ```bash
-docker run -h logstash --name logstash --link elasticsearch:elasticsearch -it --rm -v "$PWD":/config-dir logstash -f /config-dir/logstash1.conf
+docker run -h logstash --name logstash \
+--link elasticsearch:elasticsearch \
+-it --rm -v "$PWD":/config-dir logstash \
+-f /config-dir/logstash1.conf
 ```
 The above command uses logstash image to create a container named logstash and same hostname. Like kibana, logstash needs to be linked to elasticsearch as well. The above command has three more options, **-rm, -v, -f**. Those three commands were added specifically to to run and test config files. The biggest problem I had when creating cluster of ELK stack was getting the config files working as expected. 
 
