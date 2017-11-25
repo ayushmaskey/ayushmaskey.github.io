@@ -22,7 +22,7 @@ Going through 2.5Gb of data everyday is not possible so the best option is get s
 Besides DNS query, I will be ignoring the following traffic using elasticsearch query DLS
 
 * ignore
-```
+
 |source machine   | Port | destination machine | Reason  |
 |-----------------|------|---------------------|---------|
 |LDAP		  |53    |8.8.8.8      	       |DNS query|
