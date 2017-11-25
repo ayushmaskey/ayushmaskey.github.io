@@ -3,15 +3,13 @@ layout: bigdata
 type: bigdata
 published: true
 image: images/elk.png
-title: logstash config
+title: logstash.conf
 permalink: bigdatas/data-logstash-config
 date: 2017
 labels:
   - logstash
 summary: logstash config file
 ---
-
-#### logstash.config
 
 Config file can be separated into three basic components, input, filter and output. They are all defined in JSON format and wrapped around curly braces. As the name suggest, input takes in data and output spits out the data. In the middle the input can be parsed using filters before the passing the data for output. 
 
