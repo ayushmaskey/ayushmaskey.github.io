@@ -143,15 +143,15 @@ def insert_generic_table(pLists, tbl_name):
 ````
 
 #### TCP Flags
-S: SYN - 3 way handshake
-A: ACK -success
-F: FIN - finish
-R: RESET - denied
-P: PUSH - similar to urgent
-U: URGENT - process this packet before any other
-E: ECE - ECN capable
-C: CWR - recieved packet with ECE flag
-.: ACK
+* S: SYN - 3 way handshake
+* A: ACK -success
+* F: FIN - finish
+* R: RESET - denied
+* P: PUSH - similar to urgent
+* U: URGENT - process this packet before any other
+* E: ECE - ECN capable
+* C: CWR - recieved packet with ECE flag
+* .: ACK
 
 
 
