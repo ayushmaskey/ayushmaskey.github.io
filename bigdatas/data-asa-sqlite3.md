@@ -32,8 +32,11 @@ enable				# priviledge mode in firewall
 
 Once inside the firewall, we can capture traffic data filtered by firewall interface, internal machine and/or external server. Below are the command to capture all traffic from my machine to a specific ip in the inside and outside interface of firewall.
 {% highlight bash %}
-capture <filename1> interface inside match ip 192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
-capture <filename2> interface outside match ip 192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
+capture <filename1> interface inside match ip \
+192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
+
+capture <filename2> interface outside match ip \
+192.168.10.10 255.255.255.255 203.0.113.3 255.255.255.255
 {% endhighlight %}
 
 Getting down to the specifics is useful when troubleshooting specific issue with a machine but for the project we need capture all traffic from all machines on all interfaces. Tweaking the above command slightly can achieve this.
@@ -45,17 +48,17 @@ capture <filename2>interface outside match ip any any
 
 We can monitor the data collection using following commands
 {% highlight bash %}
-show capture                	#shows number of packets captured in each interface
-show capture <filename1>        #shows all the data capture in inside interface
-show capture <filename2>        #shows all the data captured in outside interface
+show capture                	# num of pkts in each interface
+show capture <filename1>        # pkts in inside interface
+show capture <filename2>        # pkts in outside interface
 {% endhighlight %}
 
 The raw data captured can saved in the tfpt sever using following commands
 {% highlight bash %}
-copy /pcap capture:<name1> tftp://<server-ip-address>		# move data to tftp server
-no capture <filename1>						#stop capture
+copy /pcap capture:<name1> tftp://<server-ip-address>
+no capture <filename1>	
 no capture <filename2>
-clear capture							# clear firewall flash cache
+clear capture
 {% endhighlight %}
 
 Now that we have the files in our tftp server, we can start writing a simple python script to move pcap data generated from firewall into a sqlite3 database. 
@@ -80,7 +83,7 @@ def create_table(tbl_name):
 #### pcap file into list of tuples ready to insert into sqlite
 ```
 from scapy.all import rdpcap
-from datetime import datetime
+from datetime import datetime as dt
 
 def pcap_into_list_of_tuples(file_name):
   pkts = rdpcap(file_name)
@@ -88,7 +91,7 @@ def pcap_into_list_of_tuples(file_name):
   tuples = ()
 
   for pkt in pkts:
-    timestamp = datetime.fromtimestamp(pkt.time).strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = dt.fromtimestamp(pkt.time).strftime('%Y-%m-%d %H:%M:%S')
 	   
     eth_dst = pkt.sprintf("%Ether.dst%")
     eth_src = pkt.sprintf("%Ether.src%")
