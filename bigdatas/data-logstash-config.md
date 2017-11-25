@@ -16,6 +16,7 @@ summary: logstash config file
 Config file can be separated into three basic components, input, filter and output. They are all defined in JSON format and wrapped around curly braces. As the name suggest, input takes in data and output spits out the data. In the middle the input can be parsed using filters before the passing the data for output. 
 
  * Input
+
 ```config
 input {
   stdin { }
