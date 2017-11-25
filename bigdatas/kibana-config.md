@@ -3,12 +3,12 @@ layout: bigdata
 type: bigdata
 published: true
 image: images/elk.png
-title: logstash.conf
-permalink: bigdatas/data-kibana-config
+title: kibana dashboard
+permalink: bigdatas/kibana-config
 date: 2017
 labels:
   - kibana
-summary: kibana configuration
+summary: kibana dashboard
 ---
 
 One the logstash is getting data and dumping them into elasticsearch, we are able to view those data in kibana. Kibana web interface is on port 5601 of the docker host as defined when kibana container was initially created. The management port will look for list of field that have been recorded in elasticsearch. Since we used logstash to populate elasticsearch, all the fields will be populated with prefix **logstash**. Management page will then show all fields that have been defined in logstash config. I have 84 fields but I will only a small subset of the project.
