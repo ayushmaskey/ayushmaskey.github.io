@@ -39,14 +39,9 @@ output {
   stdout {
     codec => rubydebug
   }
-  # Archive Cisco ASA firewall logs on disk based on the event's timestamp
-  # Results in directories for each year and month, with conveniently-named log files, like:
-  # /path/to/archive/cisco-asa/2014/2014-09/cisco-asa-2014-09-24.log
   file {
     path => "/config-dir/archive/asa-%{+YYYY-MM-dd}.log"
   }
-
-  # Also output to ElasticSearch for review in Kibana
   elasticsearch { hosts => ["elasticsearch:9200"] }
 }
 ```
@@ -64,13 +59,15 @@ if [type]=="cisco-asa" {
 There are some hand firewall syslog message patterns predefined in [github](https://github.com/logstash-plugins/logstash-patterns-core) by the active community of logstash. We can use those predefined patterns to tease out the messages we are interested in. Between the braces of the conditional statement we define grok with following patterns.
 ```
 grok {
-  match => ["message", "%{CISCO_TAGGED_SYSLOG} %{GREEDYDATA:cisco_message}"]
+  match => ["message", "%{CISCO_TAGGED_SYSLOG} \
+	%{GREEDYDATA:cisco_message}"]
 }
 ```
 Grok is a logstash filter plugin that parse through unstructured syslog syslog data into structured data ready for query. Grok uses regular expression to match logs and and convert into structured key value pair. Grok has predefined patterns built-in and also allows us to define custom regular expressions. Here I used predefined patterns of firewall to get the data I need. Github page of the firewall patterns defined regular expression for CISCO_TAGGED_SYSLOG as following
 
 ```
-CISCO_TAGGED_SYSLOG:  ^<%{POSINT:syslog_pri}>%{CISCOTIMESTAMP:timestamp}( %{SYSLOGHOST:sysloghost})? ?: %%{CISCOTAG:ciscotag}:
+CISCO_TAGGED_SYSLOG:  ^<%{POSINT:syslog_pri}>%{CISCOTIMESTAMP:timestamp}\
+	( %{SYSLOGHOST:sysloghost})? ?: %%{CISCOTAG:ciscotag}:
 ```
 
 These patterns are very modular. For example CISCOTAG and CISCOTIMESTAMP used in CISCO_TAGGED_SYSLOG  are regular expression themselves and is defined as
