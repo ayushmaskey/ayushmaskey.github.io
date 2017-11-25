@@ -15,7 +15,7 @@ summary: logstash config file
 
 Config file can be separated into three basic components, input, filter and output. They are all defined in JSON format and wrapped around curly braces. As the name suggest, input takes in data and output spits out the data. In the middle the input can be parsed using filters before the passing the data for output. 
 
- * Input
+#### Input
 
 ```config
 input {
@@ -32,7 +32,7 @@ input {
 
 All possible source of input are defined within input braces. This config file takes in input from two different sources. The first one defined is stdin which takes in input from the terminal and waits for user to enter the data into the terminal. This can be used as a simple test to make sure logstash is running as expected. The second input source is defined on UDP port 5140 for firewall IP. Logstash is listening to the port that is defined in the input and but accects traffic from ip defined by host. For this project I will be shipping logs from firewall to UDP port 5140. Here I have tagged traffic coming in port 5140 from firewall as "cisco-asa" using type key. Tagging will come handy when there are multiple source of input.
 
- * Output
+#### Output
 
 ```config
 output {
@@ -48,7 +48,7 @@ output {
 
 I have defined  output for all the incoming data. First is stdout with codec rubydebug. As the name suggests, this is used for debugging and very tool keep handy. This visualizes output data into the terminal before we store it. 
 
- * Filters
+#### Filters
 
 Filter in the logstash are the meat of the config file. I have 5 filters defined as of now. All 4 filters are wrapped around conditional statement checking whether the log is from the firewall. We tagged all incoming data as “cisco-asa”. Now we use this tag to verify right filters apply to the data if there are multiple source of input defined.
 
@@ -66,7 +66,8 @@ grok {
 Grok is a logstash filter plugin that parse through unstructured syslog syslog data into structured data ready for query. Grok uses regular expression to match logs and and convert into structured key value pair. Grok has predefined patterns built-in and also allows us to define custom regular expressions. Here I used predefined patterns of firewall to get the data I need. Github page of the firewall patterns defined regular expression for CISCO_TAGGED_SYSLOG as following
 
 ```
-CISCO_TAGGED_SYSLOG:  ^<%{POSINT:syslog_pri}>%{CISCOTIMESTAMP:timestamp}\
+CISCO_TAGGED_SYSLOG:  ^<%{POSINT:syslog_pri}> \
+	%{CISCOTIMESTAMP:timestamp}\
 	( %{SYSLOGHOST:sysloghost})? ?: %%{CISCOTAG:ciscotag}:
 ```
 
@@ -139,7 +140,9 @@ As with most pattern defined in cisco grok page in github, this pattern was cons
 
 ```
 CISCO_DIRECTION: Inbound|inbound|Outbound|outbound
-CISCO_ACTION: Built|Teardown|Deny|Denied|denied|requested|permitted|denied by ACL|discarded|est-allowed|Dropping|created|deleted
+CISCO_ACTION: Built|Teardown|Deny|Denied|denied|requested \
+	|permitted|denied by ACL|discarded|est-allowed \
+	|Dropping|created|deleted
 ```
 
  I am not very good with regular so it was trial and error for me. I used a pattern in my config file to see if it gave me any useful output. This is when **--rm** option when creating logstash came in handy. Also the output to console using ruby debug gave me quick view of the expected output. I used many pattern which gave me structure data from the gibberish that was syslog. Without networking or security background I don’t understand all the pieces of information that grok structured for me but I understand enough to make me to use some of the information for the project. 
