@@ -128,11 +128,11 @@ Finally the following grok parses the details of the firewall log into desired o
 One of the pattern I used above is CISCOFW106001, which gets source IP, source port, destination IP, destination ports and flags from the syslog and it defined in github as below
 ```
 CISCOFW106001: %{CISCO_DIRECTION:direction} \
-%{WORD:protocol} \
-connection %{CISCO_ACTION:action} \
-from %{IP:src_ip}/%{INT:src_port} to %{IP:dst_ip}/%{INT:dst_port} \
-flags %{GREEDYDATA:tcp_flags} \
-on interface %{GREEDYDATA:interface}
+	%{WORD:protocol} \
+	connection %{CISCO_ACTION:action} \
+	from %{IP:src_ip}/%{INT:src_port} to %{IP:dst_ip}/%{INT:dst_port} \
+	flags %{GREEDYDATA:tcp_flags} \
+	on interface %{GREEDYDATA:interface}
 ```
 As with most pattern defined in cisco grok page in github, this pattern was constructed using smaller patterns 
 
