@@ -61,6 +61,8 @@ no capture <filename2>
 clear capture
 {% endhighlight %}
 
+File saved in /var/lib/tftpboot/filename
+
 Now that we have the files in our tftp server, we can start writing a simple python script to move pcap data generated from firewall into a sqlite3 database. 
 
 #### create table
@@ -156,4 +158,35 @@ def insert_generic_table(pLists, tbl_name):
 
 
 I got firewall traffic imported into the database and it was time to automate the process when I learned about [ELK stack](./dat-asa-elk.md). ELK stack consists of elasticsearch, logstash and kibana. I wanted to give it a try since ELK stack was build to parse logs. I thought I would come back to python and sqlite since I am confortable relational databases. However, after using ELK stack for a day, I hesitate to continue using relational database for log parse.
+
+Even though I am abandoning sqlite database in favor of ELK stack, I will definitely come back to scapy package for future  projects. Scapy is very useful when generating network traffic, parsing though traffic captured and troubleshooting issues in the network.
+
+* Ping
+```
+Sr1(IP(dst=”www.google.com”)/ICMP() )
+```
+
+* Check open ports 
+```
+ans, unans =  Sr1(IP(dst=”www.google.com”)/TCP(dport=[21, 23, 80, 443]) , timeout =1)
+ans.summary()
+unans.summary()
+```
+
+* DNS resolution- find IP 
+```
+sr1(IP(dst=”10.0.0.1”)/UDP()/DNS…. )
+```
+
+* All active IP
+```
+arping(“10.0.0.*”)
+```
+Trace route - uses tcp80 instead of icmp
+
+* Finally the most powerful of them all
+sniff()
+
+
+
 
