@@ -130,7 +130,8 @@ One of the pattern I used above is CISCOFW106001, which gets source IP, source p
 CISCOFW106001: %{CISCO_DIRECTION:direction} \
 	%{WORD:protocol} \
 	connection %{CISCO_ACTION:action} \
-	from %{IP:src_ip}/%{INT:src_port} to %{IP:dst_ip}/%{INT:dst_port} \
+	from %{IP:src_ip}/%{INT:src_port} \
+	to %{IP:dst_ip}/%{INT:dst_port} \
 	flags %{GREEDYDATA:tcp_flags} \
 	on interface %{GREEDYDATA:interface}
 ```
