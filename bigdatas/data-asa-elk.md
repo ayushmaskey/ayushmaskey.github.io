@@ -71,10 +71,10 @@ COPY logstash.conf /config-dir/
 CMD ["-f", "/config-dir/logstash1.conf"]
 ```
 
-Regardless of how the config file is set, we will have to teat the file incrementally to achieve the desired result. I was creating container with a config file, stop the container, remove the container, tweak my config file and create the container again. This is a tedious process but docker option **--rm** simplifies the process of testing config file. We create the container with **--rm** option while we test and tweak the config file. Once we have a config file to our liking, the same command without **--rm** can be used the create a stable container.
+Regardless of how the config file is set, we will have to teat the file incrementally to achieve the desired result. I was creating container with a config file, stop the container, remove the container, tweak my config file and create the container again. This is a tedious process but docker option **--rm** simplifies the process of testing config file. We create the container with **--rm** option while we test and tweak the config file. Once we have a config file to our liking, the same command without **--rm** can be used the create a stable container. **-d** can be added to the command to start the container in detached mode once we are satisfied with out config file.
 
-#### logstash.config
 
+#### asa 
 
 
 
