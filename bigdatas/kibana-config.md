@@ -23,10 +23,10 @@ Besides DNS query, I will be ignoring the following traffic using elasticsearch 
 
 * ignore
 
-| source machine    | Port   | destination machine   | Reason    |
-| ----------------- | :----: | :-------------------: | --------: |
-| LDAP		    | 53     | 8.8.8.8      	     | DNS query |
-| DMZ 		    | 53     | LDAP		     | DNS query |
+| source | Port   | destination | Reason    |
+| :----: | :----: | :---------: | :-------: |
+| LDAP	 | 53     | 8.8.8.8     | DNS query |
+| DMZ 	 | 53     | LDAP	| DNS query |
 
 
 
