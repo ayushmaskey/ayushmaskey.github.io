@@ -28,13 +28,13 @@ It is increasingly important to have the ability to go back and view historical 
 
 There are out of box solutions like splunk that help with log analysis but the cost of those solution are astronomical. Deploying open source solution customized for the particular infrastructure might be the best path toward network visibility and security.
 
-##Data set##
+## Data set
 
 Log are the only data set used in the project. The project could have been named log analysis but the logs used in this project are strictly generated from networking equipments, hence network traffic analysis. The primary source of logs is cisco asa 5510 firewall with additional logs from cisco 2921 router included late into the project. Like any other logs captured on network traffic, logs from both the firewall and the router looked like any tcpdump capture with some additional cisco specific data points.
 
-##Methodology##
+## Methodology
 
-###Data capture###
+### Data capture
 
 Once the data source is identified, the next step, obviously, is to capture the data. There many ways to capture logs from cisco firewall. It is possible to export the logs from GUI which is useful to get the first look. I used this capture to get better understanding of logs and network traffic in general.
 
@@ -42,7 +42,7 @@ The other two methods I explored are better suited for continuous flow of logs f
 
 The final and the best solution I came across was a simple configuration change which can be done within GUI. In logging section of device management module of cisco firewall, I added ip of the machine to store those logs along with UDP port number of my choice. Now the logs are continuously shipped from firewall to the designated machine. I still had to figure out a way to setup up the designated machine to be listening on that particular port at all times but third option looked promising.
 
-###Pre-processing###
+### Pre-processing
 
 There are various tools and libraries readily available that play well with the logs, some being better than others so there were decisions that needed to be made. The first of those decision was data storage. The goal was to move the data to spark cluster but I wanted to stage the data for pre-process before moving it to spark. I was looking into sqlite and mysql as possible solutions as I am familiar with RDBMS. On one hand, sqlite is lightweight but I like that mysql has gui interface. I decided to hold off on this decision until I had a closer look at the available tools to process logs.
 
@@ -50,7 +50,7 @@ Breaking down logs is a lot of regular expression but packet manipulation librar
 
 With ELK stack pre-processing data was easier and I did not have to worry about spark or hadoop since ELK stack work very well in cluster.
 
-###ELK stack###
+### ELK stack
 
 ELK stack comprises of elasticsearch, logstash and kibana. Any or all of those an be replaced to form a different stack with similar functionality. But ELK stack has gained popularity because they work seamlessly with each other. Elastic is a great text processing and search engine, logstash is tailor made to break down logs and kibana can be used to visualize data for analysis. ELK stack runs well in docker and there are docker images of all three in one readily available. However, to simulate cluster environment and accommodate scalability, I created individual container for each of one them. Building ELK stack cluster was pretty straight-forward with basic knowledge of docker. I downloaded the official image of each rather that customizing each container with Dockerfile. 
 
@@ -59,7 +59,7 @@ Elasticsearch can be stand alone container while Kibana and Logstash are depende
 Building kibana container requires mapping of port 5601 which is the web interface for kibana and linking it to elasticsearch container using docker run -d -p 5601:5601 -h kibana --name kibana --link elasticsearch:elasticsearch kibana. 
 Logstash, similarly, requires link to elasticsearch and a config file. Config file takes blob of log files and transform them into structured data and export them into elasticsearch. docker run -h logstash --name logstash --link elasticsearch:elasticsearch -it --rm -v "$PWD":/config-dir logstash -f /config-dir/logstash1.conf does all that with config-dir holding the logstash config file mapped from host machine to logstash container as a volume.
 
-###Logstash###
+### Logstash
 
 Logstash is an open source tool built on ruby for collecting, parsing and storing logs. It is plugin based tool and plugins can be added as separately gemfile. Logstash takes logs as one or more input, manipulates the logs as necessary and outputs the transformed data to one or more destination, which is all defined in logstash config file.
 Logstash can pull data from flat file, syslog, or streaming data on TCP or UDP ports. All possible input sources are defined within the input braces. Logstash config file for this project are defined to listen for firewall ip on UDP port 5140 as input { udp {  host => "firewall IP"  port => 5140   type => "cisco-asa"  } } All the traffic matching those criterions are tagged as cisco-asa.
@@ -68,7 +68,7 @@ The input data is then passed through filters, which is the meat of the config f
 Each of those cisco patterns are composed of other cisco patterns or regular expressions. Each pattern starts with regular expression and other patterns are build upon those patterns and regular expression. For example %{CISCOFW106001}"  is looking for patterns matching source and destination IP as well as respective ports. As a regular expression beginner, It would have taken exponentially more time without the plugins. These grok plugins broke down blob of log into human readable key value pair data structure. 
 Finally, output destinations are defined between output braces. I used two output consistently, elasticsearch '''{ hosts => ["elasticsearch:9200"] }''' and '''{stdout { codec => rubydebug }''' . The first one ships the transformed logs into elasticsearch while the second displays the output in the terminal. The output to the terminal in debug mode was very useful tool when building the logstash config file.
 
-###Elasticsearch###
+### Elasticsearch
 
 Elasticsearch is the nucleus of ELK stack optimized for full text search in distributed environment. Elastic load can be distributed on cluster of machines where each machine is called a node. Each node is made up of one or more shards and each shard is a lucene index. Each lucene index composed of lucene segments. Segments store inverted index of the documents. Inverted index is the key data structure that enables lucene full text search. Each inverted index is composed of term frequency and inverse document frequency (TF-IDF).  Term frequency is a dictionary of all the terms in the document and the frequency of those terms. Inverse document frequency takes rare terms in a document into account to create document postings. At its core lucene search operates on TF dictionary to find the candidate terms and then IDF postings to score the document. Elastic at its core is bunch of lucene indexes and expands into distributed environment.
 
@@ -76,15 +76,15 @@ On a higher level, elastic is collection of json style documents with indexing a
 
 After transformation, elastic DSL query can be used to analyze and aggregated data. Query DSL is JSON style querying which makes it is verbose and difficult to read. The query DSL is converted to lucene query before the job is sent to the nodes and shards and segments. Query DSL can be used to filter data, get aggregate of specific term or best match ranked results. There is ofcourse performance hit when the query is for ranked result vs aggregate of specific terms. These aggregation and filtering are the core of kibana dashboards.
 
-###Kibana###
+### Kibana
 
 Kibana is the visual output module of the ELK stack. It is used to build dashboards that give a snapshot of network status at any given time frame. Dashboards are made of multiple visuals, and aggregation is the basis of all visualization in Kibana. There are two broad types of aggregations. The first being being aggregation of documents that match certain criteria like time range, geolocation etc. and the other being metric aggregation like count, average, std dev etc. Kibana uses elastic DSL query as well as lucene query for aggregation. I mostly used query DSL and some lucene query to build my dashboards which gave me a big picture of traffic in the network. 
 
-##Results##
+## Results
 
 Once all the piece of ELK stack were functioning, it was time to analyze the collected data. Analysis of data on elasticsearch can be done on using few different tools. I tried Kibana, curl scripts and python library for the project. Kibana is a great solution for basic data analysis. Visualization come free with Kibana but not all elastic commands are available on Kibana as of now. We can pass scripts straight into elasticsearch using curl on port 9200. This is not the simplest tools since it is strictly command line but it is the most powerful tool available to query elasticsearch. Finally I tried python library pyelasticsearch. It uses query DSL like verbose structure but converts it to and from python data types easily. Moreover, the possibility of adding other data analysis and machine learning libraries in python make this a lucrative option.
 
-###Server Dashboard###
+### Server Dashboard
 
 I started off the analysis process by looking at the servers. Network traffic passing to and from the servers need to be scrutinized since they house most of the data in any organization. I used Kibana to build dashboards to monitor all server. It is a simple aggregation of number of bytes and number of documents generated for each of the servers. We have approximately 70 server, with around 80% of them are being virtual machines and over 90% running on microsoft operating systems. In the next few sections, I will be taking a closer look at server traffic.
 
@@ -104,11 +104,11 @@ Finally, the most interesting traffic was seen in print server. Vendors have the
 
 After a birds eye view of the servers and digging into details when necessary, I have come to realization that few changes need to be made as soon as possible. The priorities are to correctly route SAN traffic for two server and talk to xerox about the amount of traffic they are collecting. It is time to remind them about possible HIPPA violation if the misuse this data and also determine type of data they are collecting. Moreover, I need better understand network traffic so I can do a deep inspection. While kibana has given me a great look into overall server traffic within my network, drilling down to details is a lot of query DSL using curl. 
 
-###Printer dashboard###
+### Printer dashboard
 
 After looking at the massive amount of data exfiltrating print server, I decided to look into individual printers. Some printers were sending data out individually, unrelated to print server traffic, as seen in the graph below. This graph represents data in three dimensions. X-axis represent the port number of traffic and y-axis has the external IP source and the total packet size. Each color block represents a printer. Out of 50 networked printer, about 15 were talking to external ip. Most of them were going to the printer manufacturer themselves. Xerox printers were sending data to xerox network and HP printers were sending data to HP ip ranges while the rest were from vpn users.
 
-###Total Traffic###
+### Total Traffic
 
 A time series graph depicting total traffic on a given day is another useful tool in my dashboard. The three lines in the graph red, blue and yellow represent 3 consecutive days. Blue represents traffic for that day and red represents the day before and yellow is total traffic from 48 hours hours ago. It is useful to compare total traffic of a given day to couple of days around it to get a sense of what is normal. 
 
@@ -116,7 +116,7 @@ The above graph shows traffic is fairly consistent for most days. Weekends have 
 
 I zoomed into the graph to focus on traffic between 2pm and 3:30pm of November 29th which can be seen below. I chose 29th instead of the actual date of the traffic so I can compare 28th in red with 27th in yellow and 29th in blue. The total traffic exfiltrated on 28th is definitely alarming. However, I do not have expertise to understand what exactly happened in that time frame. I have reached out to few friends in the industry for help. As of now I have the data saved and I get go back to analyzing this day when I find someone or something with the expertise to do so.
 
-###Significant Terms###
+### Significant Terms
 
 Elasticsearch has a great functionality of finding significant terms and it is fairly straight-forward to use. Significant terms calculates a score for all terms in foreground by comparing it to the documents in the background set. In the figure above, I defined foreground set as documents in the last 24 hours and background set as all documents in the collection. Within matter of seconds, elasticsearch was able to compare all documents in foreground and background set to give me a relative score. This score is not just a popularity contest, it is significant change in popularity between foreground and background set. There are option to boost certain fields as I learn more about network traffic in general
 
@@ -130,7 +130,7 @@ Even though the search was completed in the matter of seconds, as the number of 
 
 The possible partition, I can think of, are by month or traffic going to different sites or by ports. Firewall probably does not generate enough logs to justify clustering by month but the other two are viable options and I am torn between which one is the better option. I could combine smaller sites into one cluster and bigger sites as a separate one. If I chose to go this route, I could add router traffic into the respective clusters. On the other hand, separating traffic by port sounds interesting too. All DNS lookup can go into one cluster since it generates the most traffic. Similarly email and web traffic can have individual clusters and the rest of port can go into final cluster. The advantage of this configuration is the need to search in one cluster when I am digging into a particular type of traffic.
 
-##Actionable items##
+## Actionable items
 
 Collecting the data is fine, having dashboard is great, but it is all for naught if it does not give me actionable items. And fortunately ELK stack did direct me to lot of areas that need immediate or intermediate actions.
 
@@ -142,7 +142,7 @@ The next step would probably be better segmentation of subnets. After I added ro
 
 Finally, I need to better solution to analyze web and email traffic. I do not have expertise to understand web traffic nor do I have have knowledge to isolate suspicious email. Moreover, digging into individual suspicious traffic is not feasible. I need a better heuristics but that will only come with time and experience. 
 
-##Conclusion## 
+## Conclusion 
 
 I have been using ELK stack for few weeks, I am really enjoying tweaking and testing to get better snapshot of traffic in my network. It gives me retrospective view of all the traffic which I never had before. I have been spending lot of my time at work with elastic and it has been fun. Elasticsearch is popular for its prowess when dealing with logs but it can do much much more. Elasticsearch can be used for any blob of text whether it is twitter or wikipedia. Logstash and Kibana might not be appropriate tool for those data sources but with python libraries, it is matter matter of writing scripts to load the data and pull it out of visualization. Elastic does the rest.
 
