@@ -36,7 +36,7 @@ Log are the only data set used in the project. The project could have been named
 
 ### Data capture
 
-Once the data source is identified, the next step, obviously, is to capture the data. There many ways to capture logs from cisco firewall. It is possible to export the logs from GUI which is useful to get the first look. I used this capture to get better understanding of logs and network traffic in general.
+Once the data source is identified, the next step, obviously, is to capture the data. There many ways to #_capture_# logs from cisco firewall. It is possible to export the logs from GUI which is useful to get the first look. I used this capture to get better understanding of logs and network traffic in general.
 
 The other two methods I explored are better suited for continuous flow of logs from firewall. The first of those is using capture command on cisco command line interface. This command can capture all traffic request to the firewall and with additional flags it can be narrowed down to specific ip and specific ports. The capture command saves the traffic to the firewall flash which is a tiny space and cannot store huge amount of data. A simple python script can move the traffic data captured to a tftp server as a pcap file and clear the firewall cache for more capture. While this seems to be a workable solution for this particular project, it did not seem like a practical solution long term.
 
