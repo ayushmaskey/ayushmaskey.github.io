@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-published: true
+published: false
 image: images/cisco-syslog.png
 title: syslog analysis
 permalink: projects/syslog-analysis
