@@ -45,7 +45,7 @@ The final and the best solution I came across was a simple configuration change 
 
 There are various tools and libraries readily available that play well with the logs, some being better than others so there were decisions that needed to be made. The first of those decision was data storage. The goal was to move the data to spark cluster but I wanted to stage the data for pre-process before moving it to spark. I was looking into sqlite and mysql as possible solutions as I am familiar with RDBMS. On one hand, sqlite is lightweight but I like that mysql has gui interface. I decided to hold off on this decision until I had a closer look at the available tools to process logs.
 
-Breaking down logs is a lot of regular expression but packet manipulation libraries, like scapy, simplified this process significantly. With help of some python scripts, scapy and some regular expression sprinkled in, I was able to break down logs in pcap file into structure data. I used mysql to get started. After the data was in place, it was time to query and get some insight. Most of my statement included like with wildcards all over the place. That is when I realised this dataset is tailor made for nosql. I started looking for nosql options, with all purpose mongodb as a backup candidate. That is when I came across ELK stack.
+Breaking down logs is a lot of regular expression but packet manipulation libraries, like scapy, simplified this process significantly. With help of some python scripts, scapy and some regular expression sprinkled in, I was able to break down logs in pcap file into structure data. I used mysql to get started. After the data was in place, it was time to query and get some insight. Most of my statement included _like_ with wildcards all over the place. That is when I realised this dataset is tailor made for nosql. I started looking for nosql options, with all purpose mongodb as a backup candidate. That is when I came across ELK stack.
 
 With ELK stack pre-processing data was easier and I did not have to worry about spark or hadoop since ELK stack work very well in cluster.
 
@@ -78,17 +78,29 @@ does all that with config-dir holding the logstash config file mapped from host 
 Logstash is an open source tool built on ruby for collecting, parsing and storing logs. It is plugin based tool and plugins can be added as separately gemfile. Logstash takes logs as one or more input, manipulates the logs as necessary and outputs the transformed data to one or more destination, which is all defined in logstash config file.
 Logstash can pull data from flat file, syslog, or streaming data on TCP or UDP ports. All possible input sources are defined within the input braces. Logstash config file for this project are defined to listen for firewall ip on UDP port 5140 as 
 ```
-input { udp {  host => "firewall IP"  port => 5140   type => "cisco-asa"  } } 
-```
+input { udp {  host => "firewall IP" 
+		port => 5140   
+		type => "cisco-asa"  
+} } 
+```	
 All the traffic matching those criterions are tagged as cisco-asa.
 
 The input data is then passed through filters, which is the meat of the config file. Building filters from scratch would be a tall task but grok came to the rescue. Grok is popular filter plugin that parse unstructured syslog into structured data. Grok uses predefined patterns as well as regular expression to match logs and convert them into key value pairs. Logstash also has a built-in plugin for cisco firewalls which can be used within grok. These plugins simplified the process of building the config file. The combination of the patterns found in cisco plugins and some regular expression, helped me build the logstash filter, like filter
 
 ```
-{ grok {match => ["message", "%{CISCOFW106001}",  "message", "%{CISCOFW106014}"]
+{ grok {
+match => ["message", "%{CISCOFW106001}", 
+	"message", "%{CISCOFW106014}"]
 ``` 
 Each of those cisco patterns are composed of other cisco patterns or regular expressions. Each pattern starts with regular expression and other patterns are build upon those patterns and regular expression. For example %{CISCOFW106001}"  is looking for patterns matching source and destination IP as well as respective ports. As a regular expression beginner, It would have taken exponentially more time without the plugins. These grok plugins broke down blob of log into human readable key value pair data structure. 
-Finally, output destinations are defined between output braces. I used two output consistently, elasticsearch '''{ hosts => ["elasticsearch:9200"] }''' and '''{stdout { codec => rubydebug }''' . The first one ships the transformed logs into elasticsearch while the second displays the output in the terminal. The output to the terminal in debug mode was very useful tool when building the logstash config file.
+Finally, output destinations are defined between output braces. I used two output consistently, elasticsearch 
+```
+{ hosts => ["elasticsearch:9200"] }
+``` 
+and 
+```{stdout { codec => rubydebug }
+```
+The first one ships the transformed logs into elasticsearch while the second displays the output in the terminal. The output to the terminal in debug mode was very useful tool when building the logstash config file.
 
 ### Elasticsearch
 
