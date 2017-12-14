@@ -3,7 +3,7 @@ layout: project
 type: project
 published: true
 image: images/micromouse.jpg
-title: Micromouse
+title: Network Traffic Analysis
 permalink: projects/network_traffic_analysis
 date: 2017
 labels:
@@ -12,13 +12,13 @@ labels:
 summary: As a project for ICS 491, I used Elastic stack to collect data from firewall for analysis.
 ---
 
-##Abstract## 
+## Abstract
 
 There is news about network infiltration every few weeks and the rate of the intrusion seems to be growing. No organization, big or small, is immune to this. While few breaches like uber, sony, yahoo and equifax get lot of press coverage, most of them go unnoticed in the mainstream. There are many instances where organization are unaware that their network has been compromised for a very long time. As complexity of software increases, there is increased attack surface for an adversary trying to infiltrate. And the attack only get better, for example, mirai botnet taking down dyndns using IoT devices seemed like a big deal but now there is reaper building larger army of botnets.
 
 Network of any organization are build on hundreds of such softwares. The complexity of any network increasing with each passing day and every device imaginable seems to be running on of those complex software. Keeping all those software from routers and switches to television and cameras uptodate is a tall task. The organization I work for is no different but with an extra caveat. As a medical facility housing critical patient data with HIPPA compliance, we have an extra incentive to keep a close eye on day to day network traffic. 
 
-##Introduction##
+## Introduction
 
 Network and security architecture of the organization I work for, follow that of an average organization. Firewall stand in between internet and the internal network. Emails pass through extra layer of spam filtering. Rest of the traffic that pass through firewall are dispersed to appropriate machines though routers and switches. Each machine is equipped with an antivirus that parse through the incoming traffic. This is probably the most commonly used architecture where firewall, email filter and antivirus are replaceable with different vendors that have distinct strengths and weaknesses. At my work we use cisco asa 5510 as the firewall, barracuda spam filter for emails and cylance encryption and protection as antivirus.
 
