@@ -56,20 +56,20 @@ ELK stack comprises of elasticsearch, logstash and kibana. Any or all of those a
 Elasticsearch can be stand alone container while Kibana and Logstash are dependent on elastic so the obvious path is to build elastic container first. 
 ```
 docker run -d -p 9200:9200 -p 9300:9300 -t 
---hostname elastic --name elastic  elasticsearch
+  --hostname elastic --name elastic  elasticsearch
 ```
 is used to build a docker container with two open ports. Port 9300 is a necessity as it is the port used for communication between nodes. On the other hand port 9200 is optional but useful to verify if elastic is working and more importantly run data analysis scripts directly on elastic using curl.
 
 Building kibana container requires mapping of port 5601 which is the web interface for kibana and linking it to elasticsearch container using 
 ```
 docker run -d -p 5601:5601 -h kibana --name kibana 
---link elasticsearch:elasticsearch kibana
+  --link elasticsearch:elasticsearch kibana
 ``` 
 Logstash, similarly, requires link to elasticsearch and a config file. Config file takes blob of log files and transform them into structured data and export them into elasticsearch. 
 ```
 docker run -h logstash --name logstash 
---link elasticsearch:elasticsearch -it --rm 
--v "$PWD":/config-dir logstash -f /config-dir/logstash1.conf
+  --link elasticsearch:elasticsearch -it --rm 
+  -v "$PWD":/config-dir logstash -f /config-dir/logstash1.conf
 ```
 does all that with config-dir holding the logstash config file mapped from host machine to logstash container as a volume.
 
