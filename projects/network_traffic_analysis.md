@@ -2,7 +2,7 @@
 layout: project
 type: project
 published: true
-image: images/micromouse.jpg
+image: images/cisco-syslog.png
 title: Network Traffic Analysis
 permalink: projects/network_traffic_analysis
 date: 2017
