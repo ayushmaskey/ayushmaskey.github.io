@@ -121,7 +121,7 @@ Looking at just the terminal servers, kibana dashboard gave me a list of server 
 
 There is a similar dashboard for servers in DMZ, which were not as alarming, looking at just total traffic. As expected, email server had the most traffic and patient portal had the least. Clinical team always pushed for more resources toward patient portal but I had a hunch that it was rarely used, due to the patient populate we serve and now I have concrete evidence. While the number of bytes in the servers sitting in DMZ is not as alarming, it is necessary to get closer look at the types of traffic that come to this zone. They are the most vulnerable since they are public facing services and I plan to monitor them closely.
 
-<img class="ui medium image" src="../images/dash-3.png">
+<img class="ui medium left floated image" src="../images/dash-3.png">
 The next set of servers I looked at were the ones that host virtual machines. The above graph was supposed to show 11 host machines but one of them did not register even a single packet. Missing traffic basically means there has been no web traffic to that server at all, not even updates, which is alarming. Moreover, the traffic for these server were unusually lopsided. The uneven traffic distribution was a head scratcher. I expected all of them to have equal sized bars. After doing some research on high usage servers, I found couple of tools installed in those high usage machines, that required internet access. I was under impression that the host machines were hosting vms and nothing else but I stand to be corrected. I plan to move those services to virtual machines and keep the host machines as barebone as possible.
 
 I built similar bar charts for the remaining servers and most of the traffic size were as expected. Domain controllers had high volume of traffic going to 8.8.8.8 but there were some instances where DNS lookup traffic was routing to Hawaiian tel server. I found one more server where all traffic to SAN network was going through firewall, due to some mysterious misconfiguration. 
@@ -132,18 +132,22 @@ After a birds eye view of the servers and digging into details when necessary, I
 
 ### Printer dashboard
 
+<img class="ui medium right floated image" src="../images/dash-4.png">
 After looking at the massive amount of data exfiltrating print server, I decided to look into individual printers. Some printers were sending data out individually, unrelated to print server traffic, as seen in the graph below. This graph represents data in three dimensions. X-axis represent the port number of traffic and y-axis has the external IP source and the total packet size. Each color block represents a printer. Out of 50 networked printer, about 15 were talking to external ip. Most of them were going to the printer manufacturer themselves. Xerox printers were sending data to xerox network and HP printers were sending data to HP ip ranges while the rest were from vpn users.
 
 ### Total Traffic
 
+<img class="ui medium right floated image" src="../images/dash-5.png">
 A time series graph depicting total traffic on a given day is another useful tool in my dashboard. The three lines in the graph red, blue and yellow represent 3 consecutive days. Blue represents traffic for that day and red represents the day before and yellow is total traffic from 48 hours hours ago. It is useful to compare total traffic of a given day to couple of days around it to get a sense of what is normal. 
 
 The above graph shows traffic is fairly consistent for most days. Weekends have low traffic as expected but there was one peak on 28th of November and the total traffic on that day is almost 3 time those of any other days. 
 
+<img class="ui medium right floated image" src="../images/dash-6.png">
 I zoomed into the graph to focus on traffic between 2pm and 3:30pm of November 29th which can be seen below. I chose 29th instead of the actual date of the traffic so I can compare 28th in red with 27th in yellow and 29th in blue. The total traffic exfiltrated on 28th is definitely alarming. However, I do not have expertise to understand what exactly happened in that time frame. I have reached out to few friends in the industry for help. As of now I have the data saved and I get go back to analyzing this day when I find someone or something with the expertise to do so.
 
 ### Significant Terms
 
+<img class="ui medium right floated image" src="../images/dash-7.png">
 Elasticsearch has a great functionality of finding significant terms and it is fairly straight-forward to use. Significant terms calculates a score for all terms in foreground by comparing it to the documents in the background set. In the figure above, I defined foreground set as documents in the last 24 hours and background set as all documents in the collection. Within matter of seconds, elasticsearch was able to compare all documents in foreground and background set to give me a relative score. This score is not just a popularity contest, it is significant change in popularity between foreground and background set. There are option to boost certain fields as I learn more about network traffic in general
 
 The result of significant term search above, ranked the unusually popular ip for that day 64.4.54.253. Out of 64 thousands documents in the whole collection, 61 thousand of them were from one particular day. It was the second most significant term for that day. 
