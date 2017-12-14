@@ -9,6 +9,10 @@ date: 2017
 labels:
   - ICS491 (Big Data)
   - Network traffic
+  - elasticsearch
+  - logstash
+  - kibana
+  - cisco asa 5510
 summary: As a project for ICS 491, I used Elastic stack to collect data from firewall for analysis.
 ---
 
