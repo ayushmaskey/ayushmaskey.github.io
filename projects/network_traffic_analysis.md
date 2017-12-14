@@ -81,7 +81,7 @@ Logstash can pull data from flat file, syslog, or streaming data on TCP or UDP p
 input { udp {  host => "firewall IP" 
 		port => 5140   
 		type => "cisco-asa"  
-} } 
+	} } 
 ```	
 All the traffic matching those criterions are tagged as cisco-asa.
 
@@ -90,7 +90,9 @@ The input data is then passed through filters, which is the meat of the config f
 ```
 { grok {
 match => ["message", "%{CISCOFW106001}", 
-	"message", "%{CISCOFW106014}"]
+	"message", "%{CISCOFW106014}"
+	]
+} }
 ``` 
 Each of those cisco patterns are composed of other cisco patterns or regular expressions. Each pattern starts with regular expression and other patterns are build upon those patterns and regular expression. For example %{CISCOFW106001}"  is looking for patterns matching source and destination IP as well as respective ports. As a regular expression beginner, It would have taken exponentially more time without the plugins. These grok plugins broke down blob of log into human readable key value pair data structure. 
 Finally, output destinations are defined between output braces. I used two output consistently, elasticsearch 
@@ -98,7 +100,9 @@ Finally, output destinations are defined between output braces. I used two outpu
 { hosts => ["elasticsearch:9200"] }
 ``` 
 and 
-```{stdout { codec => rubydebug }
+
+```
+{stdout { codec => rubydebug }
 ```
 The first one ships the transformed logs into elasticsearch while the second displays the output in the terminal. The output to the terminal in debug mode was very useful tool when building the logstash config file.
 
