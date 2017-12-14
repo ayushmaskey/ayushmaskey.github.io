@@ -54,20 +54,36 @@ With ELK stack pre-processing data was easier and I did not have to worry about 
 
 ELK stack comprises of elasticsearch, logstash and kibana. Any or all of those an be replaced to form a different stack with similar functionality. But ELK stack has gained popularity because they work seamlessly with each other. Elastic is a great text processing and search engine, logstash is tailor made to break down logs and kibana can be used to visualize data for analysis. ELK stack runs well in docker and there are docker images of all three in one readily available. However, to simulate cluster environment and accommodate scalability, I created individual container for each of one them. Building ELK stack cluster was pretty straight-forward with basic knowledge of docker. I downloaded the official image of each rather that customizing each container with Dockerfile. 
 
-Elasticsearch can be stand alone container while Kibana and Logstash are dependent on elastic so the obvious path is to build elastic container first. docker run -d -p 9200:9200 -p 9300:9300 -t --hostname elastic --name elastic  elasticsearch is used to build a docker container with two open ports. Port 9300 is a necessity as it is the port used for communication between nodes. On the other hand port 9200 is optional but useful to verify if elastic is working and more importantly run data analysis scripts directly on elastic using curl.
+Elasticsearch can be stand alone container while Kibana and Logstash are dependent on elastic so the obvious path is to build elastic container first. 
+```
+docker run -d -p 9200:9200 -p 9300:9300 -t --hostname elastic --name elastic  elasticsearch
+```
+is used to build a docker container with two open ports. Port 9300 is a necessity as it is the port used for communication between nodes. On the other hand port 9200 is optional but useful to verify if elastic is working and more importantly run data analysis scripts directly on elastic using curl.
 
-Building kibana container requires mapping of port 5601 which is the web interface for kibana and linking it to elasticsearch container using docker run -d -p 5601:5601 -h kibana --name kibana --link elasticsearch:elasticsearch kibana. 
-Logstash, similarly, requires link to elasticsearch and a config file. Config file takes blob of log files and transform them into structured data and export them into elasticsearch. docker run -h logstash --name logstash --link elasticsearch:elasticsearch -it --rm -v "$PWD":/config-dir logstash -f /config-dir/logstash1.conf does all that with config-dir holding the logstash config file mapped from host machine to logstash container as a volume.
+Building kibana container requires mapping of port 5601 which is the web interface for kibana and linking it to elasticsearch container using 
+```
+docker run -d -p 5601:5601 -h kibana --name kibana --link elasticsearch:elasticsearch kibana
+``` 
+Logstash, similarly, requires link to elasticsearch and a config file. Config file takes blob of log files and transform them into structured data and export them into elasticsearch. 
+```
+docker run -h logstash --name logstash --link elasticsearch:elasticsearch -it --rm -v "$PWD":/config-dir logstash -f /config-dir/logstash1.conf
+```
+does all that with config-dir holding the logstash config file mapped from host machine to logstash container as a volume.
 
 ### Logstash
 
 Logstash is an open source tool built on ruby for collecting, parsing and storing logs. It is plugin based tool and plugins can be added as separately gemfile. Logstash takes logs as one or more input, manipulates the logs as necessary and outputs the transformed data to one or more destination, which is all defined in logstash config file.
-Logstash can pull data from flat file, syslog, or streaming data on TCP or UDP ports. All possible input sources are defined within the input braces. Logstash config file for this project are defined to listen for firewall ip on UDP port 5140 as input { udp {  host => "firewall IP"  port => 5140   type => "cisco-asa"  } } All the traffic matching those criterions are tagged as cisco-asa.
+Logstash can pull data from flat file, syslog, or streaming data on TCP or UDP ports. All possible input sources are defined within the input braces. Logstash config file for this project are defined to listen for firewall ip on UDP port 5140 as 
+```
+input { udp {  host => "firewall IP"  port => 5140   type => "cisco-asa"  } } 
+```
+All the traffic matching those criterions are tagged as cisco-asa.
 
 The input data is then passed through filters, which is the meat of the config file. Building filters from scratch would be a tall task but grok came to the rescue. Grok is popular filter plugin that parse unstructured syslog into structured data. Grok uses predefined patterns as well as regular expression to match logs and convert them into key value pairs. Logstash also has a built-in plugin for cisco firewalls which can be used within grok. These plugins simplified the process of building the config file. The combination of the patterns found in cisco plugins and some regular expression, helped me build the logstash filter, like filter
 
-'''{ grok {match => ["message", "%{CISCOFW106001}",  "message", "%{CISCOFW106014}"]''' 
-
+```
+{ grok {match => ["message", "%{CISCOFW106001}",  "message", "%{CISCOFW106014}"]
+``` 
 Each of those cisco patterns are composed of other cisco patterns or regular expressions. Each pattern starts with regular expression and other patterns are build upon those patterns and regular expression. For example %{CISCOFW106001}"  is looking for patterns matching source and destination IP as well as respective ports. As a regular expression beginner, It would have taken exponentially more time without the plugins. These grok plugins broke down blob of log into human readable key value pair data structure. 
 Finally, output destinations are defined between output braces. I used two output consistently, elasticsearch '''{ hosts => ["elasticsearch:9200"] }''' and '''{stdout { codec => rubydebug }''' . The first one ships the transformed logs into elasticsearch while the second displays the output in the terminal. The output to the terminal in debug mode was very useful tool when building the logstash config file.
 
