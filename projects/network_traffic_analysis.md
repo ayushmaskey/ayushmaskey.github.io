@@ -35,7 +35,7 @@ Log are the only data set used in the project. The project could have been named
 ## Methodology
 ### Data capture
 
-Once the data source is identified, the next step, obviously, is to capture the data. There many ways to _capture_ logs from cisco firewall. It is possible to export the logs from GUI which is useful to get the first look. I used this capture to get better understanding of logs and network traffic in general.
+Once the data source is identified, the next step, obviously, is to capture the data. There many ways to _**capture**_ logs from cisco firewall. It is possible to export the logs from GUI which is useful to get the first look. I used this capture to get better understanding of logs and network traffic in general.
 
 The other two methods I explored are better suited for continuous flow of logs from firewall. The first of those is using _**capture**_ command on cisco command line interface. This command can capture all traffic request to the firewall and with additional flags it can be narrowed down to specific ip and specific ports. The capture command saves the traffic to the firewall flash which is a tiny space and cannot store huge amount of data. A simple python script can move the traffic data captured to a tftp server as a pcap file and clear the firewall cache for more capture. While this seems to be a workable solution for this particular project, it did not seem like a practical solution long term.
 
@@ -45,7 +45,7 @@ The final and the best solution I came across was a simple configuration change 
 
 There are various tools and libraries readily available that play well with the logs, some being better than others so there were decisions that needed to be made. The first of those decision was data storage. The goal was to move the data to spark cluster but I wanted to stage the data for pre-process before moving it to spark. I was looking into sqlite and mysql as possible solutions as I am familiar with RDBMS. On one hand, sqlite is lightweight but I like that mysql has gui interface. I decided to hold off on this decision until I had a closer look at the available tools to process logs.
 
-Breaking down logs is a lot of regular expression but packet manipulation libraries, like scapy, simplified this process significantly. With help of some python scripts, scapy and some regular expression sprinkled in, I was able to break down logs in pcap file into structure data. I used mysql to get started. After the data was in place, it was time to query and get some insight. Most of my statement included _like_ with wildcards all over the place. That is when I realised this dataset is tailor made for nosql. I started looking for nosql options, with all purpose mongodb as a backup candidate. That is when I came across ELK stack.
+Breaking down logs is a lot of regular expression but packet manipulation libraries, like scapy, simplified this process significantly. With help of some python scripts, scapy and some regular expression sprinkled in, I was able to break down logs in pcap file into structure data. I used mysql to get started. After the data was in place, it was time to query and get some insight. Most of my statement included _**like**_ with wildcards all over the place. That is when I realised this dataset is tailor made for nosql. I started looking for nosql options, with all purpose mongodb as a backup candidate. That is when I came across ELK stack.
 
 With ELK stack pre-processing data was easier and I did not have to worry about spark or hadoop since ELK stack work very well in cluster.
 
@@ -55,20 +55,20 @@ ELK stack comprises of elasticsearch, logstash and kibana. Any or all of those a
 
 Elasticsearch can be stand alone container while Kibana and Logstash are dependent on elastic so the obvious path is to build elastic container first. 
 ```
-docker run -d -p 9200:9200 -p 9300:9300 -t \
+docker run -d -p 9200:9200 -p 9300:9300 -t 
 --hostname elastic --name elastic  elasticsearch
 ```
 is used to build a docker container with two open ports. Port 9300 is a necessity as it is the port used for communication between nodes. On the other hand port 9200 is optional but useful to verify if elastic is working and more importantly run data analysis scripts directly on elastic using curl.
 
 Building kibana container requires mapping of port 5601 which is the web interface for kibana and linking it to elasticsearch container using 
 ```
-docker run -d -p 5601:5601 -h kibana --name kibana \
+docker run -d -p 5601:5601 -h kibana --name kibana 
 --link elasticsearch:elasticsearch kibana
 ``` 
 Logstash, similarly, requires link to elasticsearch and a config file. Config file takes blob of log files and transform them into structured data and export them into elasticsearch. 
 ```
-docker run -h logstash --name logstash \
---link elasticsearch:elasticsearch -it --rm \
+docker run -h logstash --name logstash 
+--link elasticsearch:elasticsearch -it --rm 
 -v "$PWD":/config-dir logstash -f /config-dir/logstash1.conf
 ```
 does all that with config-dir holding the logstash config file mapped from host machine to logstash container as a volume.
