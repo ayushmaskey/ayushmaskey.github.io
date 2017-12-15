@@ -7,8 +7,7 @@ title: Clincal Form Development
 permalink: projects/FormDevelopment
 date: 2014
 labels:
-  - Medicalogic Expressive Language (MEL)
-  - Centricity Clinical Content (CCC)
+  - Medicalogic Expressive Language
   - SQL Server
   - Visual Form Editor (VFE)
 summary: Develop clinical forms to the workflow requirements
