@@ -9,7 +9,6 @@ date: 2016
 labels:
   - Microsoft SQL Server
   - Data Warehousing
-  - SQL server reporting services
   - Crystal report
   - Python
 summary: Build data warehouse to meet various needs of the organization.
