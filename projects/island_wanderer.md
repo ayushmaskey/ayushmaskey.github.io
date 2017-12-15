@@ -25,4 +25,5 @@ The vision for this app was to allow UH students to plan and organize events. As
 <img class="ui medium right floated image" src="../images/island_message.png">
 Communication is very important when organizing events with many participants. We have a built in messaging app that allows student subscribed to an event to communicate with each other. There are different color codes of each user which is dependent on hash of their username. It has 7 possible colors because 7 feels large enough prime for the number of students who may participate in any given event. This number can be easier increased in case of increased popularity of the app. Moreover, better hash can be used to avoid collisions.
 
+<img class="ui medium right floated image" src="../images/island_calendar.png">
 There is also a built in calendar that keeps track of all the events, user is subscribed to. Ability to create events from the calendar would have been a useful functionality but we did not get that far. Finally, moderation of communication is necessary an open forum. Students can flag comments and administrator can remove those comments if deemed inappropriate.
