@@ -11,7 +11,7 @@ labels:
   - javascript
   - mongodb
   - ICS 314
-summary: Final project for ICS314, our group developed a webapp that lets UH students connent and organize events to explore the island.
+summary: Webapp for UH students connect, organize events and explore the island.
 ---
 
 We were not able to meet our goals for the app and it counts as an incomplete project. I probably learned more lessons from this failure that I would if the app had gone as plan. The biggest lesson away from this project is the need for proper planning, especially when working in team. As I look back at the reasons we failed complete the project, it always circles back to poor planning. At its core, the app allowed students to create and subscribe to an event. Events was the heart of the app and everything else was auxiliary. As a group we did not prioritize the events and focussed on the auxiliary. To test those auxiliary features each of us created a version of event, which was slightly different from the other but different enough to create bigger issues. This poor planning could be attributed to lack of leadership or inability to see the bigger picture.
