@@ -12,7 +12,7 @@ labels:
   - Python
   - Centricity
   - EMR
-summary: Interface with laboratory and radiolody
+summary: Interface with laboratory and radiology
 ---
 
 
