@@ -1,7 +1,7 @@
 ---
 layout: essay
 type: essay
-published: true
+published: false
 title: Reflect on coding standard
 date: 2017-09-21
 labels:
