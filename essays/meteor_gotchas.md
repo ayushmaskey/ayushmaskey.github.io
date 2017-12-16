@@ -1,7 +1,7 @@
 ---
 layout: essay
 type: essay
-published: true
+published: false
 title: Meteor Gotchas
 date: 2017-10-19
 labels:
