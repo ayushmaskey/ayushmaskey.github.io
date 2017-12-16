@@ -1,7 +1,7 @@
 ---
 layout: essay
 type: essay
-published: true
+published: false
 title: Reflect on Smart Questions
 date: 2017-09-07
 labels:
