@@ -3,7 +3,7 @@ layout: essay
 type: essay
 published: true
 title: Ethics
-date: 2017-11-30
+date: 2017-12-15
 labels:
   - Ethics
   - Software engineering
