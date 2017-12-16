@@ -1,7 +1,7 @@
 ---
 layout: essay
 type: essay
-published: true
+published: false
 title: Reflect on Javascript
 date: 2017-09-01
 labels:
