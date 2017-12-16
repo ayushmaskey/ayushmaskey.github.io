@@ -1,7 +1,7 @@
 ---
 layout: essay
 type: essay
-published: true
+published: false
 title: Semantic UI
 date: 2017-10-05
 labels:
