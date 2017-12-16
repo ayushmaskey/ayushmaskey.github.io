@@ -3,7 +3,7 @@ layout: essay
 type: essay
 published: true
 title: Meteor
-date: 2017-10-26
+date: 2017-12-15
 labels:
   - Meteor
   - Blaze
