@@ -12,19 +12,19 @@ labels:
 # Software Engineering
 
 ### Professional Persona
- * [linkedin](#https://www.linkedin.com/in/ayushmaskey/)
- * [jekyll portfolio](#https://ayushmaskey.github.io/)
- * [github](#https://github.com/ayushmaskey)
+ * [linkedin](https://www.linkedin.com/in/ayushmaskey/)
+ * [jekyll portfolio](https://ayushmaskey.github.io/)
+ * [github](https://github.com/ayushmaskey)
 
 ### Programming
- * [javascript](#https://github.com/ayushmaskey/software_engineering_ICS314_fall2017)
- * [python](#https://github.com/ayushmaskey/Python_ucb61a_Spring2018)
+ * [javascript](https://github.com/ayushmaskey/software_engineering_ICS314_fall2017)
+ * [python](https://github.com/ayushmaskey/Python_ucb61a_Spring2018)
 
 ### Open Source Contribution
  * ??
 
 ### Configuration Management
- * [github](#https://github.com/ayushmaskey)
+ * [github](https://github.com/ayushmaskey)
 
 ### IDE
  * Intellij
@@ -36,8 +36,8 @@ labels:
  * Vim
 
 ### Coding Standard
- * [ESLint](#http://courses.ics.hawaii.edu/ics314f17/morea/development-environments/ics-se-code-style.xml)
- * [AirBnB](#https://github.com/airbnb/javascript)
+ * [ESLint](http://courses.ics.hawaii.edu/ics314f17/morea/development-environments/ics-se-code-style.xml)
+ * [AirBnB](https://github.com/airbnb/javascript)
  * Somthing for python
 
 ### UI
