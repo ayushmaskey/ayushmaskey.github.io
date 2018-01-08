@@ -11,11 +11,6 @@ labels:
 
 # Software Engineering
 
-### Professional Persona
- * [linkedin](https://www.linkedin.com/in/ayushmaskey/)
- * [jekyll portfolio](https://ayushmaskey.github.io/)
- * [github](https://github.com/ayushmaskey)
-
 ### Programming
  * [javascript](https://github.com/ayushmaskey/software_engineering_ICS314_fall2017)
  * [python](https://github.com/ayushmaskey/Python_ucb61a_Spring2018)
