@@ -15,11 +15,15 @@ summary: My team developed a robotic mouse that won first place in the 2015 UH M
 
 #### . /
 ##### . /index.html
+
 ##### _config.yml
+ * basic configuration including
+   * define theme for essays, projects etc.
+   * site url
 
 #### . /_data
 ##### bio.json
- * all CV information
+ * all CV / resume information
 
 #### . /bio
 
@@ -29,6 +33,14 @@ summary: My team developed a robotic mouse that won first place in the 2015 UH M
 #### . /_layouts
 
 
-##### . /images, . /css, . /js
+#### basics
+ * don't really need to change
+##### . /images 
+ * all picture in one place
+ * no space between picture names
+##### . /css
+ * semantic-ui and other
+##### . /js
+ * semantic-ui
 
 ##### . /bigdatas, . /centricity, . /documentation, ./essays, ./ projects, . /security, . /thesis
