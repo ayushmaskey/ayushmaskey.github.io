@@ -2,15 +2,31 @@
  * [Environment](#environment)
  * [Directory](#directory)
  * [Files](#Files)
+ * [vim](#vim)
+ * [Permissions and Groups](#permissions-and-groups)
+ * [wget](#wget)
+ * [tar](#tar)
 
 ## Environment
-path name of the files which would be executed in current environment
+**path name of the files which would be executed in current environment**
 ```
 which nodejs
 ```
-who is logged in
+**who is logged in**
 ```
 who
+```
+**clear screen**
+```
+clear
+```
+**change password**
+```
+passwd
+```
+**move file across ssh**
+```
+scp /pwd/fileName amaskey@ip:pwd/fileName
 ```
 
 ## Directory
@@ -52,10 +68,101 @@ du -hs
   -s 	size
 ```
 
+## vim
+```
+vim fileName
+```
+**insert mode**
+```
+i 	#insert before cursor
+I	#insert at the beginning of the line
+a	#append after cursor
+A	#append at the end of the line
+esc	#end insert mode
+```
+**quit**
+```
+:q	#quit
+:wq	#save and exit
+:q!	#quit without saving
+```
+**split screen**
+```
+:split fileName
+```
+**goto line number**
+```
+:512
+```
+**find phrase**
+```
+? phrase
+```
+
+## permissions and groups
+**current permission**
+```
+ll
+  -rwxrwxrwx	username	group
+  drws------
+```
+ * first: dash '-' then normal file, if 'd' then directory
+ * next 3 = owner permission: r (read), w(write), x(execute), -(no permission) 
+ * next 3 = group permission
+ * final 3 = rest of the world permission
+ * first - owner of file
+ * second - group the file belongs to #groups <username> to get groups memmbership
+ 
+**change permission**
+```
+chmod 664 test.html ( rw-rw-r-- )
+```
+**permission number representation**
+```
+0(---), 1(--x), 2(-w-), 3(-wx), 4(r--), 5(r-x), 6(rw-), 7(rwx)
+```
+**take ownership**
+```
+chown <username> -R filename
+```
+**add user to group**
+```
+usermod -aG sudo <username>
+```
+
+## wget
+**download file**
+```
+wget http://www.example.com/filename
+```
+**download entire website**
+```
+wget -r http://www.example.com
+```
+**download entire website and external links**
+```
+wget -r -H http://www.example.com
+```
+
+## tar
+** untar **
+```
+tar -xzvf fileName.tar.gz
+ -x flag to extract
+ -z uncompress
+ -v verbose output
+ -f specify that we are extracting from a file
+```
+** read file without untar **
+```
+tar -tf fileName
+ -t list
+```
+
 ## Files
 ```
 rm - delete file
-clear
+
 mv "filename" ~\newLocation - move files
 mv file1 file 2 - file1 renamed to file2
 
@@ -213,29 +320,7 @@ https://help.ubuntu.com/community/TFTP
 sudo apt-get install tftpd-hpa
 sudo service tftpd-hpa status
 
-**wget**
-#download file
-wget http://www.example.com/filename
-#downloan entire website
-wget -r http://www.example.com
-#download entire website and external links
-wget -r -H http://www.example.com
 
-## tar
-** untar **
-```
-tar -xzvf fileName.tar.gz
- -x flag to extract
- -z uncompress
- -v verbose output
- -f specify that we are extracting from a file
-```
-
-** read file without untar **
-```
-tar -tf fileName
- -t list
-```
 systemd-analyze blame
 
 #remove error message
@@ -273,44 +358,9 @@ source ~/.bashrc	#reset terminal
 
 memtestx86		#hold shift during restart to get to grub2
 
-**vim**
-vim fileName
-#insert mode
-i 	#insert before cursor
-I	#insert at the beginning of the line
-a	#append after cursor
-A	#append at the end of the line
-esc	#end insert mode
-#quit
-:q	#quit
-:wq	#save and exit
-:q!	#quit without saving
-#split screen
-:split fileName
-# goto line nuber
-:512
-#find phrase
-? phrase
 
-**unix permissions**
--rwxrwxrwx	amaskey	amaskey
-drws------
-#first: dash '-' then normal file, if 'd' then directory
-#next 3 = owner permission: r (read), w(write), x(execute), -(no permission) 
-#next 3 = group permission
-#final 3 = rest of the world permission
-#first - owner of file
-#second - group the file belongs to #groups <username> to get groups memmbership
-**change permission**
-chmod 664 test.html ( rw-rw-r-- )
-#0(---), 1(--x), 2(-w-), 3(-wx), 4(r--), 5(r-x), 6(rw-), 7(rwx)
-chown <username> -R filename		#take ownership of file
 
-#add user to group 
-usermod -aG sudo <username>
-passwd
 
-#move file across ssh
-scp /pwd/fileName amaskey@ip:pwd/fileName
+
 
 
