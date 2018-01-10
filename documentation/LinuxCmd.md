@@ -31,7 +31,7 @@ ls intel*							#all files starting with intel.
 ```
 mkdir
 rmdir
-rm -r 								#recursively remove dir and all the files inside
+rm -r 								#recursively remove dir and all the files
 ```
 **change**
 ```
