@@ -1,8 +1,10 @@
 # Table of content for linux commands
  * [Environment](#environment)
  * [Directory](#directory)
+ * [unix folders](#unix-folders)
  * [Files](#files)
  * [vim](#vim)
+ * [nano](#nano)
  * [Permissions and Groups](#permissions-and-groups)
  * [wget](#wget)
  * [tar](#tar)
@@ -22,6 +24,39 @@
 
 **move file across ssh**
 ```scp /pwd/fileName amaskey@ip:pwd/fileName```
+
+**display manual of specified command**
+```man ls```
+
+```
+alias pd="pwd"								#create shortcuts no space pd="pwd"
+export USER="me myself and I"				#export makes the variable available to all child session
+echo $USER									#current user or alias, $ used to return variable value
+export PS1=">>"								#change prompt from $ to >>
+history										#history of commands used in the session
+env											#returns list of all environment variables for current user
+```
+
+**shorten path name in terminal**
+```
+vim ~/.bashrc
+```
+```
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+```
+make ???- maintain group of programs
+systemd-analyze blame
+
+**remove error message**
+```
+ls -l /var/crash
+sudo rm /var/crash/*
+```
 
 ## Directory
 **print working directory**
@@ -65,6 +100,75 @@ du -hs
   -h	human readable
   -s 	size
 ```
+## unix folders
+**config file**
+```/etc```
+
+**store optional stuff**
+```/opt/```
+
+**log files**
+```/var/log, /bin, /sbin, /usr/bin, /usr/local```
+
+## Files
+**delete file**
+```rm```
+
+**move and copy**
+```
+mv "filename" ~\newLocation 				#move files
+mv file1 file 2 							#file1 renamed to file2
+
+cp file1 file2 								#copy content of file1 to file2
+cp dir/file1 . 								#copy file1 to current directory
+```
+**create new file**
+```touch fileName.ext```
+**create and write**
+```
+echo "Hello" > Hello.txt					#create new file Hello.txt and write "Hello
+```
+**display words on terminal**
+```echo hello```
+
+**file content**
+```
+cat hello.txt
+cat Hello.txt > bye.txt						#overwright content of bye with content of hello
+cat hello.txt >> bye.txt					#append content of hello to end of bye
+cat hello.txt | wc							#output of whats left of pipe and uses it as input for the right
+  -wc 										#number of lines
+cat h.txt | wc | cat > b.txt				#get content of h.txt, count num of lines and overwright it in b.txt
+sort hello.txt								#sort and display content of hello
+cat hello.txt | sort > bye.txt				#get content of hello, sort it and overwright bye.txt
+uniq hello.txt								#check the next line and if it is similar then show show only one
+sort hello.txt | uniq						#sort first and then get unique 
+sort h.txt | uniq > r.txt					#sort first and then get unique and then overwright to r.txt
+```
+**grep**
+```
+grep Mount mountain.txt						#search mountain.txt and look for "Mount"
+grep -i Mount mountain.txt					#search mountain.txt and look for "Mount" or "mount"
+grep -R "Ayush" home/Google					#search all files in the directory recursively for "Ayush" and output filename + the line 
+grep -Rl "Ayush" home/Google				#output only fileName. No line
+```
+**sed**
+```
+sed 's/hello/bye' hello.txt					#change first occurence of hello to bye in each line of hello.txt
+sed 's/hello/bye/g' hello.txt				#change all instance of hello to bye
+```
+**one page**
+```less hello.txt```
+
+**file type**
+```file hello.txt```
+
+**open file**
+```
+gedit "TextFileName.txt"
+evince "pdfFileName.pdf"
+libreoffice "fileName.doc .pptx .xls"
+```
 
 ## vim
 ```vim fileName```
@@ -91,6 +195,14 @@ esc	#end insert mode
 
 **find phrase**
 ```? phrase```
+
+## nano
+```
+nano hello.txt								#open hello in text editor
+ctrl+o										#save
+ctrl+x										#exit
+nano ~/.bash_profile						#stores environment variables
+```
 
 ## permissions and groups
 **current permission**
@@ -124,17 +236,13 @@ ll
 
 ## wget
 **download file**
-```
-wget http://www.example.com/filename
-```
+```wget http://www.example.com/filename```
+
 **download entire website**
-```
-wget -r http://www.example.com
-```
+```wget -r http://www.example.com```
+
 **download entire website and external links**
-```
-wget -r -H http://www.example.com
-```
+```wget -r -H http://www.example.com```
 
 ## tar
 ** untar **
@@ -151,76 +259,10 @@ tar -tf fileName
  -t list
 ```
 **unzip**
-```
-unzip file.zip -d "dest_folder" 
-```
-
-## Files
-**delete file**
-```
-rm
-```
-**move and copy**
-```
-mv "filename" ~\newLocation 				#move files
-mv file1 file 2 							#file1 renamed to file2
-
-cp file1 file2 								#copy content of file1 to file2
-cp dir/file1 . 								#copy file1 to current directory
-```
-**create new file**
-```
-touch fileName.ext
-```
-
-echo - display words on screen
-echo "Hello" > Hello.txt	#create new file Hello.txt and write "Hello
-
-cat - display content of file
-cat Hello.txt > bye.txt		#overwright content of bye with content of hello
-cat hello.txt >> bye.txt	#append content of hello to end of bye
-cat hello.txt | wc		#output of whats left of pipe and uses it as input for the right
-wc 				#number of lines
-cat h.txt | wc | cat > b.txt	#get content of h.txt, count num of lines and overwright it in b.txt
-sort hello.txt			#sort and display content of hello
-cat hello.txt | sort > bye.txt	#get content of hello, sort it and overwright bye.txt
-uniq hello.txt			#check the next line and if it is similar then show show only one
-sort hello.txt | uniq		#sort first and then get unique 
-sort h.txt | uniq > r.txt	#sort first and then get unique and then overwright to r.txt
-
-grep Mount mountain.txt		#search mountain.txt and look for "Mount"
-grep -i Mount mountain.txt	#search mountain.txt and look for "Mount" or "mount"
-grep -R "Ayush" home/Google	#search all files in the directory recursively for "Ayush" and output filename + the line 
-grep -Rl "Ayush" home/Google	#output only fileName. No line
-
-sed 's/hello/bye' hello.txt	#change first occurence of hello to bye in each line of hello.txt
-sed 's/hello/bye/g' hello.txt	#change all instance of hello to bye
-
-nano hello.txt			#open hello in text editor
-ctrl+o				#save
-ctrl+x				#exit
-nano ~/.bash_profile		#stores environment variables
-alias pd="pwd"			#create shortcuts no space pd="pwd"
-export USER="me myself and I"	#export makes the variable available to all child session
-echo $USER			#current user or alias, $ used to return variable value
-export PS1=">>"			#change prompt from $ to >>
-history				#history of commands used in the session
-env				#returns list of all environment variables for current user
-
-less hello.txt			#similar to nano
-file hello.txt			#ASCII or images or what type of file
+```unzip file.zip -d "dest_folder"```
 
 
 
-man - display manual of specified command
-
-
-gedit "TextFileName.txt"
-evince "pdfFileName.pdf"
-libreoffice "fileName.doc .pptx .xls"
-
-make ???- maintain group of programs
-```
 ### text editor
 ```
 vi - 
@@ -255,21 +297,10 @@ readlink -f /usr/bin/java | sed "s:bin/java::"
 
 ### Linux System Admin Primer
 ```
-cat, vi, sudo, su
+ vi, sudo, su
 ```
-## unix folders
-**config file**
-```
-/etc
-```
-**store optional stuff**
-```
-/opt/
-```
-**log files**
-```
-/var/log, /bin, /sbin, /usr/bin, /usr/local
-```
+
+
 #### all user directories stay here
 ```
 /home
@@ -315,11 +346,6 @@ sudo apt-get install tftpd-hpa
 sudo service tftpd-hpa status
 
 
-systemd-analyze blame
-
-#remove error message
-ls -l /var/crash
-sudo rm /var/crash/*
 
 #installing live reload
 sudo apt-get install ruby-dev
@@ -337,15 +363,7 @@ download chrome
 
 grive -a
 
-**shorten path name in terminal**
-vim ~/.bashrc
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
 
 #change \w to \W in both PS1
 source ~/.bashrc	#reset terminal
