@@ -1,8 +1,9 @@
 # Table of content for linux commands
  * [Environment](#environment)
  * [Directory](#directory)
+ * [Files](#Files)
 
-## environment
+## Environment
 path name of the files which would be executed in current environment
 ```
 which nodejs
@@ -13,28 +14,45 @@ who
 ```
 
 ## Directory
+**list directory**
 ```
-ls
-ls -a				#see hidden files and folders
-ls -l				#more details of the content
-ls -t				#order by time
-ls -alt				#all 3 at the same time
-ls -d */			#show directory only
-ls -la | less			#one page at a time
-ls intel*			#all files starting with intel.
+ls -alt
+ -a 	hidden files and folders
+ -l 	more details
+ -t 	newest first
+ls -sh
+ -s 	size
+ -h 	human readable
+ls -d */							#show directory only
+ls -la | less						#one page at a time
+ls intel*							#all files starting with intel.
+```
+**create or delete**
+```
 mkdir
 rmdir
-rm -r 				#recursively remove directory and all the files inside
-cd 
-"cd ../FolderName" 		# go to parent directory and open folder
-cd ~ or cd 			# home
-cd - 				# back to last directory
-mv ./* ~Google/			# move all files and folders
-cp -a ./sourceFolder ./targetFolder 
-ls -sh
-du -hs
+rm -r 								#recursively remove directory and all the files inside
 ```
-### Files
+**change**
+```
+cd 
+cd ../FolderName 					# go to parent directory and open folder
+cd ~ or cd 							# home
+cd - 								# back to last directory
+```
+**copy or move**
+```
+mv ./* ~Google/						# move all files and folders
+cp -a ./sourceFolder ./targetFolder 
+```
+**estimate file space usage**
+```
+du -hs
+  -h	human readable
+  -s 	size
+```
+
+## Files
 ```
 rm - delete file
 clear
