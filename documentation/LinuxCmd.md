@@ -1,10 +1,18 @@
+# Table of content for linux commands
+ * [Environment](#environment)
+ * [Directory](#directory)
+
+## environment
+path name of the files which would be executed in current environment
+```
 which nodejs
-
-whichis nodejs
-
+```
+who is logged in
+```
 who
+```
 
-### Directories
+## Directory
 ```
 ls
 ls -a				#see hidden files and folders
