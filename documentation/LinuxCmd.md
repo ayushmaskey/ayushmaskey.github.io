@@ -1,7 +1,7 @@
 # Table of content for linux commands
  * [Environment](#environment)
  * [Directory](#directory)
- * [Files](#Files)
+ * [Files](#files)
  * [vim](#vim)
  * [Permissions and Groups](#permissions-and-groups)
  * [wget](#wget)
@@ -9,27 +9,19 @@
 
 ## Environment
 **path name of the files which would be executed in current environment**
-```
-which nodejs
-```
+```which nodejs```
 **who is logged in**
-```
-who
-```
+```who```
 **clear screen**
-```
-clear
-```
+```clear```
 **change password**
-```
-passwd
-```
+```passwd```
 **move file across ssh**
-```
-scp /pwd/fileName amaskey@ip:pwd/fileName
-```
+```scp /pwd/fileName amaskey@ip:pwd/fileName```
 
 ## Directory
+**print working directory**
+```pwd```
 **list directory**
 ```
 ls -alt
@@ -42,6 +34,7 @@ ls -sh
 ls -d */							#show directory only
 ls -la | less							#one page at a time
 ls intel*							#all files starting with intel.
+ls /								#look at root
 ```
 **create or delete**
 ```
@@ -69,9 +62,7 @@ du -hs
 ```
 
 ## vim
-```
-vim fileName
-```
+```vim fileName```
 **insert mode**
 ```
 i 	#insert before cursor
@@ -87,17 +78,11 @@ esc	#end insert mode
 :q!	#quit without saving
 ```
 **split screen**
-```
-:split fileName
-```
+```:split fileName```
 **goto line number**
-```
-:512
-```
+```:512```
 **find phrase**
-```
-? phrase
-```
+```? phrase```
 
 ## permissions and groups
 **current permission**
@@ -124,6 +109,10 @@ chmod 664 test.html ( rw-rw-r-- )
 **take ownership**
 ```
 chown <username> -R filename
+```
+**recursively change ownership of all files and folders**
+```
+chown -R hduser:hduser /opt/hdfs
 ```
 **add user to group**
 ```
@@ -158,18 +147,28 @@ tar -xzvf fileName.tar.gz
 tar -tf fileName
  -t list
 ```
+**unzip**
+```
+unzip file.zip -d "dest_folder" 
+```
 
 ## Files
+**delete file**
 ```
-rm - delete file
+rm
+```
+**move and copy**
+```
+mv "filename" ~\newLocation 				#move files
+mv file1 file 2 							#file1 renamed to file2
 
-mv "filename" ~\newLocation - move files
-mv file1 file 2 - file1 renamed to file2
-
-cp file1 file2 - copy content of file1 to file2
-cp dir/file1 . - copy file1 to current directory
-
-touch - create new file
+cp file1 file2 								#copy content of file1 to file2
+cp dir/file1 . 								#copy file1 to current directory
+```
+**create new file**
+```
+touch fileName.ext
+```
 
 echo - display words on screen
 echo "Hello" > Hello.txt	#create new file Hello.txt and write "Hello
@@ -208,11 +207,10 @@ env				#returns list of all environment variables for current user
 less hello.txt			#similar to nano
 file hello.txt			#ASCII or images or what type of file
 
-ls /				#look at root
+
 
 man - display manual of specified command
-unzip file.zip -d "destination folder" (unzip)
-pwd - print working directory
+
 
 gedit "TextFileName.txt"
 evince "pdfFileName.pdf"
@@ -254,20 +252,20 @@ readlink -f /usr/bin/java | sed "s:bin/java::"
 
 ### Linux System Admin Primer
 ```
-ls, rm, mkdir, rmdir, cat, vi, sudo, su
+cat, vi, sudo, su
 ```
-#### config files 
+## unix folders
+**config file**
 ```
 /etc
 ```
-#### store optional stuff
+**store optional stuff**
 ```
 /opt/
 ```
-#### log files
+**log files**
 ```
-/var/log
-/bin, /sbin, /usr/bin, /usr/local
+/var/log, /bin, /sbin, /usr/bin, /usr/local
 ```
 #### all user directories stay here
 ```
@@ -276,14 +274,7 @@ shell/env variables, echo, export, bashrc, profile, source cmd
 tar, gzip, zip
 adduser, useradd
 ```
-#### change owner of file/director
-```
-chown (chown -R hduser:hduser /opt/hdfs		#recursively change ownership of all files and folders
-```
-#### change permission of file/dir 
-```
-chmod (chmod 600 hello.txt)
-```
+
 ls -l
 apt-get update, apt-get install, rpm
 #### ssh and key generation and passwordless login
