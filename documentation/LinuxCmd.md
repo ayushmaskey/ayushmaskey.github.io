@@ -24,7 +24,7 @@ ls -sh
  -s 	size
  -h 	human readable
 ls -d */							#show directory only
-ls -la | less						#one page at a time
+ls -la | less							#one page at a time
 ls intel*							#all files starting with intel.
 ```
 **create or delete**
@@ -36,13 +36,13 @@ rm -r 								#recursively remove dir and all the files
 **change**
 ```
 cd 
-cd ../FolderName 					# go to parent directory and open folder
+cd ../FolderName 						# go to parent directory and open folder
 cd ~ or cd 							# home
 cd - 								# back to last directory
 ```
 **copy or move**
 ```
-mv ./* ~Google/						# move all files and folders
+mv ./* ~Google/							# move all files and folders
 cp -a ./sourceFolder ./targetFolder 
 ```
 **estimate file space usage**
