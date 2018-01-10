@@ -195,13 +195,21 @@ wget -r http://www.example.com
 #download entire website and external links
 wget -r -H http://www.example.com
 
-**tar**
+## tar
+** untar **
+```
 tar -xzvf fileName.tar.gz
-#-x flag to extract
-#-z uncompress
-#-v verbose output
-#-f specify that we are extracting from a file
+ -x flag to extract
+ -z uncompress
+ -v verbose output
+ -f specify that we are extracting from a file
+```
 
+** read file without untar **
+```
+tar -tf fileName
+ -t list
+```
 systemd-analyze blame
 
 #remove error message
@@ -253,6 +261,10 @@ esc	#end insert mode
 :q!	#quit without saving
 #split screen
 :split fileName
+# goto line nuber
+:512
+#find phrase
+? phrase
 
 **unix permissions**
 -rwxrwxrwx	amaskey	amaskey
