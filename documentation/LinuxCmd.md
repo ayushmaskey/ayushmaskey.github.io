@@ -29,12 +29,12 @@
 ```man ls```
 
 ```
-alias pd="pwd"								#create shortcuts no space pd="pwd"
+alias pd="pwd"						#create shortcuts no space pd="pwd"
 export USER="me myself and I"				#export makes the variable available to all child session
-echo $USER									#current user or alias, $ used to return variable value
-export PS1=">>"								#change prompt from $ to >>
-history										#history of commands used in the session
-env											#returns list of all environment variables for current user
+echo $USER						#current user or alias, $ used to return variable value
+export PS1=">>"						#change prompt from $ to >>
+history							#history of commands used in the session
+env							#returns list of all environment variables for current user
 ```
 
 **shorten path name in terminal**
@@ -116,7 +116,7 @@ du -hs
 
 **move and copy**
 ```
-mv "filename" ~\newLocation 				#move files
+mv "filename" ~\newLocation 						#move files
 mv file1 file 2 							#file1 renamed to file2
 
 cp file1 file2 								#copy content of file1 to file2
@@ -126,7 +126,7 @@ cp dir/file1 . 								#copy file1 to current directory
 ```touch fileName.ext```
 **create and write**
 ```
-echo "Hello" > Hello.txt					#create new file Hello.txt and write "Hello
+echo "Hello" > Hello.txt						#create new file Hello.txt and write "Hello
 ```
 **display words on terminal**
 ```echo hello```
@@ -136,12 +136,12 @@ echo "Hello" > Hello.txt					#create new file Hello.txt and write "Hello
 cat hello.txt
 cat Hello.txt > bye.txt						#overwright content of bye with content of hello
 cat hello.txt >> bye.txt					#append content of hello to end of bye
-cat hello.txt | wc							#output of whats left of pipe and uses it as input for the right
-  -wc 										#number of lines
-cat h.txt | wc | cat > b.txt				#get content of h.txt, count num of lines and overwright it in b.txt
-sort hello.txt								#sort and display content of hello
-cat hello.txt | sort > bye.txt				#get content of hello, sort it and overwright bye.txt
-uniq hello.txt								#check the next line and if it is similar then show show only one
+cat hello.txt | wc						#output of whats left of pipe and uses it as input for the right
+  -wc 								#number of lines
+cat h.txt | wc | cat > b.txt					#get content of h.txt, count num of lines and overwright it in b.txt
+sort hello.txt							#sort and display content of hello
+cat hello.txt | sort > bye.txt						#get content of hello, sort it and overwright bye.txt
+uniq hello.txt							#check the next line and if it is similar then show show only one
 sort hello.txt | uniq						#sort first and then get unique 
 sort h.txt | uniq > r.txt					#sort first and then get unique and then overwright to r.txt
 ```
@@ -150,12 +150,12 @@ sort h.txt | uniq > r.txt					#sort first and then get unique and then overwrigh
 grep Mount mountain.txt						#search mountain.txt and look for "Mount"
 grep -i Mount mountain.txt					#search mountain.txt and look for "Mount" or "mount"
 grep -R "Ayush" home/Google					#search all files in the directory recursively for "Ayush" and output filename + the line 
-grep -Rl "Ayush" home/Google				#output only fileName. No line
+grep -Rl "Ayush" home/Google					#output only fileName. No line
 ```
 **sed**
 ```
 sed 's/hello/bye' hello.txt					#change first occurence of hello to bye in each line of hello.txt
-sed 's/hello/bye/g' hello.txt				#change all instance of hello to bye
+sed 's/hello/bye/g' hello.txt					#change all instance of hello to bye
 ```
 **one page**
 ```less hello.txt```
@@ -199,9 +199,9 @@ esc	#end insert mode
 ## nano
 ```
 nano hello.txt								#open hello in text editor
-ctrl+o										#save
-ctrl+x										#exit
-nano ~/.bash_profile						#stores environment variables
+ctrl+o									#save
+ctrl+x									#exit
+nano ~/.bash_profile							#stores environment variables
 ```
 
 ## permissions and groups
