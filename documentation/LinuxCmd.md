@@ -10,18 +10,23 @@
 ## Environment
 **path name of the files which would be executed in current environment**
 ```which nodejs```
+
 **who is logged in**
 ```who```
+
 **clear screen**
 ```clear```
+
 **change password**
 ```passwd```
+
 **move file across ssh**
 ```scp /pwd/fileName amaskey@ip:pwd/fileName```
 
 ## Directory
 **print working directory**
 ```pwd```
+
 **list directory**
 ```
 ls -alt
@@ -63,6 +68,7 @@ du -hs
 
 ## vim
 ```vim fileName```
+
 **insert mode**
 ```
 i 	#insert before cursor
@@ -79,8 +85,10 @@ esc	#end insert mode
 ```
 **split screen**
 ```:split fileName```
+
 **goto line number**
 ```:512```
+
 **find phrase**
 ```? phrase```
 
@@ -99,25 +107,20 @@ ll
  * second - group the file belongs to #groups <username> to get groups memmbership
  
 **change permission**
-```
-chmod 664 test.html ( rw-rw-r-- )
-```
+```chmod 664 test.html ( rw-rw-r-- )```
+
 **permission number representation**
-```
-0(---), 1(--x), 2(-w-), 3(-wx), 4(r--), 5(r-x), 6(rw-), 7(rwx)
-```
+```0(---), 1(--x), 2(-w-), 3(-wx), 4(r--), 5(r-x), 6(rw-), 7(rwx)```
+
 **take ownership**
-```
-chown <username> -R filename
-```
+```chown <username> -R filename```
+
 **recursively change ownership of all files and folders**
-```
-chown -R hduser:hduser /opt/hdfs
-```
+```chown -R hduser:hduser /opt/hdfs```
+
 **add user to group**
-```
-usermod -aG sudo <username>
-```
+```usermod -aG sudo <username>```
+
 
 ## wget
 **download file**
