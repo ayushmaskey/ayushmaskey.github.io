@@ -40,7 +40,7 @@ sudo apt-get install sublime-text-installer
 sudo apt install nodejs
 sudo apt install npm
 ```
-## meteor*
+## meteor
 ```
 sudo apt install curl
 curl https://install.meteor.com/ | sh
@@ -74,7 +74,7 @@ sudo apt-get install -y docker-ce
 sudo systemctl status docker
 ```
 
-## [hadoop]((https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04)
+## [hadoop](https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-16-04)
 ```
 sudo apt-get update
 
