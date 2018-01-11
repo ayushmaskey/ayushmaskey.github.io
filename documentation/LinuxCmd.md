@@ -1,4 +1,5 @@
 # Table of content for linux commands
+ * [Installation](./UbuntuNewInstall.md)
  * [Environment](#environment)
  * [Directory](#directory)
  * [unix folders](#unix-folders)
@@ -8,6 +9,20 @@
  * [Permissions and Groups](#permissions-and-groups)
  * [wget](#wget)
  * [tar](#tar)
+ * [ssh with sublime](#ssh-with-siblime)
+
+## maintenance
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo apt-get clean
+sudo apt-get autoclean
+sudo apt-get autoremove
+sudo ucaresystem-core
+sudo reboot
+sudo rm -rf /var/lib/apt/list/*
+```
 
 ## Environment
 **path name of the files which would be executed in current environment**
@@ -20,7 +35,20 @@
 ```clear```
 
 **change password**
-```passwd```
+```passwd root```
+
+**Ubuntu Version**
+```lsb_release -a```
+
+**maintenance package**
+```sudo apt-get installlocalepurge```
+
+**ucaresystem**
+```
+sudo add-apt-repository ppa:utappia/stable
+sudo apt update
+sudo apt install ucaresystem-core
+```
 
 **move file across ssh**
 ```scp /pwd/fileName amaskey@ip:pwd/fileName```
@@ -68,13 +96,19 @@ ls -alt
  -a 	hidden files and folders
  -l 	more details
  -t 	newest first
-ls -sh
- -s 	size
- -h 	human readable
 ls -d */							#show directory only
 ls -la | less							#one page at a time
 ls intel*							#all files starting with intel.
 ls /								#look at root
+```
+**estimate file space usage**
+```
+ls -sh
+ -s 	size
+ -h 	human readable
+du -hs
+  -h	human readable
+  -s 	size
 ```
 **create or delete**
 ```
@@ -94,12 +128,7 @@ cd - 								# back to last directory
 mv ./* ~Google/							# move all files and folders
 cp -a ./sourceFolder ./targetFolder 
 ```
-**estimate file space usage**
-```
-du -hs
-  -h	human readable
-  -s 	size
-```
+
 ## unix folders
 **config file**
 ```/etc```
@@ -261,7 +290,23 @@ tar -tf fileName
 **unzip**
 ```unzip file.zip -d "dest_folder"```
 
+## ssh with sublime
+**server side**
+```
+wget -O /usr/local/bin/rsub \https://raw.github.com/aurora/rmate/master/rmate
+chmod a+x /usr/local/bin/rsub
+```
+**client sublime**
+```
+ctrl + shift + P 	#to open package mannager 
+choose install package
+search rsub and install
+```
+**ssh into remote machine**
+```ssh -R 52698:localhost:52698 user@serverIP```
 
+**on server terminal**
+```rsub ~/path_to_file/fileName```
 
 ### text editor
 ```
@@ -288,6 +333,14 @@ wget
 dpkg - dpkg -l, 
 apt
 aptitude
+```
+
+## remote login
+**__ Host machine settings __**
+```
+sudo apt-get install vnc4server
+sudo apt intall xfce4 xfce4-goodies tightvncserver		#install xfce4 and tightvnc in client machine
+gsettings set org.gnome.Vino require-encryption false		#remote access from VNC
 ```
 ### readlink
 ```
