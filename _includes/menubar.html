@@ -23,6 +23,21 @@
 	  <a href="{{ site.baseurl }}/bigdatas" class=" {% if include.active == "bigdatas" %} active {% endif %} item">Big Data ({{ num_bigdatas }})</a>
 	  {% endif %}
 
+	  {% if num_bigdatas > 0 %}
+	  <a href="{{ site.baseurl }}/documentation" class=" {% if include.active == "documentation" %} active {% endif %} item">Documentation ({{ num_bigdatas }})</a>
+	  {% endif %}
+
+	  {% if num_bigdatas > 0 %}
+	  <a href="{{ site.baseurl }}/thesis" class=" {% if include.active == "thesis" %} active {% endif %} item">Thesis ({{ num_bigdatas }})</a>
+	  {% endif %}
+
+	  {% if num_bigdatas > 0 %}
+	  <a href="{{ site.baseurl }}/security" class=" {% if include.active == "security" %} active {% endif %} item">Security ({{ num_bigdatas }})</a>
+	  {% endif %}
+
+	  {% if num_bigdatas > 0 %}
+	  <a href="{{ site.baseurl }}/centricity" class=" {% if include.active == "centricity" %} active {% endif %} item">Centricity ({{ num_bigdatas }})</a>
+	  {% endif %}
 
     <a href="{{ site.baseurl }}/bio" class=" {% if include.active == "bio" %} active {% endif %} item">{{ site.bio-page-label }}</a>
   </nav>

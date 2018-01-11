@@ -18,6 +18,10 @@ theme-projects: theme-projects-builtin-1.html
 theme-essays: theme-essays-builtin-1.html
 theme-bio: theme-bio-builtin-1.html
 theme-bigdata: theme-bigdatas-builtin-1.html
+theme-documentations: theme-documentations-builtin-1.html
+theme-centricity: theme-centricity-builtin-1.html
+theme-thesis: theme-thesis-builtin-1.html
+theme-security: theme-security-builtin-1.html
 
 # YOU NORMALLY NEVER CHANGE THE FOLLOWING
 markdown: kramdown
