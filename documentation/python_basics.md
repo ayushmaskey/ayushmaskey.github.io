@@ -1,9 +1,11 @@
-John DeNero UC Berkley 61a - ComposingPrograms.com
-Al Sweigart - AutoTheBoringStuff.com
+#Python
+
+[John DeNero UC Berkley 61a](https://cs61a.org/)
+[61a book](http://composingPrograms.com)
+[Al Sweigart -automate boring stuff](https://automatetheboringstuff.com/)
 
 
-basics: conditional statements, loops functions
-data structure: list, dictionary, int, float, string, boolean, None, tuple, array
+basics: conditional statements,  functions
 regular expression (RegEx): pattern matching
 higher order function: fxn as parameter, return fxn, fxn inside fxn, lambda
 test driven development: python3 -m doctest file.py 
@@ -11,74 +13,116 @@ troubleshooting: @trace decorator
 data abstraction
 external files
 
+## Table of Content
+ * [Basic math](#basic-math)
+ * [Operators](#operators)
+ * [Data types](#data-types)
+ * [Data type conversion](#data-type-conversion)
+ * [build-in functions](#build-in-function)
+ * [loop](#loop)
+ * [Import library](#import-library)
+ * [try-except](#try-except)
+ * [Seqences](#Seqences)
+  * [Array](#Array)
+  * [List basic](#List-basic)
+   * [List method](#List-method)
 
-BASIC MATH
-from operator import add, mul, pow, truediv, floordiv
-mul(a,b) or *
-add(a,b) or +
-pow(a,b)
-truediv  or a / b 	# with decimal
-floordiv or a // b 	# get divident
+### Basic math
+```python
+from operator import add, mul, pow, truediv, floordiv, mod
+mul(a,b) or a*b
+add(a,b) or a+b
+pow(a,b) or a**b
+truediv(a,b)  or a / b 		# with decimal
+floordiv(a,b) or a // b 	# get divident
 mod(a,b) or a % b
-exponent a ** b
-min 
-max
 
+min(a,b) 
+max(a,b)
+
+from math import sqrt
+sqrt(16)
+
+'Ayush' * 3 = 'AyushAyushAyush'
+```
+### Operators
+```
 += (string, int and float)
 *= (string, int and float)
 -= (int and float)
 /= (int and float)
 %= (int)
 
-from math import sqrt
-sqrt(16)
-
-'Ayush' * 3 = 'AyushAyushAyush'
-
-
-Data types - int, float, string, boolean(True, False), None, List, tuple, array, dictionary
-int(), float(), str()
-
 Comparisons: ==, !=, >, <, >= <=
 assignment =
 Boolean operators - and, or, not
-
-USEFUL FUNCTIONS
+```
+### Data types
+```
+int, float, string, boolean(True, False), None, list, tuple, array, dictionary
+```
+### Data type conversion
+```
+int(), float(), str()
+```
+### Built-in functions
+```
 len()
 print( str1 + str2 + str(3) ) 
 print(str1, str2)
 print("ayush", end='') 		# end of print  is usally \n but here it is replaced by ''
 print(str1, str2, sep=',') 	# usually separated by str1 str2 but here str1,str2 
 input() 			# waits for user input as string
-
+```
+### loop
 while():
   #code block goes here
+
 for i in range(4) - 0 inclusive and 4 exclusive   && i+=1		#i = 0,1,2,3
+
 for i in range(1,10,2) - 1 inclusive && 10 exclusive && i+=2		#i = 1,3,5,7,9
+
 for i in range(5,-2,-1) - 5 inclusive && -2 exclusive && i-=1		#i = 5,4,3,2,1,0,-1
+
 break 
 continue
+```
 
-IMPORT LIBRARY
-from random import * - randint(1,9) 		# 1 and 9 inclusive
+### Import library
+```
+from random import * 
+randint(1,9) 					# 1 and 9 inclusive
+
 from random import randint 			# use randint()
+
 import random 					# use random.randint()
+
 import sys 
 sys.exit()					# exit the program
+```
 
+### try-except
+```
 try:
   return 42/x
 except ZeroDivisionError:			#if x == 0
   print('Bad Input')
- 
-SEQUENCES: (ordered sequence)  
-list, tuple, string, array
+```
 
-ARRAY:
-x= array([2,4,6,4]) 				# array useful when doing arithmetic with inside elements
-x/2 = 
+### Seqences 
+ * (ordered sequence)
+ * list, tuple, string, array
 
-LIST:
+### [Array](https://docs.python.org/3/library/array.html)
+looks useless
+```
+from array import array
+x= array([2,4,6,4]) 				#array useful when doing arithmetic with inside elements
+x/2 = (1,2,3,2)
+```
+
+### [List basic](https://docs.python.org/3/tutorial/introduction.html#lists)
+```
 myList = [[6,5,2],['rat','cat','hat'],'hello']
 myList[0] = [6,5,2] 
 myList[1][2] = 'hat'
@@ -90,20 +134,23 @@ myList[1][:2] = ['rat','cat'] 			# 0 to 1
 len(myList[1])
 myList[1][1] = 'kitty'				# [[6,5,2],['rat','kitty','hat'],'hello']
 del myList[2]  					# [[6,5,2],['rat','kitty','hat']]
-[1,2,3] + ['a','b','c'] = [1,2,3,'a','b','c'] 
-[1,2,3] * 3 = [1,2,3,1,2,3,1,2,3]
-for i in range(len(someList))
 'dog' in myList[1] 				# False
 'dog' not in myList[1] 				# True
+
+[1,2,3] + ['a','b','c'] = [1,2,3,'a','b','c'] 
+[1,2,3] * 3 = [1,2,3,1,2,3,1,2,3]
+
+for i in range(len(someList))
 
 cat = ['fat', 'orange', 'kitty']
 size, color, name = cat
 
-swap values without temp variable
+# swap values without temp variable
 a,b=1,2
 a,b=b,a
-
-METHOD ON LIST
+```
+### [List method](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+```
 cat.index('fat') 				# 0
 cat.append('lazy')
 cat 						# ['fat', 'orange', 'kitty', 'lazy']
@@ -114,6 +161,7 @@ cat 						# ['fat', 'female', 'orange', 'lazy']
 cat.sort()
 cat.sort(reverse=True)
 cat.sort(key=str.lower) 			# sorting done by ASCII upper case before lower
+```
 
 STRING : 
 similar to list
