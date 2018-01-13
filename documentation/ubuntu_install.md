@@ -1,5 +1,6 @@
 # Table of content for linux commands
- * [Linux Commands](./LinuxCmd.md)
+ * [back to ToC](./table_of_content.md)
+ * [install and remove](#install-and-remove)
  * [python](#python)
  * [sublime](#sublime)
  * [nodejs](#nodejs)
@@ -13,6 +14,19 @@
  * [git](#git)
  * [jekyll](#jekyll)
  * [pycharm](#pycharm)
+ * [live reload](#live-reload)
+ * [tftp server](#tftp-server)
+ * [hamster stop watch](#hamster-stop-watch)
+
+## install and remove 
+```
+sudo apt-get install package1 package1	#install multiple things at once
+sudo apt-get remove packageName		#uninstall but keep config files
+sudo apt-get purge packageName		#clean out config files as well
+
+sudo apt-get update -s packageName 	#simulate dry run
+sudo apt-get update -d packageName	#download files but not install
+```
 
 # **__ Package installation and settings __**
 
@@ -158,11 +172,34 @@ sudo add-apt-repository ppa:viktor-krivak/pycharm
 sudo apt-get update
 ```
 
+## live reload
+```
+sudo apt-get install ruby-dev
+sudo gem install rdoc -V
+sudo gem install guard -V
+sudo gem install guard-livereload -V
+create file named .Guardfile with following text
 
+# //github.com/guard/guard-livereload
+guard :livereload do
+  watch(%r{.+.(css|js|html)$})
+end
+```
 
+## [tftp server](https://help.ubuntu.com/community/TFTP)
+```
+sudo apt-get install tftpd-hpa
+sudo service tftpd-hpa status
+```
 
+## hamster stop watch
+```
+#install stop watch
+sudo apt install hamster-indicator	
 
-
+#show in top bar
+gconftool-2 --set "/apps/hamster-indicator/show_label" --type bool "true"	
+```
 jekyll
 liquid
 semantic-ui

@@ -1,5 +1,7 @@
 # Table of content for linux commands
- * [Installation](./UbuntuNewInstall.md)
+ * [back to ToC](./table_of_content.md)
+ * [maintenance](#maintenance)
+ * [google drive](#google-drive)
  * [Environment](#environment)
  * [Directory](#directory)
  * [unix folders](#unix-folders)
@@ -9,7 +11,7 @@
  * [Permissions and Groups](#permissions-and-groups)
  * [wget](#wget)
  * [tar](#tar)
- * [ssh with sublime](#ssh-with-siblime)
+ * [ssh with sublime](#ssh-with-sublime)
 
 ## maintenance
 ```
@@ -22,7 +24,15 @@ sudo apt-get autoremove
 sudo ucaresystem-core
 sudo reboot
 sudo rm -rf /var/lib/apt/list/*
+
+grive
+
+#hold shift during restart to get to grub2
+memtestx86		
 ```
+
+## [google drive]
+```grive -a```
 
 ## Environment
 **path name of the files which would be executed in current environment**
@@ -109,6 +119,9 @@ ls -sh
 du -hs
   -h	human readable
   -s 	size
+  
+#size of each folder with files
+du -abch --max-depth=1
 ```
 **create or delete**
 ```
@@ -308,38 +321,13 @@ search rsub and install
 **on server terminal**
 ```rsub ~/path_to_file/fileName```
 
-### text editor
-```
-vi - 
-gedit
-nano
-less
 
-su - log in as super user 
-su amaskey - switch user to amsaskey
-sudo - run single command with root previledge
-
-
-sudo apt-get install package1 package1	#install multiple things at once
-sudo apt-get remove packageName		#uninstall but keep config files
-sudo apt-get purge packageName		#clean out config files as well
-
-sudo apt-get update -s packageName 	#simulate dry run
-sudo apt-get update -d packageName	#download files but not install
-
-sudo add-apt-repository ppa:ubuntuhandbook1/corebird	#add repository
-curl
-wget
-dpkg - dpkg -l, 
-apt
-aptitude
-```
 
 ## remote login
 **__ Host machine settings __**
 ```
 sudo apt-get install vnc4server
-sudo apt intall xfce4 xfce4-goodies tightvncserver		#install xfce4 and tightvnc in client machine
+sudo apt intall xfce4 xfce4-goodies tightvncserver			#install xfce4 and tightvnc in client machine
 gsettings set org.gnome.Vino require-encryption false		#remote access from VNC
 ```
 ### readlink
@@ -348,11 +336,17 @@ gsettings set org.gnome.Vino require-encryption false		#remote access from VNC
 readlink -f /usr/bin/java | sed "s:bin/java::"
 ```
 
-### Linux System Admin Primer
+### text editor
 ```
- vi, sudo, su
-```
+vi - 
+su - log in as super user 
+su amaskey - switch user to amsaskey
+sudo - run single command with root previledge
 
+curl
+dpkg - dpkg -l, 
+aptitude
+```
 
 #### all user directories stay here
 ```
@@ -362,8 +356,7 @@ tar, gzip, zip
 adduser, useradd
 ```
 
-ls -l
-apt-get update, apt-get install, rpm
+rpm
 #### ssh and key generation and passwordless login
 ssh, ssh-keygen -t rsa, .ssh/, authorized_keys
 ip a, /etc/hosts, ping
@@ -374,10 +367,7 @@ sudo dpkg -i /home/amaskey/Downloads/intellij-idea-community_2017.2.2-1_all.deb
 install dependencies
 sudo dpkg --configure -a --force-depends
 sudo apt-get install -f
-sudo apt-get dist-upgrade
 
-sudo apt install hamster-indicator	#install stop watch
-gconftool-2 --set "/apps/hamster-indicator/show_label" --type bool "true"	#show in top bar
 
 
 sudo openconnect https://
@@ -393,39 +383,7 @@ no capture capin interface inside
 no capture capout interface outside
 
 
-**tftp server**
-https://help.ubuntu.com/community/TFTP
-sudo apt-get install tftpd-hpa
-sudo service tftpd-hpa status
-
-
-
-#installing live reload
-sudo apt-get install ruby-dev
-sudo gem install rdoc -V
-sudo gem install guard -V
-sudo gem install guard-livereload -V
-create file named .Guardfile with following text
-
-# //github.com/guard/guard-livereload
-guard :livereload do
-  watch(%r{.+.(css|js|html)$})
-end
-
-download chrome
-
-grive -a
-
-
-
 #change \w to \W in both PS1
 source ~/.bashrc	#reset terminal
-
-memtestx86		#hold shift during restart to get to grub2
-
-
-
-
-
 
 

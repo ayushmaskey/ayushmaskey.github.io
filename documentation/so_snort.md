@@ -121,10 +121,8 @@ sudo cp ~/snort_src/snort-2.9.11.1/etc/*.map /etc/snort
 wget https://www.snort.org/rules/community -O ~/community.tar.gz
 sudo tar -xvf ~/community.tar.gz -C ~/
 sudo cp ~/community-rules/* /etc/snort/rules
-```
 
-comment out not in community version
-```
+#comment out not in community version
 sudo sed -i 's/include \$RULE\_PATH/#include \$RULE\_PATH/' /etc/snort/snort.conf
 ```
 
@@ -177,7 +175,7 @@ include $RULE_PATH/local.rules
 ```
 
 
-## Install pulled pork
+## Install pulledpork
 
 **pre req**
 ```
