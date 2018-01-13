@@ -1,8 +1,8 @@
-#Python
+# Python
 
-[John DeNero UC Berkley 61a](https://cs61a.org/)
-[61a book](http://composingPrograms.com)
-[Al Sweigart -automate boring stuff](https://automatetheboringstuff.com/)
+* [John DeNero UC Berkley 61a](https://cs61a.org/)
+* [61a book](http://composingPrograms.com)
+* [Al Sweigart -automate boring stuff](https://automatetheboringstuff.com/)
 
 
 basics: conditional statements,  functions
@@ -23,9 +23,9 @@ external files
  * [Import library](#import-library)
  * [try-except](#try-except)
  * [Seqences](#Seqences)
-  * [Array](#Array)
-  * [List basic](#List-basic)
-   * [List method](#List-method)
+   * [Array](#Array)
+   * [List basic](#List-basic)
+     * [List method](#List-method)
 
 ### Basic math
 ```python
@@ -46,7 +46,7 @@ sqrt(16)
 'Ayush' * 3 = 'AyushAyushAyush'
 ```
 ### Operators
-```
+```python
 += (string, int and float)
 *= (string, int and float)
 -= (int and float)
@@ -58,11 +58,11 @@ assignment =
 Boolean operators - and, or, not
 ```
 ### Data types
-```
+```python
 int, float, string, boolean(True, False), None, list, tuple, array, dictionary
 ```
 ### Data type conversion
-```
+```python
 int(), float(), str()
 ```
 ### Built-in functions
@@ -75,6 +75,7 @@ print(str1, str2, sep=',') 	# usually separated by str1 str2 but here str1,str2
 input() 			# waits for user input as string
 ```
 ### loop
+```python
 while():
   #code block goes here
 
@@ -89,7 +90,7 @@ continue
 ```
 
 ### Import library
-```
+```python
 from random import * 
 randint(1,9) 					# 1 and 9 inclusive
 
