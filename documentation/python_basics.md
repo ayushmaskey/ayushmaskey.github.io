@@ -22,10 +22,16 @@ external files
  * [loop](#loop)
  * [Import library](#import-library)
  * [try-except](#try-except)
- * [Seqences](#Seqences)
-   * [Array](#Array)
-   * [List basic](#List-basic)
-     * [List method](#List-method)
+ * [Sequences](#sequences)
+   * [Array](#array)
+   * [List basic](#list-basic)
+     * [List method](#list-method)
+   * [String basic](#string-basic)
+     * [String methods](#String-methods)
+   * [Tuples](#tuples)
+   * [Dictionary](#dictionary)
+     * [Dictionary method](#dictionary-method)
+ * [Regular expression](#regular-expression)
 
 ### Basic math
 ```python
@@ -64,6 +70,10 @@ int, float, string, boolean(True, False), None, list, tuple, array, dictionary
 ### Data type conversion
 ```python
 int(), float(), str()
+
+tuple([ , , ]) 						# convert list to tuple
+list(( , , )) 						# convert tuple to list
+list('hello') 						# ['h','e','l','l','o'] - convert string to list
 ```
 ### Built-in functions
 ```
@@ -79,11 +89,11 @@ input() 			# waits for user input as string
 while():
   #code block goes here
 
-for i in range(4) - 0 inclusive and 4 exclusive   && i+=1		#i = 0,1,2,3
+for i in range(4) 		# 0 inclusive and 4 exclusive  && i+=1 --> i = 0,1,2,3
 
-for i in range(1,10,2) - 1 inclusive && 10 exclusive && i+=2		#i = 1,3,5,7,9
+for i in range(1,10,2) 		# 1 inclusive && 10 exclusive && i+=2 --> i = 1,3,5,7,9
 
-for i in range(5,-2,-1) - 5 inclusive && -2 exclusive && i-=1		#i = 5,4,3,2,1,0,-1
+for i in range(5,-2,-1) 	# 5 inclusive && -2 exclusive && i-=1 --> i = 5,4,3,2,1,0,-1
 
 break 
 continue
@@ -103,129 +113,342 @@ sys.exit()					# exit the program
 ```
 
 ### try-except
-```
+```python
 try:
   return 42/x
 except ZeroDivisionError:			#if x == 0
   print('Bad Input')
 ```
 
-### Seqences 
- * (ordered sequence)
+### Sequences 
+ * ordered sequence
  * list, tuple, string, array
 
 ### [Array](https://docs.python.org/3/library/array.html)
 looks useless
-```
+```python
 from array import array
 x= array([2,4,6,4]) 				#array useful when doing arithmetic with inside elements
 x/2 = (1,2,3,2)
 ```
 
 ### [List basic](https://docs.python.org/3/tutorial/introduction.html#lists)
-```
-myList = [[6,5,2],['rat','cat','hat'],'hello']
-myList[0] = [6,5,2] 
-myList[1][2] = 'hat'
-myList[-1] = 'hello'
-myList[-2][-3] = 'rat'
-myList[1][0:2] = ['rat','cat'] 			# 2 excluded
-myList[1][:] =['rat','cat','hat'] 		# start at 0 inclusive, end at last inclusive
-myList[1][:2] = ['rat','cat'] 			# 0 to 1
-len(myList[1])
-myList[1][1] = 'kitty'				# [[6,5,2],['rat','kitty','hat'],'hello']
-del myList[2]  					# [[6,5,2],['rat','kitty','hat']]
-'dog' in myList[1] 				# False
-'dog' not in myList[1] 				# True
+```python
+>>>myList = [[6,5,2],['rat','cat','hat'],'hello']
+>>>myList[0]
+[6,5,2] 
+>>>myList[1][2]
+'hat'
+>>>myList[-1]
+'hello'
+>>>myList[-2][-3]
+'rat'
+>>>myList[1][0:2]				# 2 excluded
+['rat','cat']
+>>>myList[1][:] 				# start at 0 inclusive, end at last inclusive
+['rat','cat','hat']
+>>>myList[1][:2]				# 0 to 1
+['rat','cat'] 
+>>>len(myList[1])
+3
+>>>myList[1][1]
+'kitty'
+>>>del myList[2]
+>>>'dog' in myList[1] 
+False
+>>>'dog' not in myList[1]
+True
 
-[1,2,3] + ['a','b','c'] = [1,2,3,'a','b','c'] 
-[1,2,3] * 3 = [1,2,3,1,2,3,1,2,3]
+#mutable data type like list and dictionary are stored as references/pointers
+>>>import copy
+>>>copy.copy(myList) 				# make copy of mutable data
+>>>copy.deepcopy(myList)			# make copy of list and the inner lists
 
-for i in range(len(someList))
+>>>[1,2,3] + ['a','b','c']
+[1,2,3,'a','b','c'] 
+>>>[1,2,3] * 3
+[1,2,3,1,2,3,1,2,3]
 
-cat = ['fat', 'orange', 'kitty']
-size, color, name = cat
+>>>for i in range(len(someList))
 
 # swap values without temp variable
-a,b=1,2
-a,b=b,a
+>>>a,b=1,2
+>>>a,b=b,a
 ```
 ### [List method](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
-```
-cat.index('fat') 				# 0
-cat.append('lazy')
-cat 						# ['fat', 'orange', 'kitty', 'lazy']
-cat.insert(1, 'female')
-cat 						# ['fat', 'female', 'orange', 'kitty', 'lazy']
-cat.remove('kitty')
-cat 						# ['fat', 'female', 'orange', 'lazy']
-cat.sort()
-cat.sort(reverse=True)
-cat.sort(key=str.lower) 			# sorting done by ASCII upper case before lower
+```python
+>>>cat = ['fat', 'orange', 'kitty']
+>>>size, color, name = cat
+>>>cat.index('fat')
+0
+>>>cat.append('lazy')
+>>>cat
+['fat', 'orange', 'kitty', 'lazy']
+>>>cat.insert(1, 'female')
+>>>cat
+['fat', 'female', 'orange', 'kitty', 'lazy']
+>>>cat.remove('kitty')
+>>>cat
+['fat', 'female', 'orange', 'lazy']
+>>>cat.sort()
+>>> cat
+['fat', 'female', 'lazy', 'orange']
+>>>cat.sort(reverse=True)
+>>> cat
+['orange', 'lazy', 'female', 'fat']
+>>>cat.sort(key=str.lower) 			# sorting done by ASCII uppercase before lower
+>>> cat
+['fat', 'female', 'lazy', 'orange']
 ```
 
-STRING : 
+### [String basic](https://docs.python.org/3.1/library/string.html)
 similar to list
 big difference: string is immutable ie cannot be changed
+```python
 myString = 'that is a cat named puppy'
 change = ['cat','dog']
-myString = myString[0:myString.index(change[0])] + change[1] + myString[myString.index(change[0]) + len(change[0]):] 
+myString = myString[0:myString.index(change[0])] + \
+	change[1] + myString[myString.index(change[0]) + \
+	len(change[0]):] 
 myString 					# 'that is a dog named puppy'
-\' - escape
 
-not valid in string coz immutable
+\' 			# escape " ` "
+
+#not valid in string coz immutable
 del myString[5]
 myString.append('.')
+```
 
-String Methods
-str.upper(), str.lower(), str.isupper(), str.islower(), str.istitle() 		#title case
+### [String methods](#https://docs.python.org/3.1/library/stdtypes.html#string-methods)
+```python
+#title case
+str.upper(), str.lower(), str.isupper(), str.islower(), str.istitle()
+
 str.isalpha(), str.isalnum(), str.isdecimal(), str.isspace()
-str.startswith(), str.endswith() 						# beginning and ending of string
-':'.join('a','b','c') 					# a:b:c
-'a:b:c'.split(':') 					# ('a','b','c')
-'Hello'.rjust(10) 					# '     Hello'
-'Hello'.ljust(6,'*') 					# 'Hello*' - pad left or right with spaces or string to make total of 6 characters
-'Hello'.center(15,'-') 					# '-----Hello-----'
-str.strip(). str.rstrip(), str.lstrip() # remove white space
-'SpamSpamBaconSpamEggsSpamSpam'.strip('ampS' or 'mapS' or 'pSam')  #'BaconSpamEggs' removes all possible combination of ampS from start and end
 
+# beginning and ending of string
+str.startswith(), str.endswith()
 
-TUPLES:
+#join and split
+>>>':'.join('a','b','c')
+a:b:c
+>>>'a:b:c'.split(':')
+('a','b','c')
+
+#pad left, right or center with spaces or string to make right length
+>>>'Hello'.rjust(10)
+'     Hello'
+>>>'Hello'.ljust(6,'*')
+'Hello*'
+>>>'Hello'.center(15,'-')
+'-----Hello-----'
+
+# remove white space
+str.strip(). str.rstrip(), str.lstrip()
+
+# removes all possible combination of ampS from start and end
+>>>'SpamSpamBaconSpamEggsSpamSpam'.strip('ampS' or 'mapS' or 'pSam')
+'BaconSpamEggs'
+```
+
+### [Tuples]
+```python
 similar to list but uses () instead of []
 tuples are immutable like string
+```
 
-tuple([ , , ]) 						# convert list to tuple
-list(( , , )) 						# convert tuple to list
-list('hello') 						# ['h','e','l','l','o'] - convert string to list
+### Dictionary
+```python
+>>>cat = {'name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age'}
+>>>cat['name']
+'kitty'
 
-mutable data type like list and dictionary are stored as references/pointers
+#Unordered
+>>>cat = {'name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age'}
+>>>dog = {12: 'age','name': 'kitty', 'size': 'fat', 'color': 'orange'}
+>>>cat == dog
+True
+```
 
-import copy
-copy.copy(myList) 					# make copy of mutable data
-copy.deepcopy(myList) 					# make copy of list and the inner lists
-
-DICTIONARY:
-cat = {'name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age'}
-cat['name']
-Unordered
-cat = {'name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age'}
-dog = {12: 'age','name': 'kitty', 'size': 'fat', 'color': 'orange'}
-cat == dog 						# True
-
-Dictionary Method:
+### Dictionary method
+```python
 keys(), values(), items()
+
+# just values
 for i in cat.values():
-	print(i)					# just values
+	print(i)
+
+# just keys
 for i in cat.keys():
-	print(i)					# just keys
+	print(i)
+
 for i in cat.items():
 	print(i)
+
+# keys and values
 for k,v in cat.items():
-	print('Key: ' + k + ' Value: ' + v)		# keys and values
-'name' in cat.keys() 					# True
-'fat' not in cat.values() 				# False
-cat.get('length',0) 					# returns 0 if there is not key called length
-if 'length' not in cat:	cat['length'] = '12 inch' or cat.setdefault('length', '12 inch')
+	print('Key: ' + k + ' Value: ' + v)
+
+>>>'name' in cat.keys()
+True
+>>>'fat' not in cat.values()
+False
+
+# returns 0 if there is no key called length
+>>>cat.get('length',0)
+0
+
+if 'length' not in cat:	
+	cat['length'] = '12 inch' 
+# or cat.setdefault('length', '12 inch')
+```
+
+### Regular expression
+```python
+>>>import re
+>>>strBlob = '555-555-5555'
+# create regex object and use r to search as raw data
+>>>strPattern = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+
+# pass the string to search into regex object's search method
+>>>matchedObjects = strPattern.search(strBlob)
+
+# call group to return the first instance of matched expression
+>>>print(matchedObjects.group())
+555-555-5555
+
+#parethesis in regular expression
+
+# search for regex either bracket or complete
+>>>strPattern = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
+>>>strBlob = '(555) 555-5555'
+>>>matchedObjects = strPattern.search(strBlob)	
+>>>areaCode, mainNumber = matchedObjects.groups()
+
+>>>matchedObjects.group(0)
+'555-555-5555'
+>>>areCode = matchedObjects.group(1)
+>>>matchedObjects.group(2)
+
+#matching multipe groups with |
+
+# finds first instace of batman or wonder woman
+>>>regHero = re.compile(r'batman|wonder woman')
+>>>mo1 = regHero.search('batman, superman, wonder woman')	
+>>>mo2 = regHero.search('superman, wonder woman, batman')
+>>>mo1.group()
+batman
+>>>mo2.group()
+wonder woman
+
+>>>regBat = re.compile(r'bat(man|mobile|cave|girl)')
+# finds batman and batwoman. pattern in (wo)? is optional
+>>>regBat = re.compile(r'bat(wo)?man')
+# finds batman, batwoman, batwowoman, batwowowoman etc
+>>>regbat = re.compile(r'bat(wo)*man')
+# atleast 1 - finds batwoman, batwowoman but not batman
+>>>regbat = re.compile(r'bat(wo)+man')
+
+(Ha){3}  -->HaHaHa
+(Ha){3,5}--> HaHaHa, HaHaHaHa, HaHaHaHaHa
+(Ha){3, }--> Unbounded - 3 or more
+(Ha){ ,5}--> Unbounded - 0 to 5
+
+# searching for parethesis need escape charater even in raw string
+/(, /), /|, /*, /+
+
+#Python regex are greedy by default - ie finds the longest possible string
+# finds the longest possible
+>>>greedyRegex = re.compile(r'(Ha){3,5}')
+# find the shortest possible
+>>>nonGreedyRegex = re.compile(r'(Ha){3,5}?')
+>>>mo1 = greedyRegex.search('HaHaHaHa')
+>>>mo2 = nonGreedyRegex.search('HaHaHaHa')
+>>>print(mo1.group() )
+HaHaHaHa
+>>>print(mo2.group() )
+HaHaHa
+
+>>>phoneRegex1 = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+>>>phoneRegex2 =  re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)')
+#finds all the matching exp in the string
+>>>phoneRegex1.findall('asdf ads 898-959-5265 afw da 595-898-8747')
+['898-959-5265', '595-898-8747'] 
+#list of tuples
+>>>phoneRegex2.findall('asdf ads 898-959-5265 afw da 595-898-8747')
+[('898', '959', '5265'), ('595', '898', '8747')] 
+
+
+\d - digits 0 to 9
+\D - not (digits 0 to 9)
+\w - digits, letters, and underscore
+\W - not (digits, letters, and underscore)
+\s - space, tab, newline
+\S - not (space, tab, newline)
+[0-5] - matches 0,1,2,3,4,5
+
+
+# any number of digits followed by a whitespace and then any number of words
+xReg = re.compile(r'\d+\s\w+')
+
+# find vowels from string
+userDef1 = re.compile(r'[aeiuoAEIOU]')
+
+# all lower and upper alpha + digits
+userDef2 = re.compile(r'[a-zA-Z0-9]')
+
+# all lower and ending in period. no need \. inside []
+userDef3 = re.compile(r'['[a-z.]')
+
+# caret inside [] finds non regex from string
+userDef4 = re.compile(r'[^aeiuoAEIOU]')
+
+# caret as raw string means must start with given expression
+userDef5 = re.compile(r'^[a-e]+')
+
+# dollar sign means ends with given expression
+userDef6 = re.compile(r'[a-e]+$')
+
+# whole string is digits
+userDef7 = re.compile(r'^d+$')
+
+# one wild character with dot. everything but newline
+userDef8 = re.compile(r'.at')
+
+# more than one wild character with .*
+r'.*'
+# greedy wild character with .*?
+r'.*?'
+
+# case insensitive
+re.compile(r'ayush',re.IGNORECASE)
+
+#String substitution with regex
+>>>xReg = re.compile(r'Ayush \w+')
+>>>xReg.sub('King', 'My name is Ayush Maskey')
+My name is King
+>>>censorAgents = re.compile(r'Agent (/w) w+')
+>>>censorAgents.sub('\1***', 'Agent James and Agent Bond went undercover')
+Agent J*** and Agent B*** went undercover
+
+
+# complicated regex into readable
+# re.VERBOSE ignores white space and comments
+# expression inside ''' triple quote - triple quote extends to multiple lines
+
+phoneRegex = re.compile(r'((\d{3}|\(\d{3}\))?(\s|-|\.)?\d{3}(\s|-|\.)\d{4}(\s*(ext|x|ext.)\s*\d{2,5})?)')
+
+VS
+
+phoneRegex = re.compile(r'''(]
+    (\d{3}|\(\d{3}\))?            # area code
+    (\s|-|\.)?                    # separator
+    \d{3}                         # first 3 digits
+    (\s|-|\.)                     # separator
+    \d{4}                         # last 4 digits
+    (\s*(ext|x|ext.)\s*\d{2,5})?  # extension
+    )''', re.VERBOSE)
+```
 
 
 pyperclip library/ package:
@@ -245,87 +468,6 @@ WINDOWS
 @py.exe C:\myFolder\filename.py %*
 @pause
 
-pattern matching: REGULAR EXPRESSION
-import re
-strPattern = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')	# create regex object and use r to search as raw data
-matchedObjects = strPattern.search(strBlob) 		# pass the string to search into regex object's search method
-print(matchedObjects.group()) 				# call group to return the first instance of matched expression
-
-parethesis in regular expression
-strPattern = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')	# search for regex either bracket or complete
-areaCode, mainNumber = matchedObjects.groups()
-matchedObjects.group(0)
-areCode = matchedObjects.group(1)
-matchedObjects.group(2)
-
-matching multipe groups with |
-regHero = re.compile(r'batman|wonder woman')		# finds first instace of batman or wonder woman
-mo1 = regHero.search('batman, superman, wonder woman')	
-mo2 = regHero.search('superman, wonder woman, batman')
-mo1.group()						# returns batman
-mo2.group()						# returns wonder woman
-
-regBat = re.compile(r'bat(man|mobile|cave|girl)')
-regBat = re.compile(r'bat(wo)?man')			# finds batman and batwoman. pattern in (wo)? is optional
-regbat = re.compile(r'bat(wo)*man')			# finds batman, batwoman, batwowoman, batwowowoman etc
-regbat = re.compile(r'bat(wo)+man')			# atleast 1 - finds batwoman, batwowoman but not batman
-(Ha){3} 						# HaHaHa
-(Ha){3,5}						# HaHaHa, HaHaHaHa, HaHaHaHaHa
-(Ha){3, }						# Unbounded - 3 or more
-(Ha){ ,5}						# Unbounded - 0 to 5
-
-/(, /), /|, /*, /+					# searching for parethesis need escape charater even in raw string
-Python regex are greedy by default 			# ie finds the longest possible string
-greedyRegex = re.compile(r'(Ha){3,5}')			# finds the longest possible
-nonGreedyRegex = re.compile(r'(Ha){3,5}?')		# find the shortest possible
-mo1 = greedyRegex.search('HaHaHaHa')
-mo2 = nonGreedyRegex.search('HaHaHaHa')
-print(mo1.group() )					# HaHaHaHa
-print(mo2.group() )					# HaHaHa
-
-phoneRegex1 = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
-phoneRegex2 =  re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)')
-pReg1.findall('asdf ads 898-959-5265 afw da 595-898-8747') 	# ['898-959-5265', '595-898-8747'] finds all the matching exp in the string
-pReg2.findall('asdf ads 898-959-5265 afw da 595-898-8747') 	# [('898', '959', '5265'), ('595', '898', '8747')] list of tuples
-
-\d - digits 0 to 9
-\D - not (digits 0 to 9)
-\w - digits, letters, and underscore
-\W - not (digits, letters, and underscore)
-\s - space, tab, newline
-\S - not (space, tab, newline)
-[0-5] - matches 0,1,2,3,4,5
-
-xReg = re.compile(r'\d+\s\w+')				# any number of digits followed by a whitespace and thena any number of words
-userDef1 = re.compile(r'[aeiuoAEIOU]')			# find vowels from string
-userDef2 = re.compile(r'[a-zA-Z0-9]')			# all lower and upper alpha + digits
-userDef3 = re.compile(r'['[a-z.]')			# all lower and ending in period. no need \. inside []
-userDef4 = re.compile(r'[^aeiuoAEIOU]')			# caret inside [] finds non regex from string
-userDef5 = re.compile(r'^[a-e]+')			# caret as raw string means must start with given expression
-userDef6 = re.compile(r'[a-e]+$')			# dollar sign means ends with given expression
-userDef7 = re.compile(r'^d+$')				# whole string is digits
-userDef8 = re.compile(r'.at')				# one wild character with dot. everything but newline
-r'.*'							# more than one wild character with .*
-r'.*?'							# greedy wild character with .*?
-
-re.compile(r'ayush',re.IGNORECASE)			# case insensitive
-
-String substitution with regex
-xReg = re.compile(r'Ayush \w+')
-xReg.sub('King', 'My name is Ayush Maskey')		# My name is King
-censorAgents = re.compile(r'Agent (/w) w+')
-censorAgents.sub('\1***', 'Agent James and Agent Bond went undercover 		# Agent J*** and Agent B*** went undercover 			
-
-phoneRegex = re.compile(r'((\d{3}|\(\d{3}\))?(\s|-|\.)?\d{3}(\s|-|\.)\d{4}(\s*(ext|x|ext.)\s*\d{2,5})?)')
-VS
-phoneRegex = re.compile(r'''(							# complicated regex into readable
-    (\d{3}|\(\d{3}\))?            # area code					# re.VERBOSE ignores white space and comments
-    (\s|-|\.)?                    # separator					# expression inside ''' triple quote
-    \d{3}                         # first 3 digits				# triple quote extends to multiple lines
-    (\s|-|\.)                     # separator
-    \d{4}                         # last 4 digits
-    (\s*(ext|x|ext.)\s*\d{2,5})?  # extension
-    )''', re.VERBOSE)
 
 
 READING AND WRITING FILES
