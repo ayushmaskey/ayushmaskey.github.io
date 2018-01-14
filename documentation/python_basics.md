@@ -5,13 +5,10 @@
 * [Al Sweigart -automate boring stuff](https://automatetheboringstuff.com/)
 
 
-basics: conditional statements,  functions
-regular expression (RegEx): pattern matching
 higher order function: fxn as parameter, return fxn, fxn inside fxn, lambda
 test driven development: python3 -m doctest file.py 
 troubleshooting: @trace decorator
 data abstraction
-external files
 
 ## Table of Content
  * [Basic math](#basic-math)
@@ -19,6 +16,7 @@ external files
  * [Data types](#data-types)
  * [Data type conversion](#data-type-conversion)
  * [build-in functions](#build-in-function)
+ * [condition](#condition)
  * [loop](#loop)
  * [Import library](#import-library)
  * [try-except](#try-except)
@@ -32,6 +30,10 @@ external files
    * [Dictionary](#dictionary)
      * [Dictionary method](#dictionary-method)
  * [Regular expression](#regular-expression)
+ * [pyperclip](#pyperclip)
+ * [run options from terminal](#run-ptions-from-terminal)
+ * [make executable](#make-executable)
+ * [reading and writing files](#reading-and-writing-files)
 
 ### Basic math
 ```python
@@ -83,6 +85,22 @@ print(str1, str2)
 print("ayush", end='') 		# end of print  is usally \n but here it is replaced by ''
 print(str1, str2, sep=',') 	# usually separated by str1 str2 but here str1,str2 
 input() 			# waits for user input as string
+```
+### condition
+```python
+if 
+elif
+else
+
+# and / or short circuiting
+>>>True and 1
+1
+>>>False and 1
+False
+>>>True or 1
+True
+>>>False or 1
+1
 ```
 ### loop
 ```python
@@ -205,12 +223,13 @@ True
 similar to list
 big difference: string is immutable ie cannot be changed
 ```python
-myString = 'that is a cat named puppy'
+>>>myString = 'that is a cat named puppy'
 change = ['cat','dog']
-myString = myString[0:myString.index(change[0])] + \
+>>>myString = myString[0:myString.index(change[0])] + \
 	change[1] + myString[myString.index(change[0]) + \
 	len(change[0]):] 
-myString 					# 'that is a dog named puppy'
+>>>myString
+'that is a dog named puppy'
 
 \' 			# escape " ` "
 
@@ -251,13 +270,13 @@ str.strip(). str.rstrip(), str.lstrip()
 'BaconSpamEggs'
 ```
 
-### [Tuples]
+### [Tuples](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences)
 ```python
 similar to list but uses () instead of []
 tuples are immutable like string
 ```
 
-### Dictionary
+### [Dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
 ```python
 >>>cat = {'name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age'}
 >>>cat['name']
@@ -303,7 +322,7 @@ if 'length' not in cat:
 # or cat.setdefault('length', '12 inch')
 ```
 
-### Regular expression
+### [Regular expression](https://docs.python.org/3/howto/regex.html)
 ```python
 >>>import re
 >>>strBlob = '555-555-5555'
@@ -450,57 +469,76 @@ phoneRegex = re.compile(r'''(]
     )''', re.VERBOSE)
 ```
 
+### [pyperclip](https://pypi.python.org/pypi/pyperclip)
+```python
+# paste anything in clipboard
+pyperclip.copy('Hello')
+pyperclip.paste()
+```
 
-pyperclip library/ package:
-pyperclip.copy('Hello') 				# not as fun
-pyperclip.paste() 					# paste anything in clipboard
+### run options from terminal
+```bash
+#compile and test
+python3 -m doctest filename.py
 
-RUN OPTIONS FROM TERMINAL:
-python3 -m doctest filename.py (compile and test)
-python3 -m doctest filename.py - v (in verbose mode)
-python3 -i filename.py (interactive mode)
+#in verbose mode
+python3 -m doctest filename.py - v
 
-make executable from terminal (ie dont need to type python3 fileName.py)
-UBUNTU
+#interactive mode
+python3 -i filename.py
+```
+
+### make executable 
+ie dont need to type python3 fileName.py
+```bash
+#ubuntu
 chmod +x fileName.py
-WINDOWS
+
+#windows
 .bat file
 @py.exe C:\myFolder\filename.py %*
 @pause
+```
 
 
-
-READING AND WRITING FILES
-import os
-os.path.join('home','amaskey','Google')						# ubuntu - home/amaskey/Google Windows - home\\amaskey\\Google 
-folder= 'home/amaskey/Google'
-files = ['file1.txt','file2.txtx','file3.txt']
-for fileName in files:
+### reading and writing files
+```python
+>>>import os
+# ubuntu - home/amaskey/Google 
+# Windows - home\\amaskey\\Google 
+>>>folder = os.path.join('home','amaskey','Google')
+>>>folder
+'home/amaskey/Google'
+>>>files = ['file1.txt','file2.txtx','file3.txt']
+>>>for fileName in files:
 	os.path.join(filePath, fileName)
-os.getcwd()									# current working directory
+>>>os.getcwd()
+PWD
 
-open('filename')
-s = set( open('~/Document.../filename').read().split() )
-{w for w in s if s == s[::-1] and len(s) > 3}
-{w for w in s if s[::-1] in s and len(s) == 5}
+>>>open('filename')
+>>>s = set( open('~/Document.../filename').read().split() )
+>>>{w for w in s if s == s[::-1] and len(s) > 3}
+>>>{w for w in s if s[::-1] in s and len(s) == 5}
+```
 
-user-defined function
+
+### user-defined function
+```python
 def fnName(parameter):
 	operations
 	return x
 
 def fnName(p1, p2=100)
-	ops
+	operations
 	return x,y
 """ return more than one variable
 p2=100 as default if it is not defined 
 when calling the fxn"""
+```
 
-if 
-elif
-else
 
-higher order function 
+### higher order function 
+```python
 function that returns function
 - function inside function
 - can pass a function as parameter to a function.
@@ -518,31 +556,27 @@ use of higher-order
 - express general methods of computation
 - remove repition from programs
 - separate concerns among functions
+```
 
 
-
-lambda expression
+### lambda expression
 function currying
 mutual recusion 
 luhn sum- credit card number 
-dictionary
-range()
-for loop
-
-and / or short circuiting
-True and 1 = 1
-False and 1 = False
-True or 1 = True
-False or 1 = 1
 
 
-functional abstraction
+
+
+### functional abstraction
+```python
 - need to know number of argument
 - dont care about intrinsic name of function - name can be assigned to anything else. helps other humans and myself read the program
 - need to know what fuction does/returns/prints
 - dont care how it computes 
+```
 
-test driven development
+### test driven development
+```python
 - write test before writing a function
 
 from ucb import trace	# create my own trace for testing 
@@ -555,7 +589,7 @@ def gcd(n,m):
   >>>find all possible cases
   """
   now implement the function
+```
 
-$python3 -m doctest ex.py	#see if the test we wrote are correct
 
 
