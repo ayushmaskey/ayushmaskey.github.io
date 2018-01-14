@@ -2,6 +2,7 @@
 
 * [John DeNero UC Berkley 61a](https://cs61a.org/)
 * [61a book](http://composingPrograms.com)
+* [python tutor](http://pythontutor.com/composingprograms.html#mode=edit)
 * [Al Sweigart -automate boring stuff](https://automatetheboringstuff.com/)
 
 
@@ -31,9 +32,10 @@ data abstraction
      * [Dictionary method](#dictionary-method)
  * [Regular expression](#regular-expression)
  * [pyperclip](#pyperclip)
- * [run options from terminal](#run-ptions-from-terminal)
+ * [run options from terminal](#run-options-from-terminal)
  * [make executable](#make-executable)
  * [reading and writing files](#reading-and-writing-files)
+ * [lambda](#lambda)
 
 ### Basic math
 ```python
@@ -521,6 +523,52 @@ PWD
 >>>{w for w in s if s[::-1] in s and len(s) == 5}
 ```
 
+### [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
+```python
+>>>f = lambda x: x+5
+>>>f
+<function>
+>>>f()
+TypeError: <lambda>() missing 1 required positional argument: 'x'
+>>> f(3)
+8
+>>>avg = lambda x,y,z: (x+y+z) / 3
+>>>avg(2,3,4)
+3.0
+
+#different lambda
+>>> f = lambda : 5
+>>> g = lambda : 5
+>>> f == g
+False
+>>> f
+<function <lambda> at 0x7fc22528ebf8>
+>>> g
+<function <lambda> at 0x7fc22528eb70>
+
+
+#pointing to same lambda
+>>> f = lambda : 5
+>>> g = f
+>>> g
+<function <lambda> at 0x7fc22528ebf8>
+>>> f
+<function <lambda> at 0x7fc22528ebf8>
+
+## lambda called twice??
+>>> def foo(x): 
+...     return x() 
+... 
+>>> goo = foo(lambda: 5)
+
+```
+#### def vs lambda
+* def creates a function and binds it to var
+* lambda creates function without binding to var
+* def create function and bind to variable at the same time
+* def --> can have local var, call other function, loops etc
+* lambda --> only parameter and return
+* all lambda can be rewritten as def
 
 ### user-defined function
 ```python
@@ -559,7 +607,6 @@ use of higher-order
 ```
 
 
-### lambda expression
 function currying
 mutual recusion 
 luhn sum- credit card number 
