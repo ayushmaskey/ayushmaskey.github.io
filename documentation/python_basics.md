@@ -37,6 +37,8 @@ data abstraction
  * [reading and writing files](#reading-and-writing-files)
  * [lambda](#lambda)
 
+ctrl + l --> clear screen
+
 ### Basic math
 ```python
 from operator import add, mul, pow, truediv, floordiv, mod
@@ -555,7 +557,7 @@ False
 >>> f
 <function <lambda> at 0x7fc22528ebf8>
 
-## lambda called twice??
+# lambda called twice??
 >>> def foo(x): 
 ...     return x() 
 ... 
@@ -579,9 +581,10 @@ def fnName(parameter):
 def fnName(p1, p2=100)
 	operations
 	return x,y
+
 """ return more than one variable
-p2=100 as default if it is not defined 
-when calling the fxn"""
+p2=100 as default if it is not defined when calling the fxn"""
+
 ```
 
 
@@ -607,8 +610,10 @@ use of higher-order
 ```
 
 
-function currying
-mutual recusion 
+### function currying
+
+### mutual recusion 
+
 luhn sum- credit card number 
 
 
