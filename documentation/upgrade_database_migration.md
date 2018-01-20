@@ -7,7 +7,7 @@
 |  | Current | Next |
 |--|---------|------|
 | server | windows server 2008 R2 | windows server 2012 R2 |
-| database | sql server 2008 R2 | sql server 2014 SP1/ SP2 |
+| database | sql server 2008 R2 | SQLServer2014SP1-KB3058865-x64-ENU |
 | OS size | 300 Gb | 350 Gb |
 | Data drive | 1Tb | 1Tb |
 | Backup drive | - | 300Gb |
@@ -131,6 +131,13 @@ SQL server 2014 compatibility level would be at 120
 alter database CentricityPS
 set compatibility_level = 120
 ```  
+trust
+```
+USE CentricityPSDemo
+GO
+EXEC sp_changedbowner 'sa'
+ALTER DATABASE CentricityPSDemo SET trustworthy ON 
+```
 
 ## log files
 ```
