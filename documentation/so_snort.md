@@ -214,7 +214,7 @@ sudo cp etc/*.conf /etc/snort/
 ```config_path=/usr/local/etc/snort/snort.conf```
 
 133
-``` 	
+```
 distro=Ubuntu-12-04```
 
 141

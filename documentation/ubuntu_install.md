@@ -17,9 +17,10 @@
  * [live reload](#live-reload)
  * [tftp server](#tftp-server)
  * [hamster stop watch](#hamster-stop-watch)
+ * [haskell](#haskell)
 
 ## install and remove 
-```
+```bash
 sudo apt-get install package1 package1	#install multiple things at once
 sudo apt-get remove packageName		#uninstall but keep config files
 sudo apt-get purge packageName		#clean out config files as well
@@ -31,6 +32,7 @@ sudo apt-get update -d packageName	#download files but not install
 # **__ Package installation and settings __**
 
 ## python
+```bash
 sudo apt-get install -y python3-pip
 sudo apt-get install -y python-pip
 sudo apt-get install python3-numpy
@@ -41,21 +43,31 @@ sudo apt-get install pyton3-sklearn
 sudo pip3 install pymining
 sudo pip3 install python-craigslist
 sudo pip3 install scapy-python3
+```
 
 ## sublime
+```bash
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+
+sudo apt-get update
+sudo apt-get install sublime-text
 ```
+or
+```bash
 sudo add-apt-repository ppa:webupd8team/sublime-text-3
 sudo apt-get update
 sudo apt-get install sublime-text-installer
 ```
 
 ## nodejs
-```
+```bash
 sudo apt install nodejs
 sudo apt install npm
 ```
 ## meteor
-```
+```bash
 sudo apt install curl
 curl https://install.meteor.com/ | sh
 sudo npm install -g gulp
@@ -199,6 +211,11 @@ sudo apt install hamster-indicator
 
 #show in top bar
 gconftool-2 --set "/apps/hamster-indicator/show_label" --type bool "true"	
+```
+
+## [haskell]
+```
+curl -sSL https://get.haskellstack.org/ | sh
 ```
 jekyll
 liquid
