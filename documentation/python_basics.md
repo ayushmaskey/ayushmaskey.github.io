@@ -12,6 +12,7 @@ troubleshooting: @trace decorator
 data abstraction
 
 ## Table of Content
+ * [run python](#run-python)
  * [Basic math](#basic-math)
  * [Operators](#operators)
  * [Data types](#data-types)
@@ -38,6 +39,22 @@ data abstraction
  * [lambda](#lambda)
 
 ctrl + l --> clear screen
+
+### run python
+```bash
+#simple run
+python3 fileName.py
+
+#run interactively
+python3 -i fileName.py
+
+#run with doctest - no result if no erro
+python3 -m doctest fileName.py
+
+#run with doctest -show verbose result
+python3 -m doctest -v fileName.py
+
+```
 
 ### Basic math
 ```python
