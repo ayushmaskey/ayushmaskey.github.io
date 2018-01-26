@@ -37,6 +37,11 @@ data abstraction
  * [make executable](#make-executable)
  * [reading and writing files](#reading-and-writing-files)
  * [lambda](#lambda)
+ * [def vs lambda](#def-vs-lambda)
+ * [higher order function](#higher-order-function)
+ * [function currying](#function-currying)
+ * [mutual recusion](#mutual-recursion)
+ * [functional abstraction](#functional-abstraction)
 
 ctrl + l --> clear screen
 
