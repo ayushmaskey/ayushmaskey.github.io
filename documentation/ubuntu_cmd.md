@@ -61,7 +61,26 @@ sudo apt install ucaresystem-core
 ```
 
 **move file across ssh**
-```scp /pwd/fileName amaskey@ip:pwd/fileName```
+```
+# linux to linux
+scp /pwd/fileName amaskey@ip:pwd/fileName
+# windows to linux(https://community.nxp.com/thread/220596)
+* install putty
+# in cmd line
+set PATH=C:\Program Files\PuTTY
+pscp "c:\..\..\desktop\filename.txt" username@ubuntu:/home/user
+```
+
+**adding trusted cert**
+```
+In ubuntu:
+    Go to /usr/local/share/ca-certificates/
+    Create a new folder, i.e. "sudo mkdir school"
+    Copy the .crt file into the school folder
+    Make sure the permissions are OK (755 for the folder, 644 for the file)
+    Run "sudo update-ca-certificates"
+
+```
 
 **display manual of specified command**
 ```man ls```

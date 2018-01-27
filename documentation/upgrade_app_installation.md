@@ -2,7 +2,7 @@
 
 # Before d-day
 
-## App server specs
+### App server specs
 
 |  | Current | Next |
 |--|---------|------|
@@ -11,7 +11,7 @@
 | OS size | | 150Gb |
 | RAM | | 16GB = 16384 |
 
-## Checklist
+### Checklist
 
 * Rename Staging --> CPS_12_Staging.bak
 * .net 4.5 and 3.5
@@ -22,6 +22,8 @@
 * time sync
 * local admin
 * hide sql 2014 SP2
+* IIS7 in app server
+
 
 ## Installation
 
@@ -39,13 +41,26 @@
  
 **server configurator**
  * server setup --> server configurator --> user: cps2018 p: 2%----
- * 
+ * single server --> install in website in app02
+ * c:\Program Files\Centricity Practice Solution\jboss\standalone\deployments\Centricity.ear\centricityPracticxeWS.war\encounterForms
 
+** CHC **
+ * download visinstaller from https://portal.visualutions.com/CP/Downloads.aspx 
+ * code: 1233-779
+ * install all but visAnalytics
+ * EMR Instance Selection: cps2018 and sa
+ * License Manager: adminx2, LicenseManagerUserx6355 
+ * Application Center: ApplicationCenterUserx6355
+ * visCHC: MN
+ * share c:\CHC as CHCUpdate
+ * run update.bat in all terminal servers
+ 
 **automatic**
 GEMedispan DB --> new one auto created but empty
 JBoss DB --> new one created but empty
 Jobs --> autmatic
 
+backup jobs failing
 
 GUI and interlop servers 
 MIK in SQL server
@@ -56,5 +71,7 @@ Server Configurator
 contact SMPP team
 contact esm team
 contact doc man team
+
+
 
 

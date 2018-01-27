@@ -1,3 +1,5 @@
+
+
 all DNS
 {
   "query": {
