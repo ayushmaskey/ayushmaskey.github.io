@@ -127,7 +127,7 @@ True
 ```
 ### assert
 
-```
+```python
 assert 3 > 2, "return string if true"
 
 def area_square(r):
@@ -251,7 +251,8 @@ change = ['cat','dog']
 >>>myString
 'that is a dog named puppy'
 
-\' 			# escape " ` "
+# escape " ` " using backslash
+\'
 
 #not valid in string coz immutable
 del myString[5]
