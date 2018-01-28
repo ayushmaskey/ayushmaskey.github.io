@@ -13,6 +13,7 @@ data abstraction
 
 ## Table of Content
  * [run python](#run-python)
+ * [make executable](#make-executable)
  * [Basic math](#basic-math)
  * [Operators](#operators)
  * [Data types](#data-types)
@@ -26,17 +27,15 @@ data abstraction
    * [List basic](#list-basic)
      * [List method](#list-method)
    * [String basic](#string-basic)
-     * [String methods](#String-methods)
+     * [String methods](#string-methods)
    * [Tuples](#tuples)
    * [Dictionary](#dictionary)
      * [Dictionary method](#dictionary-method)
  * [Regular expression](#regular-expression)
  * [pyperclip](#pyperclip)
- * [run options from terminal](#run-options-from-terminal)
- * [make executable](#make-executable)
  * [reading and writing files](#reading-and-writing-files)
  * [functions](#functions)
-   * [built in function](#build-in-function)
+   * [built in function](#built-in-function)
    * [import library](#import-library)
    * [user defined function](#user-defined-function)
    * [higher order function](#higher-order-function)
@@ -44,13 +43,13 @@ data abstraction
    * [def vs lambda](#def-vs-lambda)
    * [function currying](#function-currying)
    * [functional abstraction](#functional-abstraction)
- * [mutual recusion](#mutual-recursion)
- * [test driven development](#tdd)
+ * [mutual recursion](#mutual-recursion)
+ * [test driven development](#test-driven-development)
 
 
 ctrl + l --> clear screen
 
-### run python
+## run python
 ```bash
 #simple run
 python3 fileName.py
@@ -58,7 +57,7 @@ python3 fileName.py
 #run interactively
 python3 -i fileName.py
 
-#run with doctest - no result if no erro
+#compile and test run with doctest - no result if no error
 python3 -m doctest fileName.py
 
 #run with doctest -show verbose result
@@ -66,7 +65,19 @@ python3 -m doctest -v fileName.py
 
 ```
 
-### Basic math
+## make executable 
+ie dont need to type python3 fileName.py
+```bash
+#ubuntu
+chmod +x fileName.py
+
+#windows
+.bat file
+@py.exe C:\myFolder\filename.py %*
+@pause
+```
+
+## Basic math
 ```python
 from operator import add, mul, pow, truediv, floordiv, mod
 mul(a,b) or a*b
@@ -84,7 +95,7 @@ sqrt(16)
 
 'Ayush' * 3 = 'AyushAyushAyush'
 ```
-### Operators
+## Operators
 ```python
 += (string, int and float)
 *= (string, int and float)
@@ -96,11 +107,11 @@ Comparisons: ==, !=, >, <, >= <=
 assignment =
 Boolean operators - and, or, not
 ```
-### Data types
+## Data types
 ```python
 int, float, string, boolean(True, False), None, list, tuple, array, dictionary
 ```
-### Data type conversion
+## Data type conversion
 ```python
 int(), float(), str()
 
@@ -109,7 +120,7 @@ list(( , , )) 						# convert tuple to list
 list('hello') 						# ['h','e','l','l','o'] - convert string to list
 ```
 
-### condition
+## condition
 ```python
 if 
 elif
@@ -125,7 +136,7 @@ True
 >>>False or 1
 1
 ```
-### assert
+## assert
 
 ```python
 assert 3 > 2, "return string if true"
@@ -135,7 +146,7 @@ def area_square(r):
   return r * r
 ```
 
-### loop
+## loop
 ```python
 while():
   #code block goes here
@@ -150,7 +161,7 @@ break
 continue
 ```
 
-### try-except
+## try-except
 ```python
 try:
   return 42/x
@@ -158,11 +169,11 @@ except ZeroDivisionError:			#if x == 0
   print('Bad Input')
 ```
 
-### Sequences 
+## Sequences 
  * ordered sequence
  * list, tuple, string, array
 
-### [Array](https://docs.python.org/3/library/array.html)
+## [Array](https://docs.python.org/3/library/array.html)
 looks useless
 ```python
 from array import array
@@ -170,7 +181,7 @@ x= array([2,4,6,4]) 				#array useful when doing arithmetic with inside elements
 x/2 = (1,2,3,2)
 ```
 
-### [List basic](https://docs.python.org/3/tutorial/introduction.html#lists)
+## [List basic](https://docs.python.org/3/tutorial/introduction.html#lists)
 ```python
 >>>myList = [[6,5,2],['rat','cat','hat'],'hello']
 >>>myList[0]
@@ -213,7 +224,7 @@ True
 >>>a,b=1,2
 >>>a,b=b,a
 ```
-### [List method](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+## [List method](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
 ```python
 >>>cat = ['fat', 'orange', 'kitty']
 >>>size, color, name = cat
@@ -239,7 +250,7 @@ True
 ['fat', 'female', 'lazy', 'orange']
 ```
 
-### [String basic](https://docs.python.org/3.1/library/string.html)
+## [String basic](https://docs.python.org/3.1/library/string.html)
 similar to list
 big difference: string is immutable ie cannot be changed
 ```python
@@ -259,7 +270,7 @@ del myString[5]
 myString.append('.')
 ```
 
-### [String methods](#https://docs.python.org/3.1/library/stdtypes.html#string-methods)
+## [String methods](#https://docs.python.org/3.1/library/stdtypes.html#string-methods)
 ```python
 #title case
 str.upper(), str.lower(), str.isupper(), str.islower(), str.istitle()
@@ -291,13 +302,13 @@ str.strip(). str.rstrip(), str.lstrip()
 'BaconSpamEggs'
 ```
 
-### [Tuples](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences)
+## [Tuples](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences)
 ```python
 similar to list but uses () instead of []
 tuples are immutable like string
 ```
 
-### [Dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
+## [Dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
 ```python
 >>>cat = {'name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age'}
 >>>cat['name']
@@ -310,7 +321,7 @@ tuples are immutable like string
 True
 ```
 
-### Dictionary method
+## Dictionary method
 ```python
 keys(), values(), items()
 
@@ -343,7 +354,7 @@ if 'length' not in cat:
 # or cat.setdefault('length', '12 inch')
 ```
 
-### [Regular expression](https://docs.python.org/3/howto/regex.html)
+## [Regular expression](https://docs.python.org/3/howto/regex.html)
 ```python
 >>>import re
 >>>strBlob = '555-555-5555'
@@ -490,39 +501,14 @@ phoneRegex = re.compile(r'''(]
     )''', re.VERBOSE)
 ```
 
-### [pyperclip](https://pypi.python.org/pypi/pyperclip)
+## [pyperclip](https://pypi.python.org/pypi/pyperclip)
 ```python
 # paste anything in clipboard
 pyperclip.copy('Hello')
 pyperclip.paste()
 ```
 
-### run options from terminal
-```bash
-#compile and test
-python3 -m doctest filename.py
-
-#in verbose mode
-python3 -m doctest filename.py - v
-
-#interactive mode
-python3 -i filename.py
-```
-
-### make executable 
-ie dont need to type python3 fileName.py
-```bash
-#ubuntu
-chmod +x fileName.py
-
-#windows
-.bat file
-@py.exe C:\myFolder\filename.py %*
-@pause
-```
-
-
-### reading and writing files
+## reading and writing files
 ```python
 >>>import os
 # ubuntu - home/amaskey/Google 
@@ -542,7 +528,7 @@ PWD
 >>>{w for w in s if s[::-1] in s and len(s) == 5}
 ```
 
-### Functions
+## Functions
  * Domain --> set of all possible inputs
  * Range --> set of all possible outputs
  * give each function exactly one job --> sissor not swiss army knife
@@ -550,7 +536,7 @@ PWD
  * define function generally --> one general way to plug into scoket instead for 2 ppin, 2 pin etc etc
 
 
-### built in function
+## built in function
 ```python
 len()
 print( str1 + str2 + str(3) ) 
@@ -560,7 +546,7 @@ print(str1, str2, sep=',') 	# usually separated by str1 str2 but here str1,str2
 input() 			# waits for user input as string
 ```
 
-### Import library
+## Import library
 ```python
 from random import * 
 randint(1,9) 					# 1 and 9 inclusive
@@ -573,7 +559,7 @@ import sys
 sys.exit()					# exit the program
 ```
 
-### user defined function
+## user defined function
 ```python
 def fnName(parameter):
 	operations
@@ -716,7 +702,7 @@ def pi_terms(n)
 ```
 
 
-### higher order function 
+## higher order function 
 
  * [function as parameter](#function-as-parameter)
 
@@ -768,7 +754,7 @@ def square(x):
   * separate concerns among functions
 
 
-### [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
+## [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
 
 * a function with formal parameter x that returns the value
 * no need return keyword
@@ -814,7 +800,7 @@ False
 >>> goo = foo(lambda: 5)
 
 ```
-#### def vs lambda
+## def vs lambda
 * both create function with same domain, range and behavior.
 * both functions have as their parent the frame in which they are defined
 * def creates a function and binds it to var 
@@ -838,13 +824,8 @@ False
 
 ### function currying
 
-### mutual recusion 
 
-luhn sum- credit card number 
-
-
-
-### functional abstraction
+## functional abstraction
 ```python
 - need to know number of argument
 - dont care about intrinsic name of function - name can be assigned to anything else. helps other humans and myself read the program
@@ -852,7 +833,11 @@ luhn sum- credit card number
 - dont care how it computes 
 ```
 
-### test driven development
+### mutual recursion 
+
+luhn sum- credit card number 
+
+## test driven development
 ```python
 - write test before writing a function
 
