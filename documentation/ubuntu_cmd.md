@@ -31,6 +31,17 @@ grive
 memtestx86		
 ```
 
+**time** 
+```
+sudo dpkg-reconfigure tzdata
+sudo ntpdate ntp.ubuntu.com pool.ntp.org
+```
+
+**firewall**
+```
+sudo so-allow
+```
+
 ## [google drive]
 ```grive -a```
 
@@ -294,7 +305,20 @@ ll
 **add user to group**
 ```usermod -aG sudo <username>```
 
+**disable ipv6**
+```
+nano /etc/sysctl.conf
 
+#add 
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+sudo sysctl -p
+
+cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+#return 1
+```
 ## wget
 **download file**
 ```wget http://www.example.com/filename```

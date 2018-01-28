@@ -4,6 +4,7 @@
   * [services](#services)
   * [interfaces](#interfaces)
   * [docker containers](#docker-containers)
+  * [so_firewall](#so-firewall)
   * [config files](#config-files)
   * [log files](#log-files)
  * [SGUIL]
@@ -17,6 +18,8 @@
  * [my-sql]
  * [banyard2-1]
  * [pf_ring]
+ * [cap me]
+ * [apache]
  
 ### security_onion
 
@@ -24,6 +27,12 @@
 ```bash
 sudo sostat |less
 ```
+data source available from elastic search
+```
+curl 'localhost:9200/_cat/indices?v'
+```
+https://localhost/apt/kibana
+https://localhost/squert
 
 #### [so update](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
 ```
@@ -82,14 +91,31 @@ lo --> 17.2GB in, 17.2GB out
 **so-domainstats**
 **so-freqserver** 
 
+#### [so_firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/firewall)
+```
+sudo ufw  allow proto tcp from ip_address to any port 22,443,7734,514,5601
+sudo ufw  allow proto udp from ip_address to any port 1514
+
+sudo ufw delete allow proto tcp from ip_address to any port 22,443,7734,514,5601
+sudo ufw delete allow proto udp from ip_address to any port 1514
+
+sudo ufw status
+```
 
 
 #### config files
 ```
+# ELK
 /etc/kibana/kibana.yml
+
+/opt/elastic/src/etc/kibana
+/opt/elastic/src/configfiles
+/opt/elastic/src/etc/elastalert/rules
+/opt/elastic/src/etc/curator/config
+
+/etc/nsm/pulledpork
 /etc/nsm/administration.conf
 /etc/nsm/securityonion.conf
-
 ```
 
 #### log files
@@ -229,3 +255,4 @@ UNCAT_MAX=100000
 ```
 
 ### [pulled pork](#https://github.com/shirkdog/pulledpork)
+* downloaded at 7:01 UTC everyday
