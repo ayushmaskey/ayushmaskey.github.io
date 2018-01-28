@@ -36,9 +36,9 @@ data abstraction
  * [make executable](#make-executable)
  * [reading and writing files](#reading-and-writing-files)
  * [functions](#functions)
-   * [build-in functions](#build-in-function)
+   * [build in functions](#build-in-function)
    * [import library](#import-library)
-   * [user-defined functions](#user-defined-functions)
+   * [user defined functions](#user-defined-functions)
    * [higher order function](#higher-order-function)
    * [lambda](#lambda)
    * [def vs lambda](#def-vs-lambda)
@@ -549,7 +549,7 @@ PWD
  * define function generally --> one general way to plug into scoket instead for 2 ppin, 2 pin etc etc
 
 
-### Built-in functions
+### Built in functions
 ```
 len()
 print( str1 + str2 + str(3) ) 
@@ -572,7 +572,7 @@ import sys
 sys.exit()					# exit the program
 ```
 
-### user-defined function
+### user defined function
 ```python
 def fnName(parameter):
 	operations
@@ -742,17 +742,24 @@ def make_adder(n):
 ```
 * functions are first class: fxn can be manipulated as values in our programming language
 * higher-order function: 
-   1. a function that takes a function as an agument value 
-   2. returns a function as a return value
-   3. or both
+  1. a function that takes a function as an agument value 
+  2. returns a function as a return value
+  3. or both
 
 * use of higher-order
- * express general methods of computation
- * remove repetition from programs
- * separate concerns among functions
+  * express general methods of computation
+  * remove repetition from programs
+  * separate concerns among functions
 
 
 ### [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
+
+* a function with formal parameter x that returns the value
+* no need return keyword
+* only single expression
+* therefore only simple functions
+* cannot contain statements
+
 ```python
 >>>f = lambda x: x+5
 >>>f
@@ -792,15 +799,26 @@ False
 
 ```
 #### def vs lambda
-* def creates a function and binds it to var
-* lambda creates function without binding to var
+* both create function with same domain, range and behavior.
+* both functions have as their parent the frame in which they are defined
+* def creates a function and binds it to var 
 * def create function and bind to variable at the same time
+* lambda creates function without binding to var
+* lambda can be bound to var but needs to be assigned
 * def --> can have local var, call other function, loops etc
 * lambda --> only parameter and return
 * all lambda can be rewritten as def
-
-
-
+* only def statement gives the function an intrinsic name 
+```python
+>>> def f():
+...
+>>> f
+<function f at ...>
+>>> square = lambda x: x * x
+>>> square
+<function <lambda> at ...>
+````
+* makes difference in environment diagram
 
 ### function currying
 
