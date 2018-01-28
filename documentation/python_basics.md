@@ -660,8 +660,10 @@ def sum_cubes(n):
 # problem --> violates DRY principle
 ```
 
-###### function as parameter
+> higher order example 1
+> function as parameter
 ```python
+
 def identity(k):
   return k
 
@@ -702,12 +704,14 @@ def pi_terms(n)
 ```
 
 
-## higher order function 
+## [higher order function](http://composingprograms.com/pages/16-higher-order-functions.html) 
 
  * [function as parameter](#function-as-parameter)
 
- * function that returns function
-   * function inside function
+> higher order example 2
+> function that returns function
+> function inside function
+> nested def
 ```python
 def make_adder(n):
   """ return a function that takes one argument K and return K + N.
@@ -721,26 +725,37 @@ def make_adder(n):
 
 >>> maker_adder(1) (2)
 3
->>> f = make_adder(1)
->>> f(2)
+>>> add_one = make_adder(1)
+>>> add_one(2)
 3 
 
-#function as return value
 ```
 
-###### higher order environment
+> nested def statement
+> function as return value
+> when adder it is returned after the function is built, it is not accessive in global frame
+> now add_one points to adder(k) so make_adder frame is still active
+> add_one lives in global but its parent is make_adder
+> when add_one(2) is called new frame is created
+> parent of this third frame has parent of make_adder (not global)
+> every user defined function has a parent frame which is often global
+> but if there is nested def statement, inner def's parent will be outer def
+> parent of a function is a frame in which it was defined
+
+
+> nest def make_adder simplified into two def
 ```python
-def apply_twice(f, x):
-  return f(f(x))
-
-def square(x):
-  return x * x
-
->>> square(10)
-100
->>> apply_twice(square, 3)
-81
+>>> def f(x, y):
+...   return g(x)
+>>> def g(a):
+... return a + y
+>>> f(1,2)
+3
 ```
+> error coz y is not defined in g(a)
+> need to call g(a,y)
+> environment is sequence of frames
+> parent of function f and g is global 
 
 * functions are first class: fxn can be manipulated as values in our programming language
 * higher-order function: 
@@ -753,6 +768,92 @@ def square(x):
   * remove repetition from programs
   * separate concerns among functions
 
+> higher order example 3
+> call same function twice
+
+```python
+def apply_twice(f, x):
+  return f(f(x))
+
+def square(x):
+  return x * x
+
+>>> square(10)
+100
+>>> apply_twice(square, 3)
+81
+
+# f is called twice
+# creates two frame, one for each f
+# inner f called first and then the result is passed to outer f
+```
+
+> higher order example 1
+> function as parameter in a loop
+```python
+def repeat(f, x):
+  while f(x) != x:
+    x = f(x)
+  return x
+
+def g(y):
+  return (y + 5) // 3
+
+>>> repeat(g, 5)
+2
+
+# loop 1 --> f = g, x = 5 --> f(x) or g(y) = 5 + 5 // 3 = 3 --> 3 != 5 --> x = 3
+# loop 2 --> f(x) = 3 + 5 // 3 = 2 --> 2 != 3 --> x = 2
+# loop 3 --> f(x) = 2 + 5 // 3 = 2 --> 2 == 2 --> exit loop
+# return 2 
+```
+
+> higher order example 3
+
+```python
+def make_adder(n):
+  def adder(k):
+    return k + n
+  return adder
+
+def square(x): 
+  return x * x
+
+def triple(x):
+  return 3 * x
+
+def compose1(f,g):
+  def h(x):
+    return f(g(x))
+  return h
+
+>>> fxn1 = compose1(square, triple)
+>>> fxn1(5)
+225
+
+# triple of 5 is 15
+# square of 15 is 225
+# g is called first so triple first
+ 
+>>> fxn2 = compose1(triple, square)
+>>> fxn2(5)
+75
+
+# square(5) = 25 
+# triple(25) = 75
+
+>>> fxn3 = compose1(square, make_adder(2) )
+>>> fnx3(3)
+25
+
+# maker_adder(2) function that adds two to input
+# make_adder(2)(3) = 5
+# square(5) = 25
+
+>>> fxn3 = compose1(square, make_adder(2) )(3)
+25
+;
+```
 
 ## [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
 
@@ -761,6 +862,7 @@ def square(x):
 * only single expression
 * therefore only simple functions
 * cannot contain statements
+* not common in python but some language use it extensively
 
 ```python
 >>>f = lambda x: x+5
@@ -811,6 +913,8 @@ False
 * lambda --> only parameter and return
 * all lambda can be rewritten as def
 * only def statement gives the function an intrinsic name 
+* makes difference in environment diagram
+
 ```python
 >>> def f():
 ...
@@ -820,7 +924,7 @@ False
 >>> square
 <function <lambda> at ...>
 ````
-* makes difference in environment diagram
+
 
 ### function currying
 
