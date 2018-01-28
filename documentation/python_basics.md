@@ -17,10 +17,9 @@ data abstraction
  * [Operators](#operators)
  * [Data types](#data-types)
  * [Data type conversion](#data-type-conversion)
- * [build-in functions](#build-in-function)
  * [condition](#condition)
+ * [assert](#assert)
  * [loop](#loop)
- * [Import library](#import-library)
  * [try-except](#try-except)
  * [Sequences](#sequences)
    * [Array](#array)
@@ -36,12 +35,18 @@ data abstraction
  * [run options from terminal](#run-options-from-terminal)
  * [make executable](#make-executable)
  * [reading and writing files](#reading-and-writing-files)
- * [lambda](#lambda)
- * [def vs lambda](#def-vs-lambda)
- * [higher order function](#higher-order-function)
- * [function currying](#function-currying)
+ * [functions](#functions)
+   * [build-in functions](#build-in-function)
+   * [import library](#import-library)
+   * [user-defined functions](#user-defined-functions)
+   * [higher order function](#higher-order-function)
+   * [lambda](#lambda)
+   * [def vs lambda](#def-vs-lambda)
+   * [function currying](#function-currying)
+   * [functional abstraction](#functional-abstraction)
  * [mutual recusion](#mutual-recursion)
- * [functional abstraction](#functional-abstraction)
+ * [test driven development](#tdd)
+
 
 ctrl + l --> clear screen
 
@@ -103,15 +108,7 @@ tuple([ , , ]) 						# convert list to tuple
 list(( , , )) 						# convert tuple to list
 list('hello') 						# ['h','e','l','l','o'] - convert string to list
 ```
-### Built-in functions
-```
-len()
-print( str1 + str2 + str(3) ) 
-print(str1, str2)
-print("ayush", end='') 		# end of print  is usally \n but here it is replaced by ''
-print(str1, str2, sep=',') 	# usually separated by str1 str2 but here str1,str2 
-input() 			# waits for user input as string
-```
+
 ### condition
 ```python
 if 
@@ -128,6 +125,16 @@ True
 >>>False or 1
 1
 ```
+### assert
+
+```
+assert 3 > 2, "return string if true"
+
+def area_square(r):
+  assert r > 0, "length must be positive"
+  return r * r
+```
+
 ### loop
 ```python
 while():
@@ -141,19 +148,6 @@ for i in range(5,-2,-1) 	# 5 inclusive && -2 exclusive && i-=1 --> i = 5,4,3,2,1
 
 break 
 continue
-```
-
-### Import library
-```python
-from random import * 
-randint(1,9) 					# 1 and 9 inclusive
-
-from random import randint 			# use randint()
-
-import random 					# use random.randint()
-
-import sys 
-sys.exit()					# exit the program
 ```
 
 ### try-except
@@ -547,6 +541,217 @@ PWD
 >>>{w for w in s if s[::-1] in s and len(s) == 5}
 ```
 
+### Functions
+ * Domain --> set of all possible inputs
+ * Range --> set of all possible outputs
+ * give each function exactly one job --> sissor not swiss army knife
+ * dont repeat yourself (DRY) --> implement process once but execute many times
+ * define function generally --> one general way to plug into scoket instead for 2 ppin, 2 pin etc etc
+
+
+### Built-in functions
+```
+len()
+print( str1 + str2 + str(3) ) 
+print(str1, str2)
+print("ayush", end='') 		# end of print  is usally \n but here it is replaced by ''
+print(str1, str2, sep=',') 	# usually separated by str1 str2 but here str1,str2 
+input() 			# waits for user input as string
+```
+
+### Import library
+```python
+from random import * 
+randint(1,9) 					# 1 and 9 inclusive
+
+from random import randint 			# use randint()
+
+import random 					# use random.randint()
+
+import sys 
+sys.exit()					# exit the program
+```
+
+### user-defined function
+```python
+def fnName(parameter):
+	operations
+	return x
+
+def fnName(p1, p2=100)
+	operations
+	return x,y
+
+""" return more than one variable
+p2=100 as default if it is not defined when calling the fxn"""
+
+```
+### function generalization
+
+#### generalizing with constant
+
+**simplest form**
+```python
+from math import pi, sqrt
+
+def area_square(r):
+  return r * r
+
+def area_circle(r):
+  return r * r * pi
+
+def area_hexagon(r):
+  return r * r * sqrt(3) / 2
+
+#problem --> calculates area of negative length
+```
+
+**simple fix**
+```python
+from math import pi, sqrt
+
+def area_square(r):
+  assert r > 0, 'A length must be positive'
+  return r * r
+
+def area_circle(r):
+  assert r > 0, 'A length must be positive'
+  return r * r * pi
+
+def area_hexagon(r):
+  assert r > 0, 'A length must be positive'
+  return r * r * sqrt(3) / 2
+
+#problem --> violating DRY preinciple
+```
+
+**factor out common**
+```python
+from math import pi, sqrt
+
+def area(r, shape_constant)
+  assert r > 0, 'A length must be positive'
+  return r * r * shape_constant
+
+def area_square(r):
+  return area(r, 1)
+
+def area_circle(r):
+  return area(r, pi)
+
+def area_hexagon(r):
+  return area(r, 3 * sqrt(3) / 2 )
+
+# generalized with constant
+```
+
+#### generalizing over computational process
+
+**simplest form**
+```python
+
+def sum_naturals(n):
+  """sum of first N natural numbers
+  >>> sum_naturals(5)
+  15
+  """
+  total, k = 0, 1
+  while k <= n:
+    total, k = total + k, k + 1
+  return total
+
+def sum_cubes(n):
+  """sum of first N cubes natural numbers
+  >>> sum_cubes(5)
+  225
+  """
+  total, k = 0, 1
+  while k <= n:
+    total, k = total + pow(k, 3), k + 1
+  return total 
+
+# problem --> violates DRY principle
+```
+
+#### function as parameter
+```python
+def identity(k):
+  return k
+
+def cube(k):
+  return pow(k, 3)
+
+def summation(n, term):
+  """sum of the first N terms of a sequence"""
+  >>> summation(5, cube)
+  225
+  """
+  total, k = 0, 1
+  while k <= n:
+    total, k = total + term(k), k + 1
+  return total
+
+def sum_naturals(n):
+  """sum of first N natural numbers
+  >>> sum_naturals(5)
+  15
+  """
+  return summation(n, identity)
+
+def sum_cubes(n):
+  """sum of first N cubes natural numbers
+  >>> sum_cubes(5)
+  225
+  """
+  return summation(n, cube) 
+
+def pi_terms(n)
+  return 8 / mul(4 * k - 3, 4 * k - 1)
+
+>>>summation(1000000, pi_term)
+3.141592...
+
+#higher order function
+```
+
+
+### higher order function 
+
+ * [function as parameter](#function-as-parameter)
+
+ * function that returns function
+   * function inside function
+```python
+def make_adder(n):
+  """ return a function that takes one argument K and return K + N.
+  >>> add_three = make_adder(3)
+  >>> add_three(4)
+  7
+  """
+  def adder(k):
+    return k + n
+  return adder
+
+>>> maker_adder(1) (2)
+3
+>>> f = make_adder(1)
+>>> f(2)
+3 
+
+#function as return value
+```
+* functions are first class: fxn can be manipulated as values in our programming language
+* higher-order function: 
+   1. a function that takes a function as an agument value 
+   2. returns a function as a return value
+   3. or both
+
+* use of higher-order
+ * express general methods of computation
+ * remove repetition from programs
+ * separate concerns among functions
+
+
 ### [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
 ```python
 >>>f = lambda x: x+5
@@ -594,42 +799,7 @@ False
 * lambda --> only parameter and return
 * all lambda can be rewritten as def
 
-### user-defined function
-```python
-def fnName(parameter):
-	operations
-	return x
 
-def fnName(p1, p2=100)
-	operations
-	return x,y
-
-""" return more than one variable
-p2=100 as default if it is not defined when calling the fxn"""
-
-```
-
-
-### higher order function 
-```python
-function that returns function
-- function inside function
-- can pass a function as parameter to a function.
-def fxn1(n)
-  def fxn2(k)
-    return k+n+1
-      return fxn2
-fxn(1)(2)
-- functions are first class: fxn can be manipulated as values in out programming language
-- higher-order function: 
-   1. a function that takes a function as an agument value 
-   2. returns a function as a return value
-   3. or both
-use of higher-order
-- express general methods of computation
-- remove repition from programs
-- separate concerns among functions
-```
 
 
 ### function currying
@@ -637,7 +807,6 @@ use of higher-order
 ### mutual recusion 
 
 luhn sum- credit card number 
-
 
 
 
@@ -664,6 +833,9 @@ def gcd(n,m):
   """
   now implement the function
 ```
+
+
+
 
 
 
