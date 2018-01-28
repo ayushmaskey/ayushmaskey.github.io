@@ -36,7 +36,7 @@ data abstraction
  * [make executable](#make-executable)
  * [reading and writing files](#reading-and-writing-files)
  * [functions](#functions)
-   * [Built in functions](#build-in-functions)
+   * [built in function](#build-in-function)
    * [import library](#import-library)
    * [user defined function](#user-defined-function)
    * [higher order function](#higher-order-function)
@@ -549,8 +549,8 @@ PWD
  * define function generally --> one general way to plug into scoket instead for 2 ppin, 2 pin etc etc
 
 
-### Built in functions
-```
+### built in function
+```python
 len()
 print( str1 + str2 + str(3) ) 
 print(str1, str2)
@@ -588,7 +588,7 @@ p2=100 as default if it is not defined when calling the fxn"""
 ```
 ### function generalization
 
-#### generalizing with constant
+###### generalizing with constant
 
 **simplest form**
 ```python
@@ -625,7 +625,7 @@ def area_hexagon(r):
 #problem --> violating DRY preinciple
 ```
 
-**factor out common**
+__factor out common__
 ```python
 from math import pi, sqrt
 
@@ -645,7 +645,7 @@ def area_hexagon(r):
 # generalized with constant
 ```
 
-#### generalizing over computational process
+###### generalizing over computational process
 
 **simplest form**
 ```python
@@ -673,7 +673,7 @@ def sum_cubes(n):
 # problem --> violates DRY principle
 ```
 
-#### function as parameter
+###### function as parameter
 ```python
 def identity(k):
   return k
@@ -740,6 +740,21 @@ def make_adder(n):
 
 #function as return value
 ```
+
+###### higher order environment
+```python
+def apply_twice(f, x):
+  return f(f(x))
+
+def square(x):
+  return x * x
+
+>>> square(10)
+100
+>>> apply_twice(square, 3)
+81
+```
+
 * functions are first class: fxn can be manipulated as values in our programming language
 * higher-order function: 
   1. a function that takes a function as an agument value 
