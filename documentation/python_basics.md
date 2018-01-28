@@ -577,7 +577,7 @@ p2=100 as default if it is not defined when calling the fxn"""
 
 ###### generalizing with constant
 
-_simplest form_
+> simplest form
 ```python
 from math import pi, sqrt
 
@@ -593,7 +593,7 @@ def area_hexagon(r):
 #problem --> calculates area of negative length
 ```
 
-_simple fix_
+> simple fix
 ```python
 from math import pi, sqrt
 
@@ -612,7 +612,7 @@ def area_hexagon(r):
 #problem --> violating DRY preinciple
 ```
 
-_factor out common_
+> factor out common
 ```python
 from math import pi, sqrt
 
@@ -634,7 +634,7 @@ def area_hexagon(r):
 
 ###### generalizing over computational process
 
-_simplest form_
+> simplest form
 ```python
 
 def sum_naturals(n):
