@@ -60,7 +60,28 @@ GEMedispan DB --> new one auto created but empty
 JBoss DB --> new one created but empty
 Jobs --> autmatic
 
-backup jobs failing
+** escript **
+open configure escriptmesseger 
+
+ * Leave esmclinic database connection as is. When I move esm to the new server I am guessing I need to reconfigure this.
+ * GE centricity connectivity change to new server with new sa account
+ * Change the path of link logic IN and ERROR  folder
+ * We do not have proxy so leave as is
+ * Admin account and clinic registration – no need to change
+
+
+** hybrid **
+ * http://faxserver:88/hfxsettings_sql.asp
+ * change sql server name
+ * username and password
+ * http://faxserver:88/hfxsettings_attachment.asp
+ * doc man server path
+ 
+** backup job **
+```
+auto installs after installing the website in app server
+NT Service\MSSQLSERVER - need full permission to backup drive
+```
 
 GUI and interlop servers 
 MIK in SQL server

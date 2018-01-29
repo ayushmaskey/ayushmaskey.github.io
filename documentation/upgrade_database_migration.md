@@ -54,6 +54,11 @@ Reboot server
   * Manual: SQL Server Analysis Services, SQL Server Integration Services
 ```  
 
+** backup **
+```
+full permission to backup drive NT Service\MSSQLSERVER
+```
+
 
 
 ## Database files
