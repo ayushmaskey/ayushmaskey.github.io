@@ -50,7 +50,7 @@ kphc-direcotry.dbo.specialist
 |  |  |  |
 
 
-**create table and proc to fill table**
+** warehouse tables**
 
 |table| proc_ssis | frequency | data test | description |
 |-----|-----------|---------|------|------|
@@ -58,19 +58,18 @@ kphc-direcotry.dbo.specialist
 |kphc_ad.ADUSers| kphc_ssis.kphc_ad_ADUSers | nightly | good | AD computers, users and other info |
 |kphc_ad.employees| kphc_ssis.kphc_ad_Employees | nightly | good | users, phone, fax etc for website |
 |-----|-----------|---------|------|
-|kphc_all.Appointment_Activity_Log|    |  | nightly | good |
-|kphc_all.Appointments|    |  | nightly | good |
-|kphc_all.dimDate| built-in sp | one time | good |
-|kphc_all.doctorFacility |  |  | nightly | good |
-|kphc_all.DocType|    |    | nightly | good |
-|kphc_all.Document|    |    | nightly | good |
-|kphc_all.Facility|    |    | nightly | good |
-|kphc_all.InsuranceCarriers|    |    | nightly | good |
-|kphc_all.LogReg|    |    | nightly | good |
-|kphc_all.PatientInsurance|    |    | nightly | good |
-|kphc_all.PatientProfile|    |    | nightly | good |
-|kphc_all.PatientRace|    |    | nightly | good |
-|kphc_all.PCPChange|    |    | nightly | good |
+|kphc_all.Appointments| kphc_ssis.kphc_all_Appointments | nightly | good | all appt since 2014 |
+|kphc_all.dimDate| built-in sp | one time | good | date dimension |
+|kphc_all.doctorFacility | kphc_ssis.kphcAll_DoctorFacility | nightly | good | all CPS users |
+|kphc_all.DocType| kphc_ssis.kphc_all_DocType | nightly | good | Doc Types |
+|kphc_all.Document| kphc_ssis.kphc_all_Document | nightly | good | document info |
+|kphc_all.Facility|  kphc_ssis.kphc_all_facility  |  nightly | good | all facilities |
+|kphc_all.InsuranceCarriers| kphc_ssis.kphc_all_InsuranceCarriers | nightly | good | insurances |
+|kphc_all.LogReg| kphc_ssis.kphc_all_LogReg | nightly | good | location of care |
+|kphc_all.PatientInsurance| kphc_ssis.kphc_all_PatientInsurance |  nightly | good | patient insrurances |
+|kphc_all.PatientProfile| kphc_ssis.kphc_all_PatientProfile | nightly | good | patient profile |
+|kphc_all.PatientRace| kphc_ssis.kphc_all_PatientRace | nightly | good | race and subrace |
+|kphc_all.PCPChange| kphc_ssis.kphc_all_pcpChange | nightly | good | pcp change |
 |-----|-----------|---------|------|
 |kphc_bh.BHMetricDetails|    |    |
 |kphc_bh.BHMetricDueNow|    |    |
@@ -82,6 +81,7 @@ kphc-direcotry.dbo.specialist
 |kphc_cc.CCHTN|    |    | nightly | good |
 |kphc_cc.CCSMG|    |    | nightly | good |
 |-----|-----------|---------|------|
+|kphc_all.Appointment_Activity_Log|    |  | nightly | good |
 |kphc_cps_admin.auditData|    |    | nightly | good |
 |kphc_cps_admin.CentricityGroups|    |    | nightly | good |
 |kphc_cps_admin.CentricityGroupsUsers|    |    | nightly | good |
@@ -136,17 +136,17 @@ kphc-direcotry.dbo.specialist
 | kphc_ssis.kphc_ad_ADUSers | LDAP | users, computers and associated info |
 | kphc_ssis.kphc_ad_Employees | kphc_ssis.kphc_ad_ADUSers | users, phone, fax etc for website |
 |  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| kphc_ssis.kphc_all_Appointments | cps.appointments, cps.medlist, cps.apptType, kphc_all.patientProfile | all appointments since 2014 |
+| kphc_ssis.kphcAll_DoctorFacility | cps.df, cps.usr, cps.medlists, cps.usrgroup, cps.jobTitle, cps. roletype, cps.logreg, cps.specialtytype | all CPS users |
+| kphc_ssis.kphc_all_DocType | cps.doctypes | document types with ID |
+| kphc_ssis.kphcAll_Document | cps.document, kphc_all.patientProfile  | all documents except file in error and replaced |
+| kphc_ssis.kphcAll_facility | cps.doctorfacility | all facilities |
+| kphc_ssis.kphc_all_InsuranceCarriers | cps.insuranceCarriers | all carriers |
+| kphc_ssis.kphc_all_LogReg | cps.logReg | location of care |
+| kphc_ssis.kphc_all_PatientInsurance | kphc_all.patientProfile, cps.patientInsurance | all primary and secondary insurances |
+| kphc_ssis.kphc_all_PatientProfile | cps.obs, cps.cusCRIInterview, cps.cusCRIMedLists, cps.cusCustomControlPatientData, cps.cusCustomControlMaster, cps.cusCustomControlDetail, kphc_all.doctorFacility, cps.patientProfile, cps.medLists. cps.patientInsurance, cps.insuranceCarriers, cps.language, kphc_all.patientRace | patient profile |
+| kphc_ssis.kphc_all_PatientRace | cps.patientProfile, cps.patientRace, cps.MedLists | patient race |
+| kphc_ssis.kphc_all_pcpChange | cps.Obs, kphc_all.patientProfile, kphc_all.doctorFacility | pcp change |
 |  |  |  |
 |  |  |  |
 |  |  |  |
