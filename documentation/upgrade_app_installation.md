@@ -46,9 +46,9 @@
 
 ** CHC **
  * download visinstaller from https://portal.visualutions.com/CP/Downloads.aspx 
- * code: 1233-779
+ * code: 
  * install all but visAnalytics
- * EMR Instance Selection: cps2018 and sa
+ * EMR Instance Selection: cysx6355 and sa
  * License Manager: adminx2, LicenseManagerUserx6355 
  * Application Center: ApplicationCenterUserx6355
  * visCHC: MN
@@ -58,24 +58,49 @@
 **automatic**
 GEMedispan DB --> new one auto created but empty
 JBoss DB --> new one created but empty
-Jobs --> autmatic
+Jobs --> automatic
 
 ** escript **
-open configure escriptmesseger 
-
+ * Chuck Capps <charles.d.capps@ge.com>
+ * email 1/29/2018 11:05 am
+ * open configure escriptmesseger 
  * Leave esmclinic database connection as is. When I move esm to the new server I am guessing I need to reconfigure this.
  * GE centricity connectivity change to new server with new sa account
  * Change the path of link logic IN and ERROR  folder
  * We do not have proxy so leave as is
  * Admin account and clinic registration – no need to change
 
-
+**smpp**
+ * Carlson, William (GE Healthcare) <william.carlson@ge.com>
+ * email: 1/30/2018 11:02am
+ * Gutierrez, Rodolfo (GE Healthcare) <rodolfo.D.gutierrez@ge.com>
+ * email: 2/1/2018 11:02 am
+ * smpp app --> surescript smpp config --> integration --> datasource groups --> 
+ * EMR tab 
+   * EMR --> server name --> 
+   * Encounter form --> as is
+   * DTS --> as is
+   * DM --> as is
+   * service layer url: change server name
+ * PM tab --> MIK
+ * EMR Doc Header tab
+ * Image Server tab
+ * Doc Indexer tab
+ 
 ** hybrid **
  * http://faxserver:88/hfxsettings_sql.asp
  * change sql server name
  * username and password
  * http://faxserver:88/hfxsettings_attachment.asp
  * doc man server path
+ 
+** doc man **
+ * Goodwin, Russell (GE Healthcare) <russell.goodwin@ge.com> 
+ * email: 2/1/2018 6:24am
+ * start --> kyrptic corp --> admin tool --> config editor --> login
+ * connection --> modify Centricity EMR and PM connection --> new server name and username DMUser
+ * change Kryptic DM info when moving DM database.
+ * link logic??
  
 ** backup job **
 ```
