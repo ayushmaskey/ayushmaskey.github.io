@@ -731,16 +731,16 @@ def make_adder(n):
 
 ```
 
-> nested def statement
-> function as return value
-> when adder it is returned after the function is built, it is not accessive in global frame
-> now add_one points to adder(k) so make_adder frame is still active
-> add_one lives in global but its parent is make_adder
-> when add_one(2) is called new frame is created
-> parent of this third frame has parent of make_adder (not global)
-> every user defined function has a parent frame which is often global
-> but if there is nested def statement, inner def's parent will be outer def
-> parent of a function is a frame in which it was defined
+* nested def statement
+* function as return value
+* when adder it is returned after the function is built, it is not accessive in global frame
+* now add_one points to adder(k) so make_adder frame is still active
+* add_one lives in global but its parent is make_adder
+* when add_one(2) is called new frame is created
+* parent of this third frame has parent of make_adder (not global)
+* every user defined function has a parent frame which is often global
+* but if there is nested def statement, inner def's parent will be outer def
+* parent of a function is a frame in which it was defined
 
 
 > nest def make_adder simplified into two def
