@@ -52,11 +52,11 @@ kphc-direcotry.dbo.specialist
 
 **create table and proc to fill table**
 
-|table| proc_ssis | comment | data test |
+|table| proc_ssis | frequency | data test | description |
 |-----|-----------|---------|------|
-|kphc_ad.ADGroup|    |    | good |
-|kphc_ad.ADUSers|    |    | good |
-|kphc_ad.employees|    |    | good |
+|kphc_ad.ADGroup| kphc_ssis.kphc_ad_ADGroups |  nightly  | good | AD users and groups |
+|kphc_ad.ADUSers| kphc_ssis.kphc_ad_ADUSers | nightly | good | AD computers, users and other info |
+|kphc_ad.employees| kphc_ssis.kphc_ad_Employees | nightly | good | users, phone, fax etc for website |
 |-----|-----------|---------|------|
 |kphc_all.Appointment_Activity_Log|    |  | nightly | good |
 |kphc_all.Appointments|    |  | nightly | good |
@@ -132,9 +132,9 @@ kphc-direcotry.dbo.specialist
 
 | sp name | dependents | use |
 |---------|------------|-----|
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| kphc_ssis.kphc_ad_ADGroups | LDAP | users and associated AD groups |
+| kphc_ssis.kphc_ad_ADUSers | LDAP | users, computers and associated info |
+| kphc_ssis.kphc_ad_Employees | kphc_ssis.kphc_ad_ADUSers | users, phone, fax etc for website |
 |  |  |  |
 |  |  |  |
 |  |  |  |
