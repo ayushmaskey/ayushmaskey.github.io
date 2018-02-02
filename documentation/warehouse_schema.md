@@ -71,9 +71,9 @@ kphc-direcotry.dbo.specialist
 |kphc_all.PatientRace| kphc_ssis.kphc_all_PatientRace | nightly | good | race and subrace |
 |kphc_all.PCPChange| kphc_ssis.kphc_all_pcpChange | nightly | good | pcp change |
 | ----------- | ----------- | ----------- |
-|kphc_bh.BHMetricDetails| kphc_ssis.kphc_bh_BHMetric | nightly |  | visit, diagostics, treatment, bprs, dast, audit, phq |
-|kphc_bh.BHMetricDueNow| kphc_ssis.kphc_bh_BHMetric_duenow | nightly |  | 
-|kphc_bh.BHPatients| kphc_ssis.kphc_bh_BHPatients | nightly | good |
+|kphc_bh.BHMetricDetails| kphc_ssis.kphc_bh_BHMetric | nightly | good | visit, diagostics, treatment, bprs, dast, audit, phq |
+|kphc_bh.BHMetricDueNow| kphc_ssis.kphc_bh_BHMetric_duenow | nightly | good | |
+|kphc_bh.BHPatients| kphc_ssis.kphc_bh_BHPatients | nightly | good | |
 | ----------- | ----------- | ----------- |
 |kphc_cc.CCCKD| kphc_ssis.kphc_cc_CarePlan | nightly | good | CKD |
 |kphc_cc.CCDiabetes| kphc_ssis.kphc_cc_CarePlan | nightly | good | Diabetes |
@@ -81,13 +81,13 @@ kphc-direcotry.dbo.specialist
 |kphc_cc.CCHTN| kphc_ssis.kphc_cc_CarePlan | nightly | good | HTN |
 |kphc_cc.CCSMG| kphc_ssis.kphc_cc_CarePlan | nightly | good | SMG |
 | ----------- | ----------- | ----------- |
-|kphc_cps_admin.Appointment_Activity_Log|kphc_ssis.kphc_cps_admin_Appt_AcitvityLog | nightly | good |
-|kphc_cps_admin.auditData| kphc_ssis.kphc_cps_admin_AuditData | nightly | good |
-|kphc_cps_admin.CentricityGroups| kphc_ssis.kphc_cps_admin_CentricityGroupsAndUsers | nightly | good |
-|kphc_cps_admin.CentricityGroupsUsers| kphc_ssis.kphc_cps_admin_CentricityGroupsAndUsers | nightly | good |
-|kphc_cps_admin.CentricitySecurityDescription| built-in insert | one time |
-|kphc_cps_admin.CentricitySecurityGiven| kphc_ssis.kphc_cps_admin_CentricityGroupsAndUsers | nightly | good |
-|kphc_cps_admin.cpsSecurity | built-in sp | one time | good |
+|kphc_cps_admin.Appointment_Activity_Log|kphc_ssis.kphc_cps_admin_Appt_AcitvityLog | nightly | good | | 
+|kphc_cps_admin.auditData| kphc_ssis.kphc_cps_admin_AuditData | nightly | good | | 
+|kphc_cps_admin.CentricityGroups| kphc_ssis.kphc_cps_admin_CentricityGroupsAndUsers | nightly | good | | 
+|kphc_cps_admin.CentricityGroupsUsers| kphc_ssis.kphc_cps_admin_CentricityGroupsAndUsers | nightly | good | | 
+|kphc_cps_admin.CentricitySecurityDescription| built-in insert | one time | good |  | 
+|kphc_cps_admin.CentricitySecurityGiven| kphc_ssis.kphc_cps_admin_CentricityGroupsAndUsers | nightly | good | | 
+|kphc_cps_admin.cpsSecurity | built-in sp | one time | good | | 
 |kphc_cps_admin.quickText| kphc_ssis.kphc_cps_admin_QuickText | nightly | good | all quick text |
 | ----------- | ----------- | ----------- |
 |kphc_dental.slidingFeeCyrca| kphc_ssis.kphc_dental_slidingFee_Cyrca | nightly | good | sliding fee dental |
@@ -100,11 +100,11 @@ kphc-direcotry.dbo.specialist
 |kphc_hchp.cbcm_metric| kphc_ssis.kphc_hchp_CBCM_Metric | nightly | good | |
 |kphc_hchp.CBCMMetricDueNow|  kphc_ssis.kphc_hchp_CBCMMetricDueNow | nightly | good | |
 | ----------- | ----------- | ----------- |
-|kphc_insurance.ER_Vsits| kphc_ssis.kphc_insurance_UHC_ERVisits | nightly | good |
-|kphc_insurance.ProviderNPI| kphc_ssis.kphc_insurance_ProviderNPI |
+|kphc_insurance.ER_Vsits| kphc_ssis.kphc_insurance_UHC_ERVisits | nightly | good | |
+|kphc_insurance.ProviderNPI| kphc_ssis.kphc_insurance_ProviderNPI | nightly | good | |
 | ----------- | ----------- | ----------- |
-|kphc_kaiser.kaiserPatientProfile| built-in insert| one time | good |
-|kphc_kaiser.kaiserVisits| kphc_ssis.kphc_kasier_Visits | nightly | good |
+|kphc_kaiser.kaiserPatientProfile| built-in insert| one time | good | | 
+|kphc_kaiser.kaiserVisits| kphc_ssis.kphc_kasier_Visits | nightly | good | | 
 | ----------- | ----------- | ----------- |
 |kphc_opt.ContactPrescription| kphc_ssis.kphc_opt_Optometry | nightly | good | |
 |kphc_opt.GlassPrescription| kphc_ssis.kphc_opt_Optometry | nightly | good | |
