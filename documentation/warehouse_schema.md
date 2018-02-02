@@ -5,7 +5,7 @@ add user report with permission db_datareader
 need to figure out
 kphc-direcotry.dbo.specialist
 
-**create all schema**
+## create all schema
 
 | name | use |
 |-----|-----|
@@ -31,7 +31,7 @@ kphc-direcotry.dbo.specialist
 |  |  |
 |  |  |
 
-**view **
+## view
 
 | name | dependent | use |
 |------|-----------|-----|
@@ -50,7 +50,7 @@ kphc-direcotry.dbo.specialist
 |  |  |  |
 
 
-** warehouse tables**
+## warehouse tables
 
 |table| proc_ssis | frequency | data test | description |
 | --------------- | --------- | --------- | ----------- |
@@ -128,7 +128,7 @@ kphc-direcotry.dbo.specialist
 |kphc_uds.DentricUDS2015|    |    |
 | ----------- | ----------- | ----------- |
 
-**SSIS**
+## SSIS
 
 | sp name | dependents | use |
 | ----------- | ----------- | ----------- |
@@ -192,7 +192,7 @@ kphc-direcotry.dbo.specialist
 |  |  |  |
 |  |  |  |
 
-**Reports**
+## Reports
 
 | sp name | dependents | use |
 |---------|------------|-----|
@@ -248,7 +248,7 @@ kphc-direcotry.dbo.specialist
 |  |  |  |
 |  |  |  |
 
-**jobs**
+## jobs
 
 
 
