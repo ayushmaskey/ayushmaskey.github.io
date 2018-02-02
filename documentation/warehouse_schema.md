@@ -100,11 +100,11 @@ kphc-direcotry.dbo.specialist
 |kphc_hchp.cbcm_metric| kphc_ssis.kphc_hchp_CBCM_Metric | nightly | good | |
 |kphc_hchp.CBCMMetricDueNow|  kphc_ssis.kphc_hchp_CBCMMetricDueNow | nightly | good | |
 | ----------- | ----------- | ----------- |
-|kphc_insurance.ER_Vsits|    |    | nightly | good |
-|kphc_insurance.ProviderNPI|    |    |
+|kphc_insurance.ER_Vsits| kphc_ssis.kphc_insurance_UHC_ERVisits | nightly | good |
+|kphc_insurance.ProviderNPI| kphc_ssis.kphc_insurance_ProviderNPI |
 | ----------- | ----------- | ----------- |
 |kphc_kaiser.kaiserPatientProfile| built-in insert| one time | good |
-|kphc_kaiser.kaiserVisits|    |    | nightly | good |
+|kphc_kaiser.kaiserVisits| kphc_ssis.kphc_kasier_Visits | nightly | good |
 | ----------- | ----------- | ----------- |
 |kphc_opt.ContactPrescription| kphc_ssis.kphc_opt_Optometry | nightly | good | |
 |kphc_opt.GlassPrescription| kphc_ssis.kphc_opt_Optometry | nightly | good | |
@@ -119,10 +119,10 @@ kphc-direcotry.dbo.specialist
 | ----------- | ----------- | ----------- |
 |kphc_peer.PeerReviewJune2017|    |    |
 | ----------- | ----------- | ----------- |
-|kphc_pp.patientPortalSignup|    |    | nightly | good |
+|kphc_pp.patientPortalSignup| kphc_ssis.kphc_pp_patientPortalSignup | nightly | good |
 | ----------- | ----------- | ----------- |
-|kphc_sara.breast_diagnosis|    |    | nightly | good |
-|kphc_sara.papHPVTracking|    |    | nightly | good |
+|kphc_sara.breast_diagnosis| kphc_ssis.kphc_sara_breastDiagnosis | nightly | good |
+|kphc_sara.papHPVTracking| kphc_ssis.kphc_sara_papHPVTracking | nightly | good |
 | ----------- | ----------- | ----------- |
 |kphc_uds.CentricityUDS2015|    |    |
 |kphc_uds.DentricUDS2015|    |    |
@@ -179,12 +179,15 @@ kphc-direcotry.dbo.specialist
 | kphc_ssis.kphc_orders_ReferralSpecialist | cps.servProv, cps.servProvOrg |  |
 | kphc_ssis.kphc_orders_ReferralCodes | cps.OrderCodes |  |
 | ----------- | ----------- | ----------- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| kphc_ssis.kphc_sara_papHPVTracking | kphc_all.PatientProfile, kphc_all.PatientVisit, kphc_all.PatientInsurance, cps.obs, cps.appointments, kphc_all.df |  |
+| kphc_ssis.kphc_sara_breastDiagnosis | kphc_all.doc, cps.problem, cps.masterDiagnosis |  |
+| ----------- | ----------- | ----------- |
+| kphc_ssis.kphc_kasier_Visits | kphc_kaiser.KaiserPatientProfile, kphc_all.doc, cps.patientVisit, kphc_all.docType, cps.PatientVisitDiags, cps.PateintVisitProcs |  |
+| ----------- | ----------- | ----------- |
+| kphc_ssis.kphc_pp_patientPortalSignup | 4 enterprise tables + kphc_all.pp, kphc_all.doc, kphc_all.df |  |
+| ----------- | ----------- | ----------- |
+| kphc_ssis.kphc_insurance_ProviderNPI | kphc_all.df |  |
+| kphc_ssis.kphc_insurance_UHC_ERVisits | kphc_all.obs, kphc_all.doc |  |
 |  |  |  |
 |  |  |  |
 |  |  |  |
