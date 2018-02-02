@@ -52,8 +52,8 @@ kphc-direcotry.dbo.specialist
 
 ## warehouse tables
 
-|table| proc_ssis | frequency | data test | description |
-| --------------- | --------- | --------- | ----------- |
+| table | proc_ssis | frequency | data test | description |
+| ----- | --------- | --------- | --------- | ----------- |
 |kphc_ad.ADGroup| kphc_ssis.kphc_ad_ADGroups |  nightly  | good | AD users and groups |
 |kphc_ad.ADUSers| kphc_ssis.kphc_ad_ADUSers | nightly | good | AD computers, users and other info |
 |kphc_ad.employees| kphc_ssis.kphc_ad_Employees | nightly | good | users, phone, fax etc for website |
