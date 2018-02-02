@@ -39,6 +39,9 @@ data abstraction
    * [import library](#import-library)
    * [user defined function](#user-defined-function)
    * [higher order function](#higher-order-function)
+   * [return statement](#return-statement)
+   * [self reference](#self-reference)
+   * [why higher order](#why-higher-order)
    * [lambda](#lambda)
    * [def vs lambda](#def-vs-lambda)
    * [function currying](#function-currying)
@@ -854,6 +857,101 @@ def compose1(f,g):
 25
 ;
 ```
+
+## return statement
+ * completes the evaluation of a call expression and provides its value
+ * for  user defined function f(x), execute f's body in a new environment
+ * return statement goes back to previous environment with a value for f(x)
+ * only one return statement is ever executed
+
+```python
+def search(f):
+	"""start and 0 and work its way up until it finds a true value
+	"""
+	x = 0
+	while True:
+		if f(x):
+			return x
+		x += 1
+
+def is_three(x):
+	return x == 3
+
+def square(x):
+	return x * x
+
+def positive(x):
+	return max(0, square(x) - 100)
+
+>>>positive(1)
+0
+>>>positive(10)
+0
+>>>positive(11)
+21
+>>>search(positive)
+11
+
+# search(postive) give smallest x that gives positive value
+
+
+def inverse(f):
+	"""return g(y) such that g(f(x)) --> x"""
+	return lambda y: search(lambda x: f(x) == y)
+
+>>> sqrt = inverse(square)
+>>> sqrt(256)
+16
+
+# only works for perfect square root
+
+def inverse1(f):
+	def aux_for_y(y):
+		def aux_for_x(x):
+			return f(x) == y
+		return search(aux_for_x)
+	return aux_for_y
+
+# simplifying inverse with inverse1
+```
+
+## self reference
+```python
+def print_all(x):
+	print(x)
+	return print_all
+
+>>> print_all(4)
+4
+<function print_all at 0x7fdaf755a1e0>
+>>> print_all(4)(5)
+4
+5
+<function print_all at 0x7fdaf755a1e0>
+# can call print_all with as many parameter coz return is always bound to print_all
+```
+
+```python
+def print_sum(x):
+	print(x)
+	def next_sum(y):
+		return print_sum(x+y)
+	return next_sum
+
+>>> print_sum(1)(3)(5)
+1
+4
+9
+<function print_sum.<locals>.next_sum at 0x7f6dbd436f28>
+
+```
+* first call to goes to print_sum but subsequent call goes to next_sum coz next_sum is returned which is bound to print_sum(1) with parameter (3)
+* second call goes straight to next_sum(3) with x as 1 which add a and y and calls print_sum, add return next_sum again
+* in the final call, next_sum is called with x = 4, coz that is the value in parent environment and y as 5 --> print_sum(1)(3)(5) reduces to next_sum(5) with x=4 from parent
+* sum is being memorized along the way
+* new sum is passed as argument x for print_sum and the next one is y
+
+## why higher order
 
 ## [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
 
