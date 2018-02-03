@@ -1,10 +1,12 @@
 ## Security Onion
  * [security_onion](#security-onion)
-  * [update](#so-update)
-  * [services](#services)
+  * [overview](#overview)
+  * [services running](#services-running)
+  * [so update](#so-update)
   * [interfaces](#interfaces)
   * [docker containers](#docker-containers)
   * [so_firewall](#so-firewall)
+  * [access components]{#access-components}
   * [config files](#config-files)
   * [log files](#log-files)
  * [SGUIL]
@@ -15,15 +17,18 @@
  * [ELASTICSEARCH]
  * [KIBANA]
  * [pulled port]
- * [my-sql]
  * [banyard2-1]
  * [pf_ring]
- * [cap me]
+ * [CapMe]
  * [apache]
+ * [my-sql]
  
-### security_onion
+## security_onion
 
-**services running**
+#### overview 
+* linux distro build on ubuntu
+* includes tools like snorby, 
+#### services running
 ```bash
 sudo sostat |less
 ```
@@ -31,8 +36,6 @@ data source available from elastic search
 ```
 curl 'localhost:9200/_cat/indices?v'
 ```
-https://localhost/apt/kibana
-https://localhost/squert
 
 #### [so update](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
 ```
@@ -102,6 +105,13 @@ sudo ufw delete allow proto udp from ip_address to any port 1514
 sudo ufw status
 ```
 
+#### access components
+
+https://localhost/apt/kibana
+
+Snort GUI
+web interface: https://localhost/squert
+desktop client: [Download squil client](https://bammv.github.io/sguil/index.html) --> install gui based on tcl/tk --> point to security onion machine --> login
 
 #### config files
 ```
@@ -253,6 +263,41 @@ CROSSCLUSTER_CHECK_ENABLED="yes"
 UNCAT_MAX=100000
 
 ```
+## [SGUIL](https://bammv.github.io/sguil/index.html)
+* [github](https://github.com/bammv/sguil)
+* should not change time. It should be in UTC for updates
 
-### [pulled pork](#https://github.com/shirkdog/pulledpork)
+## [SQUERT](http://www.squertproject.org/)
+* [github](https://github.com/int13h/squert)
+
+## [BRO](https://www.bro.org/)
+* [github](https://github.com/bro)
+
+## [SNORT](https://snort.org/)
+* [github](https://github.com/snortadmin/snort3)
+
+## [LOGSTASH](https://www.elastic.co/products/logstash)
+* [logstash plugins](https://github.com/logstash-plugins/logstash-output-elasticsearch)
+
+## [ELASTICSEARCH](https://github.com/elastic/elasticsearch)
+* [github](https://github.com/elastic/elasticsearch)
+
+## [KIBANA](https://www.elastic.co/products/kibana)
+* [github](https://github.com/elastic/kibana)
+ 
+## [pulled pork](#https://github.com/shirkdog/pulledpork)
 * downloaded at 7:01 UTC everyday
+
+## [banyard2-1]
+* [github](https://github.com/firnsy/barnyard2)
+## [pf_ring]
+* [github](https://github.com/ntop/PF_RING)
+## [CapMe]
+* [github](https://github.com/int13h/capme)
+* [SO implementation](https://github.com/Security-Onion-Solutions/security-onion/wiki/CapMe)
+* view pcap rendered with bro
+* Pivot from squert to CapMe
+## [apache]
+
+## [my-sql]
+ 
