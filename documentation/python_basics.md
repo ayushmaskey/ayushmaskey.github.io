@@ -44,6 +44,7 @@ data abstraction
    * [why higher order](#why-higher-order)
    * [lambda](#lambda)
    * [def vs lambda](#def-vs-lambda)
+   * [recursion](#recursion)
    * [function currying](#function-currying)
    * [functional abstraction](#functional-abstraction)
  * [mutual recursion](#mutual-recursion)
@@ -1022,9 +1023,9 @@ False
 >>> square
 <function <lambda> at ...>
 ````
+## recursion
 
-
-### function currying
+## function currying
 
 
 ## functional abstraction
