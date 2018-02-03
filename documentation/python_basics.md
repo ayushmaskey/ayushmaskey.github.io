@@ -39,8 +39,12 @@ data abstraction
    * [import library](#import-library)
    * [user defined function](#user-defined-function)
    * [higher order function](#higher-order-function)
+   * [return statement](#return-statement)
+   * [self reference](#self-reference)
+   * [why higher order](#why-higher-order)
    * [lambda](#lambda)
    * [def vs lambda](#def-vs-lambda)
+   * [recursion](#recursion)
    * [function currying](#function-currying)
    * [functional abstraction](#functional-abstraction)
  * [mutual recursion](#mutual-recursion)
@@ -855,6 +859,184 @@ def compose1(f,g):
 ;
 ```
 
+## return statement
+ * completes the evaluation of a call expression and provides its value
+ * for  user defined function f(x), execute f's body in a new environment
+ * return statement goes back to previous environment with a value for f(x)
+ * only one return statement is ever executed
+
+```python
+def search(f):
+	"""start and 0 and work its way up until it finds a true value
+	"""
+	x = 0
+	while True:
+		if f(x):
+			return x
+		x += 1
+
+def is_three(x):
+	return x == 3
+
+def square(x):
+	return x * x
+
+def positive(x):
+	return max(0, square(x) - 100)
+
+>>>positive(1)
+0
+>>>positive(10)
+0
+>>>positive(11)
+21
+>>>search(positive)
+11
+
+# search(postive) give smallest x that gives positive value
+
+
+def inverse(f):
+	"""return g(y) such that g(f(x)) --> x"""
+	return lambda y: search(lambda x: f(x) == y)
+
+>>> sqrt = inverse(square)
+>>> sqrt(256)
+16
+
+# only works for perfect square root
+
+def inverse1(f):
+	def aux_for_y(y):
+		def aux_for_x(x):
+			return f(x) == y
+		return search(aux_for_x)
+	return aux_for_y
+
+# simplifying inverse with inverse1
+```
+
+## self reference
+```python
+def print_all(x):
+	print(x)
+	return print_all
+
+>>> print_all(4)
+4
+<function print_all at 0x7fdaf755a1e0>
+>>> print_all(4)(5)
+4
+5
+<function print_all at 0x7fdaf755a1e0>
+# can call print_all with as many parameter coz return is always bound to print_all
+```
+
+```python
+def print_sum(x):
+	print(x)
+	def next_sum(y):
+		return print_sum(x+y)
+	return next_sum
+
+>>> print_sum(1)(3)(5)
+1
+4
+9
+<function print_sum.<locals>.next_sum at 0x7f6dbd436f28>
+
+```
+* first call to goes to print_sum but subsequent call goes to next_sum coz next_sum is returned which is bound to print_sum(1) with parameter (3)
+* second call goes straight to next_sum(3) with x as 1 which add a and y and calls print_sum, add return next_sum again
+* in the final call, next_sum is called with x = 4, coz that is the value in parent environment and y as 5 --> print_sum(1)(3)(5) reduces to next_sum(5) with x=4 from parent
+* sum is being memorized along the way
+* new sum is passed as argument x for print_sum and the next one is y
+
+## why higher order
+
+> play 2 secs of mario intro
+```python
+from wave import open
+from struct import Struct
+from math import floor
+
+frame_rate = 11025
+
+def encode(x):
+	"""Encode float x between -1 and 1 as two bytes
+	https://docs.python.org/3/library/struct.html)
+	"""
+	i = int(16284 * x)
+	return Struct('h').pack(i)
+
+def play(sampler, name="song.wav", seconds=2):
+	"""Write the output of a sampler function as a wav file
+	https://docs.python.org/3/library/wave.html
+	"""
+	out = open(name, 'wb')
+	out.setnchannels(1)
+	out.setsampwidth(2)
+	out.setframerate(frame_rate)
+	t = 0
+	while t < seconds * frame_rate:
+		sample = sampler(t)
+		out.writeframes(encode(sample))
+		t = t + 1
+	out.close()
+
+def tri(frequency, amplitude = 0.3):
+	"""A continuous triange wave"""
+	period = frame_rate // frequency
+	def sampler(t):
+		saw_wave = t / period - floor(t / period + 0.5)
+		tri_wave = 2 * abs(2 * saw_wave) - 1
+		return amplitude * tri_wave
+	return sampler
+
+c_freq, e_freq, g_freq = 261.63, 329.63, 392.00
+
+def both(f, g):
+	return lambda t: f(t) + g(t)
+
+def note(f, start, end, fade=0.01):
+	def sampler(t):
+		seconds = t / frame_rate
+		if seconds < start:
+			return 0
+		elif seconds > end:
+			return 0
+		elif seconds < start + fade:
+			return (seconds -start) / fade * f(t)
+		elif seconds > end - fade:
+			return (end - seconds) / fade * f(t) 
+		else:
+			return f(t)
+	return sampler
+
+def mario_at(octave):
+	c, e = tri(octave * c_freq), tri(octave * e_freq)
+	g, low_g = tri(octave * g_freq), tri(octave * g_freq / 2)
+	return mario(c, e, g, low_g)
+
+def mario(c, e, g, low_g):
+	z = 0
+	song = note(e, z, z + 1/8)
+	z += 1/8
+	song = both(song, note(e, z, z + 1/8))
+	z += 1/4
+	song = both(song, note(c, z, z + 1/8))
+	z += 1/4
+	song = both(song, note(e, z, z + 1/8))
+	z += 1/8
+	song = both(song, note(g, z, z + 1/4))
+	z += 1/4
+	song = both(song, note(low_g, z, z + 1/4))
+	z += 1/2
+	return song
+
+play(both(mario_at(1), mario_at(1/2)) )
+```
+
 ## [lambda](https://docs.python.org/3/howto/functional.html#small-functions-and-the-lambda-expression)
 
 * a function with formal parameter x that returns the value
@@ -924,9 +1106,9 @@ False
 >>> square
 <function <lambda> at ...>
 ````
+## recursion
 
-
-### function currying
+## function currying
 
 
 ## functional abstraction
