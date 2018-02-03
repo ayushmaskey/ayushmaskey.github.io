@@ -9,19 +9,19 @@
   * [access components]{#access-components}
   * [config files](#config-files)
   * [log files](#log-files)
- * [SGUIL]
- * [SQUERT]
- * [BRO]
- * [SNORT]
- * [LOGSTASH]
- * [ELASTICSEARCH]
- * [KIBANA]
- * [pulled port]
- * [banyard2-1]
- * [pf_ring]
- * [CapMe]
- * [apache]
- * [my-sql]
+ * [SGUIL](#squil)
+ * [SQUERT](#squert)
+ * [BRO](#bro)
+ * [SNORT](#snort)
+ * [LOGSTASH](#logstash)
+ * [ELASTICSEARCH](#elasticsearch)
+ * [KIBANA](#kibana)
+ * [pulled port](#pulled-pork)
+ * [banyard2-1](#banyard2-1)
+ * [pf_ring](#pf_ring)
+ * [CapMe](#capme)
+ * [apache](#apache)
+ * [my-sql](#my-sql)
  
 ## security_onion
 
