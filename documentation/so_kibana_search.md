@@ -1,4 +1,80 @@
 
+# Kibana
+ * [kibana timelion](#kibana-timelion)
+
+## [Kibana Timelion](https://github.com/elastic/timelion)
+* [Youtube - Devox France (April 2016)](https://www.youtube.com/watch?v=L5LvP_Cj0A0)
+```kibana 
+.es(*) - query es (elasticsearch) for * (everything)
+# all function start with .
+# argument in ()
+
+.es(*).derivative()
+# derivative
+# was today higher or lower than yesterday
+# how the line is changing over time
+# change day to day or week to week 1d/ 1w--> right next to play button
+
+.es(*).label('today'), .es(*,offset=-7d).label('7days')
+# compare monday to monday
+
+.es(*).subtract(.es(*,offset=-7d))
+# how things have change monday to monday
+
+# bank balance
+.es(index=transaction, metric="min:balance").fit(carry)
+.es(index=transaction, metric="sum=amount").cusum()
+# need to find equivalent for network
+# fit - add missing holes with avg or carry or somethin
+# cusum - cumulative sum
+
+(@2)/divide(3)
+# @2 - take second timelion and do something
+
+(.es(index=usagov*, q=US), es(index=usagov*, q=CA), es(index=usagov*, q=MX)).range(0,100).mvavg(30)
+# get traffic from US, canada and mexico to us gov website
+# fit it in range 0 to 100
+#get moving average 
+
+.es(US).divide(.wbi(US)).mvavg(30)
+# get population of US from world bank api
+```
+> uses peg.js to parse .es() query
+```kibana
+series_type
+= group
+/ chain
+/reference
+
+chain 
+= func:function rest:function* {
+ return {
+  type: 'chain',
+  chain: [func].concat(rest)
+ }
+}
+```
+```kibana
+.es().divide(5)
+
+#parses into
+
+[{
+  type: "chain",
+  chain: [{
+    type: "function",
+	function: "es",
+	arguments: []
+  },{
+    type: "function",
+	function: "divide",
+	arguments: [{
+	  type: "literal",
+	  value: 5
+	}] 
+  }]
+}]
+```
 
 all DNS
 {

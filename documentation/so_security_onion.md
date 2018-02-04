@@ -6,7 +6,7 @@
   * [interfaces](#interfaces)
   * [docker containers](#docker-containers)
   * [so_firewall](#so-firewall)
-  * [access components]{#access-components}
+  * [access components](#access-components)
   * [config files](#config-files)
   * [log files](#log-files)
  * [SGUIL](#squil)
@@ -36,7 +36,11 @@ data source available from elastic search
 ```
 curl 'localhost:9200/_cat/indices?v'
 ```
-
+whats enabled
+```bash
+grep ENABLED /etc/nsm/server-eth0/sensor.conf
+enabled PRADS for mysql and http_agent just coz
+```
 #### [so update](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
 ```
 #byobu before updating
@@ -266,6 +270,10 @@ UNCAT_MAX=100000
 ## [SGUIL](https://bammv.github.io/sguil/index.html)
 * [github](https://github.com/bammv/sguil)
 * should not change time. It should be in UTC for updates
+* ctrl + click on alert ID
+* right click on IP --> quick query --> query Sancp Table --> Query DestIP 
+	* my sql / db server: table 'securityonion.db.sancp does not exisits
+	* need to setup mysql
 
 ## [SQUERT](http://www.squertproject.org/)
 * [github](https://github.com/int13h/squert)
@@ -300,4 +308,6 @@ UNCAT_MAX=100000
 ## [apache]
 
 ## [my-sql]
- 
+* [mysql turing](https://github.com/Security-Onion-Solutions/security-onion/wiki/MySQLTuning)
+* my sql / db server: table 'securityonion.db.sancp does not exisits
+* /etc/nsm/server-eth0/sensor.conf --> enable PRADS for mysql
