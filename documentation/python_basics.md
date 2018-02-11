@@ -45,6 +45,8 @@ data abstraction
    * [lambda](#lambda)
    * [def vs lambda](#def-vs-lambda)
    * [recursion](#recursion)
+   * [converting recursion to iteration](#converting-recursion-to-iteration)
+   * [converting iteration to recursion](#converting-iteration-to-recursion)
    * [function currying](#function-currying)
    * [functional abstraction](#functional-abstraction)
  * [mutual recursion](#mutual-recursion)
@@ -1107,6 +1109,71 @@ False
 <function <lambda> at ...>
 ````
 ## recursion
+> a function that calls itself
+
+```python
+# sum digits without loop
+
+def split(n):
+	""" return positive n into all but its last digit and it last digit"""
+	return n // 10, n % 10
+
+# base cases - without recursive. very simple problem
+# recursive case - call itself with simpler form of problem until we reach base case
+
+def sum_digit(n):
+	"""return sum of digits of positive integer n"""
+	if n < 10:
+		return n
+	else:
+		all_but_last, last = split(n):
+		return sum_digit(all_but_last) + last
+```
+** recursive leap of faith**
+1. verify base case
+2. Treat fact as functional abstraction
+3. Assume that fact(n-1) is correct
+4. Verify that fact(n) is correct, assuming that fact(n-1) correct
+
+## mutual recursion 
+
+* luhn sum- credit card number 
+ * last number is check sum of first 15
+ * starting 15th moving left, double the value of every second digit
+ * if if double returns greater than 9, sum the digits of product
+ * take sum of all the digit = n * 10 (multiple of 10)
+ * odd numbers get doubled.
+ * 16th is checksum - to make luhn sum multiple of 10
+
+```python
+# two functions call each other
+# base case can be in one or both
+
+def split(n):
+	""" return positive n into all but its last digit and it last digit"""
+	return n // 10, n % 10
+def luhn_sum(n):
+	if n < 10:
+		return n
+	else: all_but_last = split(n):
+		return luhn_sum_double(all_but_last) + last
+
+def luhn_sum_double(n):
+	all_but_last, last = split(n)
+	luhn_digit = sum_digit(2 * last)
+	if n < 10:
+		return luhn_digit
+	else:
+		return luhn_sum(all_but_last) + luhn_digit
+
+```
+
+## converting recursion to iteration
+* iteration is special case of recursion
+* figure out what state must be maintained by iterative function
+
+## converting iteration to recursion
+*  state of iteration can be passed as arguments
 
 ## function currying
 
@@ -1119,9 +1186,6 @@ False
 - dont care how it computes 
 ```
 
-### mutual recursion 
-
-luhn sum- credit card number 
 
 ## test driven development
 ```python
