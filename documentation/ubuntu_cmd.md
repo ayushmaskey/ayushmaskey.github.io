@@ -305,6 +305,15 @@ ll
 **add user to group**
 ```usermod -aG sudo <username>```
 
+** all users**
+``` compgen -u```
+
+**all groups**
+```compgen -g```
+
+** all groups of  user ** 
+```groups amaskey```
+
 **disable ipv6**
 ```
 nano /etc/sysctl.conf
