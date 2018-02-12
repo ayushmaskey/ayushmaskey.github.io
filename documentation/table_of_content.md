@@ -21,12 +21,12 @@
    * [sql server](./db_sql_server.md)
  * IDE shortcuts
    * [Eclipse](./ide_eclipse_shortcuts.md)
-   * [Intellij](./ide_intellij.shirtcut.md)
+   * [Intellij](./ide_intellij.shortcut.md)
    * [Sublime](./ide_sublime_shortcut.md)
  * [islandwanderer](./islandwanderer.md)
  * Security Onion
    * [ELK](./so_elk.md)
-   * [ELSE](./so_else.md)
+   * [ELSA](./so_elsa.md)
    * [Kibana](./so_kibana_search.md)
    * [Security Onion](./so_security_onion.md)
    * [Snort](./so_snort.md)
@@ -38,4 +38,4 @@
    * [12.2.2](./upgrade_cps_12_2_2.md)
    * [database migration](./upgrade_database_migration.md)
  * Warehouse
-   * [schema](./warehouse_database_migration.md)
+   * [schema](./warehouse_schema.md)

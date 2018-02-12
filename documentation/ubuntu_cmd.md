@@ -28,7 +28,7 @@ sudo rm -rf /var/lib/apt/list/*
 grive
 
 #hold shift during restart to get to grub2
-memtestx86		
+memtestx86
 ```
 
 **time** 

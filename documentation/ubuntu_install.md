@@ -29,7 +29,7 @@ sudo apt-get update -s packageName 	#simulate dry run
 sudo apt-get update -d packageName	#download files but not install
 ```
 
-# **__ Package installation and settings __**
+# Package installation and settings
 
 ## python
 ```bash
@@ -213,7 +213,7 @@ sudo apt install hamster-indicator
 gconftool-2 --set "/apps/hamster-indicator/show_label" --type bool "true"	
 ```
 
-## [haskell]
+## haskell
 ```
 curl -sSL https://get.haskellstack.org/ | sh
 ```
