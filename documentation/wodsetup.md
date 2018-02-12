@@ -38,8 +38,6 @@ meteor create test
 mv test/ app
 cd app
 meteor npm install && meteor run
-
-
 5wV@PB1lF7!ZwCr$S1kJ
 
 
@@ -73,7 +71,7 @@ git add .
 git commit -m "second commit"
 git push
 
-5wV@PB1lF7!ZwCr$S1kJ
+
 
 #create new branch and go to the new branch
 git branch branchName

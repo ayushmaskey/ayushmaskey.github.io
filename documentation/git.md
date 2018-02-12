@@ -13,7 +13,7 @@ git remote add origin https://github.com/ayushmaskey/test	# add to remote repo w
 git push -u origin master		#push from master (default name of local) to origin (remote) -u rememebers this setting
 
 git pull origin master			#pull from origin to master (if others have push to origin)
-5wV@PB1lF7!ZwCr$S1kJ
+.
 
 git diff HEAD				#difference from our last commit to one we pulled today
 git add octofamily/octodog.txt		#add file to staging
@@ -29,7 +29,7 @@ git branch -d clean_up			#delete branch of done with it
 git branch -D clean_up			#without merging
 
 git push				#send all changes to remote repository. -u origin master remembered earlier changes
-5wV@PB1lF7!ZwCr$S1kJ
+.
 
 
 git reset --hard HEAD			#reset to last commit
@@ -75,7 +75,7 @@ git remote add origin https://github.com/amaskey/JavaFXProject.git
 git remote add origin https://github.com/try-git/try_git.git
 git push -u origin master
 
-5wV@PB1lF7!ZwCr$S1kJ
+.
 
 
 
