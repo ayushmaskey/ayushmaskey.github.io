@@ -39,18 +39,22 @@ data abstraction
    * [import library](#import-library)
    * [user defined function](#user-defined-function)
    * [higher order function](#higher-order-function)
-   * [return statement](#return-statement)
-   * [self reference](#self-reference)
-   * [why higher order](#why-higher-order)
+     * [return statement](#return-statement)
+     * [self reference](#self-reference)
+     * [why higher order](#why-higher-order)
    * [lambda](#lambda)
-   * [def vs lambda](#def-vs-lambda)
+     * [def vs lambda](#def-vs-lambda)
    * [recursion](#recursion)
-   * [converting recursion to iteration](#converting-recursion-to-iteration)
-   * [converting iteration to recursion](#converting-iteration-to-recursion)
-   * [function currying](#function-currying)
+     * [order of recursion](#order-of-recursion)
+     * [tree recursion](#tree-recursion)
+       * [counting partition](#counting-partition)
+     * [mutual recursion](#mutual-recursion)
+     * [converting recursion to iteration](#converting-recursion-to-iteration)
+     * [converting iteration to recursion](#converting-iteration-to-recursion)
    * [functional abstraction](#functional-abstraction)
- * [mutual recursion](#mutual-recursion)
- * [test driven development](#test-driven-development)
+   * [test driven development](#test-driven-development)
+   * [function currying](#function-currying)
+   * [function decorators](#function-decorators)
 
 
 ctrl + l --> clear screen
@@ -1175,22 +1179,143 @@ def luhn_sum_double(n):
 ## converting iteration to recursion
 *  state of iteration can be passed as arguments
 
-## function currying
-
-
-## functional abstraction
+## order of recursion
 ```python
-- need to know number of argument
-- dont care about intrinsic name of function - name can be assigned to anything else. helps other humans and myself read the program
-- need to know what fuction does/returns/prints
-- dont care how it computes 
+def cascade(n):
+	if n < 10:
+		print(n)
+	else:
+		print(n)
+		cascade(n // 10)
+		print(n)
+
+>>> cascade(3)
+3
+>>> cascade(321)
+321		#print before cascade recusion - call before recursion
+32		#print before cascade recusion - call after first recursion
+3		#print in base case
+32		#print after cascade recusion - call after first recursion
+321		#print after cascade recusion - call before recursion
+>>> 
+
+
+def cascade1(n):
+	print(n)
+	if n > 10:
+		cascade(n // 10)
+		print(n)
+#same result
+```
+* separating base case and recursive case is better
+
+```python
+def inverse_cascade(n):
+	""" inverse cascade
+	>>>inverse_cascade(123)
+	1
+	12
+	123
+	12
+	1
+	"""
+	grow(n)
+	print(n)
+	shrink(n)
+
+def f_then_g(f, g, n):
+	if n:
+		f(n)
+		g(n)
+
+grow = lambda n: f_then_g(grow, print, n//10)
+shrink = lambda n: f_then_g(print, shrink, n//10)
+
+>>> inverse_cascade(321)
+3
+32
+321
+32
+3
+>>> 
 ```
 
+## tree recursion
+* tree shaped processes arises whenever executing the body of recursive makes more than one call to the function
+* fibonacci
+
+```python
+def fib(n):
+	if n == 0:
+		return 1
+	elif n == 1:
+		return 1
+	else:
+		return fib(n-2) + fib(n-1)
+# this one very slow. no memoization
+```
+
+## counting partition
+```python
+def count_partitions(n, m):
+	if n == 0:
+		return 1
+	elif n < 0:
+		return 0
+	elif m == 0:
+		return 0
+	else:
+		with_m = count_partitions(n-m, m)
+		without_m = count_partitions(n, m-1)
+		return with_m + without_m
+>>> count_partitions(5,3)
+5
+>>> 
+# number of ways to add to 5 using 3 or less
+# 1+1+1+1+1 = 5
+# 1+1+1+2   = 5
+# 1+2+2     = 5
+# 1+1+3     = 5
+# 2+3       = 5
+```
+
+## functional abstraction
+
+```python
+def square(x):
+	return mul(x, x)
+
+def sum_squares(x,y):
+	return square(x) + square(y)
+```
+> what does sum_squares need to know about squares?
+  * square takes one argument: yes
+  * square has the intrinic name square: no, intrinsic name is only for human
+  * square computes square of number: yes
+  * square computes the square by calling mul: no
+
+> choosing names
+  * name dont matter for correctness but matter for composition. other human readable
+  * name should convey meaning or purpose of values to which they are bound
+  * the types of value bound to the name is best documented in a function's docstring
+  * function name typically convey their effect (print), their behavior (triple) or value returned (abs)
+
+> which values deserve a name
+  * repeated compound expression
+  * pull out meaningful part of compound statement if compound statement is too complex
 
 ## test driven development
-```python
-- write test before writing a function
+> write test before writing a function
+  * test will clarify the domain, range and behavior of a function
+  * test can help identify tricky edge cases
+> develop incrementally and test each piece before moving on.
+  * cant depend on code that hasn't been tested
+  * run your old tests again after you make new changes
+> run your code interactively
+  * dont be afraid to experiment with a function after you write it
+  * interactive sessions can become doctests. just copy and paste 
 
+```python
 from ucb import trace	# create my own trace for testing 
 
 @trace  	#trace decorator function is doing instead of prints everywhere
@@ -1200,7 +1325,114 @@ def gcd(n,m):
   4
   >>>find all possible cases
   """
-  now implement the function
+  if m == n:
+	return m:
+  elif m < n:
+	return gcd(n, m)
+  else return gcd(m-n, n)
+```
+
+## function currying 
+> way of manipulating function
+  * there's a general relationship between these functions
+
+> currying: 
+  * transforming a multi-argument function into single-argument, higher order function
+  * it returns a function that takes rest of the argument
+
+```python
+def make_adder(n):
+	return lambda k: n + k
+
+>>> make_adder(2)(3)
+5
+>>> add(2,3)
+5
+
+
+def curry2(f):
+	def g(x):
+		def h(y):
+			return f(x,y)
+		return h
+	return g
+>>> from operator import add
+>>> add(2,3)
+5
+>>> m = curry2(add)
+>>> m(2)(3)
+5
+>>> add_three = m(3)
+>>> add_three(2)
+5
+
+#define as lambda expression
+>>> curry3 = lambda f: lambda x: lambda y: f(x,y)
+>>> m = curry3(add)
+>>> m(3)(4)
+7
+>>> add_four = m(4)
+>>> add_four(3)
+7
+>>> 
+```
+
+## function decorators
+```python3
+def trace1(fn):
+	"""Returns a version of fn that first prints before it is called
+	
+	fn - a function of 1 argument
+	"""
+	def traced(x):
+		print("calling", fn, "on argument", x)
+		return fn(x)
+	return traced
+
+@trace1
+def square(x):
+	return x * x
+
+def sum_squares_up_to(n):
+	k = 1
+	total = 0
+	while k <= n:
+		total, k = total + square(k), k + 1
+	return total
+
+>>> square(2)
+calling <function square at 0x7f3264c297b8> on argument 2
+4
+>>> sum_squares_up_to(5)
+calling <function square at 0x7f3264c297b8> on argument 1
+calling <function square at 0x7f3264c297b8> on argument 2
+calling <function square at 0x7f3264c297b8> on argument 3
+calling <function square at 0x7f3264c297b8> on argument 4
+calling <function square at 0x7f3264c297b8> on argument 5
+55
+>>> 
+```
+> better version of trace1 in implemented usb in hog
+  * from usn import trace
+
+> shortcut transforming a function in another function 
+  * use annotation like @trace
+  * called decorator
+  * @trace1 : decorator
+  * def square(): decorated function
+
+```python3
+@trace1
+def triple(x):
+  return 3 * x
+
+# is identical to
+
+def triple(x):
+  return 3 * x
+triple = trace1(triple)
+
+# nice to know what decoration applied so use decorator
 ```
 
 
