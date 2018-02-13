@@ -1,5 +1,5 @@
 ## Security Onion
- * [security_onion](#security-onion)
+ * [security onion](#security-onion)
   * [overview](#overview)
   * [services running](#services-running)
   * [so update](#so-update)
@@ -25,7 +25,7 @@
  * [apache](#apache)
  * [my-sql](#my-sql)
  
-## security_onion
+## security onion
 
 ## overview 
 * linux distro build on ubuntu
