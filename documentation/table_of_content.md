@@ -33,6 +33,7 @@
    * [Window Events](./so_windows_events.md)
  * Systems Admin
    * [VM](./sysadmin_vm.md)
+   * [sharepoiint](./sysadmin_sharepoint.md)
  * Upgrade
    * [app install](./upgrade_app_installation.md)
    * [12.2.2](./upgrade_cps_12_2_2.md)

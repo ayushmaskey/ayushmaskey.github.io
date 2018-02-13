@@ -12,7 +12,7 @@
  * [SGUIL](#squil)
  * [SQUERT](#squert)
  * [ossec](#ossec)
- * [winlogbeat](#winlogbeat)
+ * [beat](#beat)
  * [BRO](#bro)
  * [SNORT](#snort)
  * [LOGSTASH](#logstash)
@@ -197,16 +197,13 @@ manage --> restart
 #firewall rule to allow port 1514
 ```
 
-## [winlogbeat](https://logz.io/blog/windows-event-log-analysis/)
-* download winlogbeat
-* cmd prompt
-```cmd
-PowerShell.exe -ExecutionPolicy Unrestricted -File .\install-service-winlogbeat.ps1
+## [beat](https://logz.io/blog/windows-event-log-analysis/)
+* copy beats folder to c:\
+```powershell
+PowerShell.exe -ExecutionPolicy Unrestricted -File .\install-beat.ps1
 ```
-* start service
-* config file --> C:\ProgramData\winlogbeat\.winlogbeat.yml
 
-* server
+* onion server
 ```bash
 so-allow
 option - b
@@ -222,10 +219,9 @@ ip of client
 
 ## [LOGSTASH](https://www.elastic.co/products/logstash)
 * [logstash plugins](https://github.com/logstash-plugins/logstash-output-elasticsearch)
-* edit logstash config
-```bash
 
-```
+> /etc/logstash/conf.d/  
+
 
 ## [ELASTICSEARCH](https://github.com/elastic/elasticsearch)
 * [github](https://github.com/elastic/elasticsearch)
