@@ -98,6 +98,7 @@ second layer --> create and implement rational --> numerators and denominators -
 third layer --> implement selector and constructor --> two element lists --> list liternal and element selection
 
 =================abstraction barrier====================================
+
 implementation of list --> we dont know how python implements list and we don't care
 
 
