@@ -4,6 +4,7 @@
    * [Ubuntu Commands](./ubuntu_cmd.md)
  * Programming
    * [Python](./python_basics.md)
+     * [regular expression](./py_regular_exp.md)
    * [Haskell](./haskell.md)
    * [JavaFx](./javafx.md)
    * [Powershell](./powershell.md)

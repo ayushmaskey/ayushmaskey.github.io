@@ -27,12 +27,13 @@ data abstraction
    * [Array](#array)
    * [List basic](#list-basic)
      * [List method](#list-method)
+     * [pair](#pair)
    * [String basic](#string-basic)
      * [String methods](#string-methods)
    * [Tuples](#tuples)
    * [Dictionary](#dictionary)
      * [Dictionary method](#dictionary-method)
- * [Regular expression](#regular-expression)
+ * [Regular expression](./py_regular_exp.md)
  * [pyperclip](#pyperclip)
  * [reading and writing files](#reading-and-writing-files)
  * [functions](#functions)
@@ -56,6 +57,10 @@ data abstraction
    * [test driven development](#test-driven-development)
    * [function currying](#function-currying)
    * [function decorators](#function-decorators)
+ * [Data Abstraction](#data-abstraction)
+   * [rational number](rational-number)
+   * [abstraction barriers](#abstraction-barriers)
+   * [data representation](#data-representation)
 
 
 ctrl + l --> clear screen
@@ -219,7 +224,7 @@ False
 >>>'dog' not in myList[1]
 True
 
-#mutable data type like list and dictionary are stored as references/pointers
+# mutable data type like list and dictionary are stored as references/pointers
 >>>import copy
 >>>copy.copy(myList) 				# make copy of mutable data
 >>>copy.deepcopy(myList)			# make copy of list and the inner lists
@@ -259,6 +264,34 @@ True
 >>>cat.sort(key=str.lower) 			# sorting done by ASCII uppercase before lower
 >>> cat
 ['fat', 'female', 'lazy', 'orange']
+```
+## pair
+ * consists of two value that are bundled in such a way that you can consider them as whole
+ * representing pair --> built-in example list
+ * a list liternal is comma separated expression in brackets
+
+```python
+>>> pair = [2,3]
+>>> pair
+[2, 3]
+>>> x, y = pair
+
+# unpack list
+>>> x
+2
+>>> y
+3
+>>> pair[0]
+2
+>>> pair[1]
+3
+
+# unpack list using fuction.
+>>> from operator import getitem
+>>> getitem(pair, 0)
+2
+>>> getitem(pair, 1)
+3
 ```
 
 ## [String basic](https://docs.python.org/3.1/library/string.html)
@@ -365,152 +398,6 @@ if 'length' not in cat:
 # or cat.setdefault('length', '12 inch')
 ```
 
-## [Regular expression](https://docs.python.org/3/howto/regex.html)
-```python
->>>import re
->>>strBlob = '555-555-5555'
-# create regex object and use r to search as raw data
->>>strPattern = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
-
-# pass the string to search into regex object's search method
->>>matchedObjects = strPattern.search(strBlob)
-
-# call group to return the first instance of matched expression
->>>print(matchedObjects.group())
-555-555-5555
-
-#parethesis in regular expression
-
-# search for regex either bracket or complete
->>>strPattern = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
->>>strBlob = '(555) 555-5555'
->>>matchedObjects = strPattern.search(strBlob)	
->>>areaCode, mainNumber = matchedObjects.groups()
-
->>>matchedObjects.group(0)
-'555-555-5555'
->>>areCode = matchedObjects.group(1)
->>>matchedObjects.group(2)
-
-#matching multipe groups with |
-
-# finds first instace of batman or wonder woman
->>>regHero = re.compile(r'batman|wonder woman')
->>>mo1 = regHero.search('batman, superman, wonder woman')	
->>>mo2 = regHero.search('superman, wonder woman, batman')
->>>mo1.group()
-batman
->>>mo2.group()
-wonder woman
-
->>>regBat = re.compile(r'bat(man|mobile|cave|girl)')
-# finds batman and batwoman. pattern in (wo)? is optional
->>>regBat = re.compile(r'bat(wo)?man')
-# finds batman, batwoman, batwowoman, batwowowoman etc
->>>regbat = re.compile(r'bat(wo)*man')
-# atleast 1 - finds batwoman, batwowoman but not batman
->>>regbat = re.compile(r'bat(wo)+man')
-
-(Ha){3}  -->HaHaHa
-(Ha){3,5}--> HaHaHa, HaHaHaHa, HaHaHaHaHa
-(Ha){3, }--> Unbounded - 3 or more
-(Ha){ ,5}--> Unbounded - 0 to 5
-
-# searching for parethesis need escape charater even in raw string
-/(, /), /|, /*, /+
-
-#Python regex are greedy by default - ie finds the longest possible string
-# finds the longest possible
->>>greedyRegex = re.compile(r'(Ha){3,5}')
-# find the shortest possible
->>>nonGreedyRegex = re.compile(r'(Ha){3,5}?')
->>>mo1 = greedyRegex.search('HaHaHaHa')
->>>mo2 = nonGreedyRegex.search('HaHaHaHa')
->>>print(mo1.group() )
-HaHaHaHa
->>>print(mo2.group() )
-HaHaHa
-
->>>phoneRegex1 = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
->>>phoneRegex2 =  re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)')
-#finds all the matching exp in the string
->>>phoneRegex1.findall('asdf ads 898-959-5265 afw da 595-898-8747')
-['898-959-5265', '595-898-8747'] 
-#list of tuples
->>>phoneRegex2.findall('asdf ads 898-959-5265 afw da 595-898-8747')
-[('898', '959', '5265'), ('595', '898', '8747')] 
-
-
-\d - digits 0 to 9
-\D - not (digits 0 to 9)
-\w - digits, letters, and underscore
-\W - not (digits, letters, and underscore)
-\s - space, tab, newline
-\S - not (space, tab, newline)
-[0-5] - matches 0,1,2,3,4,5
-
-
-# any number of digits followed by a whitespace and then any number of words
-xReg = re.compile(r'\d+\s\w+')
-
-# find vowels from string
-userDef1 = re.compile(r'[aeiuoAEIOU]')
-
-# all lower and upper alpha + digits
-userDef2 = re.compile(r'[a-zA-Z0-9]')
-
-# all lower and ending in period. no need \. inside []
-userDef3 = re.compile(r'['[a-z.]')
-
-# caret inside [] finds non regex from string
-userDef4 = re.compile(r'[^aeiuoAEIOU]')
-
-# caret as raw string means must start with given expression
-userDef5 = re.compile(r'^[a-e]+')
-
-# dollar sign means ends with given expression
-userDef6 = re.compile(r'[a-e]+$')
-
-# whole string is digits
-userDef7 = re.compile(r'^d+$')
-
-# one wild character with dot. everything but newline
-userDef8 = re.compile(r'.at')
-
-# more than one wild character with .*
-r'.*'
-# greedy wild character with .*?
-r'.*?'
-
-# case insensitive
-re.compile(r'ayush',re.IGNORECASE)
-
-#String substitution with regex
->>>xReg = re.compile(r'Ayush \w+')
->>>xReg.sub('King', 'My name is Ayush Maskey')
-My name is King
->>>censorAgents = re.compile(r'Agent (/w) w+')
->>>censorAgents.sub('\1***', 'Agent James and Agent Bond went undercover')
-Agent J*** and Agent B*** went undercover
-
-
-# complicated regex into readable
-# re.VERBOSE ignores white space and comments
-# expression inside ''' triple quote - triple quote extends to multiple lines
-
-phoneRegex = re.compile(r'((\d{3}|\(\d{3}\))?(\s|-|\.)?\d{3}(\s|-|\.)\d{4}(\s*(ext|x|ext.)\s*\d{2,5})?)')
-
-VS
-
-phoneRegex = re.compile(r'''(]
-    (\d{3}|\(\d{3}\))?            # area code
-    (\s|-|\.)?                    # separator
-    \d{3}                         # first 3 digits
-    (\s|-|\.)                     # separator
-    \d{4}                         # last 4 digits
-    (\s*(ext|x|ext.)\s*\d{2,5})?  # extension
-    )''', re.VERBOSE)
-```
 
 ## [pyperclip](https://pypi.python.org/pypi/pyperclip)
 ```python
@@ -1436,8 +1323,136 @@ triple = trace1(triple)
 # nice to know what decoration applied so use decorator
 ```
 
+## Data Abstraction
+
+> compound objects combine objects together
+ * a date: a year, month and day
+ * geographic position: latitude and longitude
+ * abstract data type lets us manipultaes compound objects as units
+ * Isolate two parts of any program that uses data
+   * how data are represented (as parts)
+   * how data are manipulated ( as units)
+> data abstraction: 
+ * a methodology by which functions enforce an abstraction barrier between representation and use
+ 
+## rational number
+> numerator / denominator
+ * exact representation of fractions
+ * a pair of integers
+ * as soon as division occers, exact representation may be lost
+   * rational(n, d) returns a rational number x
+   * numer(x) returns numerator of x
+   * denom(x) returns denominator of x
+     * rational --> constructor
+     * numer and denom --> selector
+
+```python
+from fractions import gcd
+
+def rational(n, d):
+	"""construct a rational number that represents N/D"""
+	g = gcd(n, d)
+	return [n // g, d // g]
+
+def numer(x):
+	"""Return the numerator of rational number x"""
+	return x[0]
+
+def denom(x):
+	"""Return the denominator of rational number x"""
+	return x[1]
+
+def mul_rational(x, y):
+	return rational(numer(x) * numer(y), denom(x) * denom(y))
+
+def add_rational(x, y):
+	nx, dx = numer(x), denom(x)
+	ny, dy = numer(y), denom(y)
+	return rational(nx * dy + ny * dx, dx * dy)
+
+def equal_rational(x,y):
+	return numer(x) * denom(y) == numer(y) * denom(x)
+
+def print_rational(x):
+   	"""print rational x """
+	print ( numer(x), "/", denom(x) )
+
+>>> x, y = rational(1,2), rational(3,8)
+>>> print_rational(mul_rational(x, y) )
+3 / 16
+
+```
+ * define all the ways to manipulate rational numbers in terms of three functions
+ * these function implement abstract data type for rational numbers
+ * rational number is pair of integers
+ * change definition of rational changes
+   * before it whatever the result
+   * now reduce to lowest term 
+      * only change the function rational. 
+      * all other functions remain same.
+      * benefit of data abstraction
+
+## abstraction barriers
+ * separate different part of program
+ * each part only knows so much about the rest of the program
+ * allows change in one part of program without breaking the rest
+
+top layer --> computation --> treat data values as whole --> eg add_rational, mul_rational
+
+=================abstraction barrier====================================
+
+second layer --> create and implement rational --> numerators and denominators --> eg. rational, numer, denom
+
+=================abstraction barrier====================================
+
+third layer --> implement selector and constructor --> two element lists --> list liternal and element selection
+
+=================abstraction barrier====================================
+implementation of list --> we dont know how python implements list and we don't care
 
 
+> abstraction barrier
+ * dont use second layer to do camputations. always top layer
+ * when building numer function, it should not know where it is list or array in third layer
+ * if abstraction layer is not crossed, easy to change in future
+
+```python
+def divide_rational_violate_abstraction(x, y):
+	return [ x[0] * y[1], x[1] * y[0] ]
+
+add_rational( [1, 2], [1, 4])
+```
+> violations
+ * calling add_rational does not use constructors
+ * divide --> no selector. should not assume it is list
+
+**can change data representaion without having to rewrite entire program**
+
+## data representation
+
+ * for some reason rational constructor has to change
+
+```python3
+def rational(n, d):
+	"""construct a rational number that represents N/D"""
+	def select(name):
+		if name == 'n':
+			return n
+		elif name == 'd':
+			return d
+	return select
+
+def numer(x):
+	"""Return the numerator of rational number x"""
+	return x['n']
+
+def denom(x):
+	"""Return the denominator of rational number x"""
+	return x['d']
+```
+
+ * constructors and selectors --> rational, numer and denom has changed
+ * but no need to change operatives --> add_rational, mul_rational
 
 
 
