@@ -5,7 +5,6 @@
  * [python basic](./py_basics.md)
  * [Sequences - list, dict, string...](./py_sequences.md)
  * [Regular expression](./py_regular_exp.md)
- * [reading and writing files](./py_io.md)
  * [functions](./py_functions.md)
    * [built in function](#built-in-function)
    * [import library](#import-library)
@@ -31,6 +30,7 @@
  * [Trees](./py_trees.md)
  * Libraries
    * [pyperclip](./py_lib_pyperclip.md)
+   * [reading and writing files](./py_io.md)
 
 
 ## Functions

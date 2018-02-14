@@ -14,13 +14,12 @@
    * [Dictionary](#dictionary)
      * [Dictionary method](#dictionary-method)
  * [Regular expression](./py_regular_exp.md)
- * [reading and writing files](./py_io.md)
  * [functions](./py_functions.md)
  * [Data Abstraction](./py_data_abstraction.md)
  * [Trees](./py_trees.md)
  * Libraries
    * [pyperclip](./py_lib_pyperclip.md)
-
+   * [reading and writing files](./py_io.md)
 
 ## Sequences 
  * ordered sequence
