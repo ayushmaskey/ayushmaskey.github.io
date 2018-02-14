@@ -1,11 +1,23 @@
+# Warehouse
+
+## Table of Content
+ * [schema](#schema)
+ * [view](#view)
+ * [table](#table)
+ * [SSIS](#ssis)
+ * [reports](#reports)
+ * [jobs](#jobs)
+
+```sql
 create kphcwarehouse
 set compatibility level and other settings
 add user report with permission db_datareader
+```
 
-need to figure out
-kphc-direcotry.dbo.specialist
+## need to figure out
+kphc-directory.dbo.specialist
 
-## create all schema
+## schema
 
 | name | use |
 |-----|-----|
@@ -50,7 +62,7 @@ kphc-direcotry.dbo.specialist
 |  |  |  |
 
 
-## warehouse tables
+## table
 
 | table | proc_ssis | frequency | data test | description |
 | ----- | --------- | --------- | --------- | ----------- |
@@ -195,7 +207,7 @@ kphc-direcotry.dbo.specialist
 |  |  |  |
 |  |  |  |
 
-## Reports
+## reports
 
 | sp name | dependents | use |
 |---------|------------|-----|
