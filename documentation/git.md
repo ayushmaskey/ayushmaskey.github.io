@@ -1,6 +1,6 @@
 # git
 
-# configure
+## configure
 ```git
 git config --global user.name "amaskey"
 git config --global user.email "maskey.maskey@gmail.com"
@@ -9,8 +9,9 @@ git config --global credential.helper cache
 ```
 
 ## intialize git repostory
+```git
 git init
-
+```
 
 ## add
 ```git
@@ -24,7 +25,9 @@ git remote add origin https://github.com/ayushmaskey/test
 ```
 
 ## commit file in staging area
+```git
 git commit -m "message"
+```
 
 ## check status
 ```git
@@ -41,10 +44,13 @@ git push
 ````
 
 ## pull from origin to master (if others have push to origin)
+```git
 git pull origin master
+git pull
+git pull https://github.com/ayushmaskey/ayushmaskey.github.io.git
+```
 
-
-#branch
+## branch
 ```git
 #create branch/copy of the repo to work on
 git branch branchName
@@ -72,8 +78,9 @@ git checkout branchName
 ```
 
 ## all changes in branch clean_up into current branch
+```git
 git merge clean_up
-
+```
 
 ## diff
 ```git
@@ -93,14 +100,11 @@ git reset octofamily/octodog.txt
 git reset --hard HEAD
 ```
 
-
-
-
-
 ## remove from index
+```git
 git rm --cached FILENAME
 git rm --cached FOLDERNAME -r
-
+```
 
 
 
