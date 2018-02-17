@@ -44,8 +44,9 @@
    * [VM](./sysadmin_vm.md)
    * [sharepoiint](./sysadmin_sharepoint.md)
  * Upgrade
+   * [database migration](./upgrade_database_migration.md)
    * [app install](./upgrade_app_installation.md)
    * [12.2.2](./upgrade_cps_12_2_2.md)
-   * [database migration](./upgrade_database_migration.md)
+   
  * Warehouse
    * [schema](./warehouse_schema.md)
