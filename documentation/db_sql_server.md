@@ -13,3 +13,14 @@
 ```
 
 Active directory
+
+# Brent Ozar - FirstaidResponderKit
+## [DAC](https://www.brentozar.com/archive/2011/08/dedicated-admin-connection-why-want-when-need-how-tell-whos-using/)
+* during crisis
+
+```sql
+EXEC sp_configure 'remote admin connections', 1;
+GO
+RECONFIGURE
+GO
+ ```
