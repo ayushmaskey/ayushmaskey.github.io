@@ -26,6 +26,8 @@
  * each box either contains a primitive value or points to a compound value
  * pair = [1,2] --> pair is pointing to list 
  * nested_list = [ [1, 2], [], [ [3, False, None], [4, lambda:5] ] ]
+
+
 ## Trees
 
 
