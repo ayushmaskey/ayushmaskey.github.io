@@ -107,6 +107,14 @@ sudo ufw delete allow proto udp from ip_address to any port 1514
 
 sudo ufw status
 
+#add rule to docker iptable
+sudo iptables -I DOCKER-USER ! -i docker0 -o docker0 -s ip_address -p tcp --dport 5044 -j ACCEPT
+
+#view rule from docker iptable
+sudo iptables -L DOCKER-USER rule_num
+
+#remove rule from docker iptable
+sudo iptables -D DOCKER-USER rule_num
 #
 5601: Kibana
 1514: ossec data collection
@@ -223,6 +231,10 @@ ip of client
 
 > /etc/logstash/conf.d/  
 
+figure out 
+IIS logs
+SQL logs
+delete from iptables dockers
 
 ## [ELASTICSEARCH](https://github.com/elastic/elasticsearch)
 * [github](https://github.com/elastic/elasticsearch)

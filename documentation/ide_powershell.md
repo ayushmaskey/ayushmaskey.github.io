@@ -1,7 +1,22 @@
-<#commands#>
 
-$host - get host information
+###  host information
+```  $host ```
 
+### profile available??
+```  Test-Path $profile```
+
+### if profile not available
+``` New-Item -path $profile -type file –force ```
+
+### Alias
+```powershellnew-item alias:np -value "C:\Program Files\Notepad++\notepad++.exe"
+```
+
+### execution policy
+```powershell
+Get-ExecutionPolicy -List
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 ls - same as dir
 Host |get-member | more -  method and property of host and more give it on pages
 "Hello World" | get-member | more - method and property of string
@@ -17,7 +32,5 @@ function simple one helloworld.ps1
 to run it
 .\helloworld.ps1 or h and then tab. need path to the file
 
-Get-ExecutionPolicy - default is restricted mode
-get-Help about_Execution_Policies
-Set-ExecutionPolicy -ExecutionPolicy Restricted - change execution policy
+
 
