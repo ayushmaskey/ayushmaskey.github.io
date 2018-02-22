@@ -129,13 +129,13 @@ SELECT SERVERPROPERTY('ProductVersion');
 ```
 get compatibility level
 ```
-SELECT name, compatibility_level FROM sys.databases;  
+SELECT name, compatibility_level FROM sys.databases; 
 ```
 SQL server 2014 compatibility level would be at 120
 ```
 alter database CentricityPS
 set compatibility_level = 120
-```  
+```
 trust
 ```
 USE CentricityPSDemo
@@ -158,20 +158,23 @@ backup database
 backup logs - every 2 hours
 ```
 ```
-DBCC checkdb - daily (140 min)
-```
+
+DBCC
+```sql
+# check db for consistency error - lot of diffferent things
+# weekly (1 hour)
 dbcc checkdb
-```
-dbcc updateusage -  weekly (15 minutes)
-```
+
+# dbcc updateusage -  weekly (10 minutes)
 SELECT name,database_id
 FROM sys.databases;
 
 DBCC UPDATEUSAGE (database_id)
-```
-update statistics on whole database - weekly
-```
+
+# update statistics on whole database - weekly (5 min)
 exec sp_updatestats
+# log size of all data base
+DBCC SQLPerf(logspace)
 ```
 
 ## ALERTS
