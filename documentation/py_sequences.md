@@ -100,6 +100,43 @@ True
 >>>cat.sort(key=str.lower) 			# sorting done by ASCII uppercase before lower
 >>> cat
 ['fat', 'female', 'lazy', 'orange']
+
+# append and insert
+# append to the end
+>>> cat.append(12)
+>>> cat
+['fat', 'female', 'lazy', 'orange', 12]
+
+#insert to any index
+>>> cat.insert(1, 'hungry')
+>>> cat
+['fat', 'hungry', 'female', 'lazy', 'orange', 12]
+
+#remove first instance
+>>> cat.remove(12)
+>>> cat
+['fat', 'hungry', 'female', 'lazy', 'orange']
+
+#sort and reverse sort
+>>> spam = ['ants', 'cats', 'dogs', 'badgers', 'elephants']
+>>> spam.sort()
+>>> spam
+['ants', 'badgers', 'cats', 'dogs', 'elephants']
+
+>>> spam.sort(reverse=True)
+>>> spam
+['elephants', 'dogs', 'cats', 'badgers', 'ants']
+
+>>>import copy
+>>> spam = ['A', 'B', 'C', 'D']
+>>> cheese = copy.copy(spam)
+>>> cheese[1] = 42
+>>> spam
+['A', 'B', 'C', 'D']
+>>> cheese
+['A', 42, 'C', 'D']
+
+#to compy inner list use ddepcopy()
 ```
 ## pair
  * consists of two value that are bundled in such a way that you can consider them as whole
@@ -192,6 +229,14 @@ True
 ```python
 similar to list but uses () instead of []
 tuples are immutable like string
+
+>>> t = tuple(['name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age'])
+>>> t
+('name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age')
+
+>>> l = list[('name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age')]
+>>> l
+['name': 'kitty', 'size': 'fat', 'color': 'orange', 12: 'age']
 ```
 
 ## [Dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)

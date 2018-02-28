@@ -47,6 +47,27 @@
    * [database migration](./upgrade_database_migration.md)
    * [app install](./upgrade_app_installation.md)
    * [12.2.2](./upgrade_cps_12_2_2.md)
-   
  * Warehouse
    * [schema](./warehouse_schema.md)
+ * Certified Ethical Hacking
+   * [foot printing and reconnaissance](#foot-printing-and-reconnaissance) 
+   * [scanning networks](#scanning-networks)
+   * [enumeration](#enumeration)
+   * [System Hacking](#system-hacking)
+   * [Malware Threats]
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+

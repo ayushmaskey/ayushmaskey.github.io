@@ -12,6 +12,11 @@
    * [pyperclip](./py_lib_pyperclip.md)
    * [reading and writing files](./py_io.md)
 
+## user input from terminal
+```python3
+myname = input()
+```
+
 ## reading and writing files
 ```python
 >>>import os
@@ -39,3 +44,5 @@ try:
 except ZeroDivisionError:			#if x == 0
   print('Bad Input')
 ```
+
+Tv7dXo8YRJb85KXA2RncVsgUYvPy1yt3
