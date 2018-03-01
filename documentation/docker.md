@@ -2,54 +2,54 @@
 
 ## Basics
 
-### check if docker is running
+##### check if docker is running
 sudo systemctl status docker
 
-### all available subcommand
+##### all available subcommand
 docker
 docker docker-subcommand --help
-### system wide info of docker
+##### system wide info of docker
 docker info
 
-### download iamge
+##### download iamge
 docker pull ubuntu
 
 ## Images
 
-### see available images
+##### see available images
 docker images
-### Delete images
+##### Delete images
 docker rmi [image ID/ name]
 
 
 ## Containers
 
-### view active containers
+##### view active containers
 docker ps
-### all containers	
+##### all containers	
 docker ps -a
-### last created
+##### last created
 docker ps -l
-### delete
+##### delete
 docker rm [container ID/name]
-### rename
+##### rename
 docker rename oldName newName
 
-### create containers
+##### create containers
 docker run -it -–name=<containerName> –-hostname=<hostName> image
  * -it gives access to image from command line
 
-### container with 2 volume mounted
+##### container with 2 volume mounted
 docker run -it -–name=<containerName> –-hostname=<hostName> -v ~/<abs_path_in_host>/<folder>:/<data_volume_in_root_of_container> ~/<abs_path_in_host>/<folder>:/<code_volume_in_root_of_container> ubuntu
 
-### start container
+##### start container
 docker start [container ID/name]
-### go to container shell
+##### go to container shell
 docker attach [container ID/name]
-### stop container
+##### stop container
 docker stop [container ID/name]
 
-### JSON file with info about container
+##### JSON file with info about container
 docker inspect [container ID/name]
 #create image with Dockerfile
 docker build -t <folder>/<imageName> .
