@@ -1,47 +1,64 @@
+# Docker
 
-sudo systemctl status docker		#check if docker is running
+## Basics
 
-docker					#all available subcommand
-docker docker-subcommand --help		#
-docker info				#system wide info of docker
+### check if docker is running
+sudo systemctl status docker
 
-docker run hello-world			#verify docker is working
+### all available subcommand
+docker
+docker docker-subcommand --help
+### system wide info of docker
+docker info
 
-docker pull ubuntu			#download iamge
+### download iamge
+docker pull ubuntu
 
-**Images**
-docker images				#see available images
-docker rmi [image ID]			#Delete
+## Images
+
+### see available images
+docker images
+### Delete images
+docker rmi [image ID/ name]
 
 
+## Containers
 
-**Containers**
-docker ps				#view active containers
-docker ps -a				#all containers
-docker ps -l				#last created
-docker rm [container ID]		#delete
-docker rm [container name]		#delete
-docker rename oldName newName		#rename
-#create containers
+### view active containers
+docker ps
+### all containers	
+docker ps -a
+### last created
+docker ps -l
+### delete
+docker rm [container ID/name]
+### rename
+docker rename oldName newName
+
+### create containers
 docker run -it -–name=<containerName> –-hostname=<hostName> image
-docker run -it ubuntu			#-it gives access to image from command line
-#container with 2 volume mounted
-docker run -it --name container_with_volume -v ~/abs-path-in-host/data:/data-volume-in-root-of-container ~/abs-path-in-host/code:/code-volume-in-root-of-container ubuntu
-#existing containers
-docker start hdmaster			#start container
-docker attach hdmaster			#go to hdmaster shell
-docker stop hdmaster			#stop container
+ * -it gives access to image from command line
 
-docker inspect hdmaster			#JSON file with info about container
+### container with 2 volume mounted
+docker run -it -–name=<containerName> –-hostname=<hostName> -v ~/<abs_path_in_host>/<folder>:/<data_volume_in_root_of_container> ~/<abs_path_in_host>/<folder>:/<code_volume_in_root_of_container> ubuntu
+
+### start container
+docker start [container ID/name]
+### go to container shell
+docker attach [container ID/name]
+### stop container
+docker stop [container ID/name]
+
+### JSON file with info about container
+docker inspect [container ID/name]
 #create image with Dockerfile
 docker build -t <folder>/<imageName> .
 
 
-
-**sublime remote server**
+## sublime remote server
 https://stackoverflow.com/questions/37458814/how-to-open-remote-files-in-sublime-text-3 
 
-**Updating and installing package after accessing docker image**
+## Updating and installing package after accessing docker image
 apt-get update
 apt-get install -y nodejs
 apt-get -y install vim
@@ -54,11 +71,10 @@ apt-get -y install nano
 apt-get -y install git
 apt-get -y install default-jre
 
-**commit change to image and push to hub.docker.com**
+## commit change to image and push to hub.docker.com
 docker commit -m "message" -a "Ayush" [container-id] finid/ubuntu_nodejs
 
 docker login -u amaskey
-Wv^L!InzIYOp76ZeuwF9S
 
 docker tag [image Repository Name] amaskey/[repoNameFromHub]:[newTagName]
 docker push amaskey/[repoNameFromHub]:[newTagName]

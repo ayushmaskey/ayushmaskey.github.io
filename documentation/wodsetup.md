@@ -87,7 +87,7 @@ git add --all		#all branches
 simonEngler
 keokilee
 philipmjohnson
-
+Wv^L!InzIYOp76ZeuwF9S
 
 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy testdeployam.meteorapp.com --owner ics314f17 --settings ../config/settings.production.json
 
