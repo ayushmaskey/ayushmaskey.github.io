@@ -1,84 +1,184 @@
 # Docker
 
+[docker cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
+
 ## Basics
 
 ##### check if docker is running
+```docker
 sudo systemctl status docker
+```
 
-##### all available subcommand
+##### docker help
+```docker
 docker
 docker docker-subcommand --help
+```
 ##### system wide info of docker
+```docker
 docker info
-
-##### download iamge
-docker pull ubuntu
-
-## Images
-
-##### see available images
-docker images
-##### Delete images
-docker rmi [image ID/ name]
-
-
-## Containers
-
-##### view active containers
-docker ps
-##### all containers	
-docker ps -a
-##### last created
-docker ps -l
-##### delete
-docker rm [container ID/name]
-##### rename
-docker rename oldName newName
-
-##### create containers
-docker run -it -–name=<containerName> –-hostname=<hostName> image
- * -it gives access to image from command line
-
-##### container with 2 volume mounted
-docker run -it -–name=<containerName> –-hostname=<hostName> -v ~/<abs_path_in_host>/<folder>:/<data_volume_in_root_of_container> ~/<abs_path_in_host>/<folder>:/<code_volume_in_root_of_container> ubuntu
-
-##### start container
-docker start [container ID/name]
-##### go to container shell
-docker attach [container ID/name]
-##### stop container
-docker stop [container ID/name]
-
-##### JSON file with info about container
-docker inspect [container ID/name]
-#create image with Dockerfile
-docker build -t <folder>/<imageName> .
-
-
-## sublime remote server
+```
+##### sublime remote server
 https://stackoverflow.com/questions/37458814/how-to-open-remote-files-in-sublime-text-3 
 
-## Updating and installing package after accessing docker image
-apt-get update
-apt-get install -y nodejs
-apt-get -y install vim
-apt-get -y apt-utils
-apt-get -y install iputils-ping
-apt-get -y install openssh-client
-apt-get -y install openssh-server
-apt-get -y install iproute
-apt-get -y install nano
-apt-get -y install git
-apt-get -y install default-jre
 
-## commit change to image and push to hub.docker.com
+##### commit change to image and push to hub.docker.com
+```docker
 docker commit -m "message" -a "Ayush" [container-id] finid/ubuntu_nodejs
 
 docker login -u amaskey
 
 docker tag [image Repository Name] amaskey/[repoNameFromHub]:[newTagName]
 docker push amaskey/[repoNameFromHub]:[newTagName]
+```
 
+## Images
+
+##### download iamge
+```docker
+docker pull ubuntu
+```
+
+##### see available images
+```docker
+docker images
+```
+##### Delete images
+```docker
+docker rmi [image ID/ name]`
+```
+
+## Containers
+
+##### view active containers
+```docker
+docker ps
+```
+##### all containers	
+```docker
+docker ps -a
+```
+##### last created
+```docker
+docker ps -l
+```
+##### delete
+```docker
+docker rm [container ID/name]
+```
+##### rename
+```docker
+docker rename oldName newName
+```
+
+##### start container
+```docker
+docker start [container ID/name]
+```
+##### go to container shell
+```docker
+docker attach [container ID/name]
+```
+##### stop container
+```docker
+docker stop [container ID/name]
+```
+
+##### JSON file with info about container
+```docker
+docker inspect [container ID/name]
+```
+
+##### create containers
+
+```docker
+docker run -it -–name=<containerName> –-hostname=<hostName> \
+	-v ~/<abs_path_in_host>/<folder>:/<volume_in_root_of_container> 
+	-p 3000:3000
+	ubuntu
+
+# -i --> open container in interactive mode
+# --name --> name of container
+# --hostname --> hostname of container
+# -v --> mount one or more volume to container
+# -p --> publis container port to host
+# -t --> allocate pseudo tty
+# --rm --> remove container upon exit
+```
+
+## workflow
+
+##### Sample Dockerfile
+```bash
+# inherit from other images
+# inherit from other images
+FROM ubuntu
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+USER root
+RUN echo "root:Docker!" | chpasswd
+
+EXPOSE 3000
+
+RUN apt-get update
+RUN apt-get -y install apt-utils 
+RUN apt-get -y install git 
+RUN apt-get -y install vim
+RUN apt-get -y install curl 
+RUN apt-get -y install sudo
+RUN apt-get -y install ssh
+RUN apt-get -y install iproute
+
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y dist-upgrade
+RUN apt-get autoclean
+RUN apt-get autoremove
+
+
+
+RUN useradd -m amaskey -p Docker!
+RUN usermod -aG sudo amaskey
+
+RUN su amaskey
+
+RUN mkdir meteor && cd meteor
+RUN git clone https://github.com/ayushmaskey/equipment_log.git
+
+RUN curl https://install.meteor.com/ | sh
+
+
+#RUN apt-get install -y nodejs
+#RUN apt-get -y install iputils-ping
+
+```
+
+##### sample bootstrap.sh
+```bash
+
+
+```
+
+
+##### create image with Dockerfile
+```docker
+docker build -t <folder>/<new_imageName> .
+```
+
+
+##### using containers
+
+```docker
+docker run -it --rm --name test --hostname test -p 3000:3000 amaskey/test
+
+#change password
+passwd
+su local && passwd
+
+
+
+```
 **DNS Routing**
 #place all routes and IPs in /etc/hosts/, hard coded ip routes
 vi /etc/hosts
@@ -136,9 +236,8 @@ chmod 600 authorized_keys
 cat id_rsa.pub >> authorized_keys
 #all master and slave need all keys including self??
 
-Dockerfile 				#all setup and installation
+ * key_gen can be added to bootstrap.sh
+
 hadoop/etc/hadoopcore-site.xml		#configs
-bootstrap.sh				#shell script to run when container starts
-#key_gen can be added to bootstrap.sh
 
 
