@@ -111,7 +111,6 @@ docker run -it -–name=<containerName> –-hostname=<hostName> \
 ##### Sample Dockerfile
 ```bash
 # inherit from other images
-# inherit from other images
 FROM ubuntu
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -130,6 +129,15 @@ RUN apt-get -y install sudo
 RUN apt-get -y install ssh
 RUN apt-get -y install iproute
 
+#fix mongodb
+RUN apt-get -y install locales
+RUN locale-gen en_US.UTF-8
+RUN localedef -i en_GB -f UTF-8 en_US.UTF-8
+
+#new user
+RUN useradd -ms /bin/bash amaskey
+RUN usermod -aG sudo amaskey
+
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y dist-upgrade
@@ -137,16 +145,11 @@ RUN apt-get autoclean
 RUN apt-get autoremove
 
 
+USER amaskey
+WORKDIR /home/amaskey
+RUN echo "amaskey:Docker!" | chpasswd
 
-RUN useradd -m amaskey -p Docker!
-RUN usermod -aG sudo amaskey
 
-RUN su amaskey
-
-RUN mkdir meteor && cd meteor
-RUN git clone https://github.com/ayushmaskey/equipment_log.git
-
-RUN curl https://install.meteor.com/ | sh
 
 
 #RUN apt-get install -y nodejs
@@ -173,9 +176,11 @@ docker build -t <folder>/<new_imageName> .
 docker run -it --rm --name test --hostname test -p 3000:3000 amaskey/test
 
 #install meteor and download git repository
-RUN git clone https://github.com/ayushmaskey/equipment_log.git
-RUN curl https://install.meteor.com/ | sh
-RUN cd /equipment_log/app && meteor npm install
+cd
+git clone https://github.com/ayushmaskey/equipment_log.git
+curl https://install.meteor.com/ | sh
+cd /equipment_log/app
+meteor npm install
 
 
 #RUN chown amaskey -R /equipment_log && chmod 770 /equipment_log
@@ -220,14 +225,7 @@ ls, rm, mkdir, rmdir, cat, vi, sudo, su
 /home
 shell/env variables, echo, export, bashrc, profile, source cmd
 tar, gzip, zip
-#add users
-adduser (interactive) 
-useradd (from script)
-#test user hduser/hduser
-chown
-chmod 		#(change file/dir permission)
-ls -l
-apt-get update, apt-get install, rpm
+rpm
 ssh, ssh-keygen -t rsa, .ssh/, authorized_keys
 ip a, /etc/hosts, ping
 

@@ -16,15 +16,13 @@ RUN apt-get -y install curl
 RUN apt-get -y install sudo
 RUN apt-get -y install ssh
 RUN apt-get -y install iproute
+RUN apt-get -y install nodejs
+RUN apt-get -y install iputils-ping
 
 #fix mongodb
 RUN apt-get -y install locales
 RUN locale-gen en_US.UTF-8
 RUN localedef -i en_GB -f UTF-8 en_US.UTF-8
-
-#new user
-RUN useradd -m amaskey -p Docker!
-RUN usermod -aG sudo amaskey
 
 RUN apt-get update
 RUN apt-get -y upgrade
@@ -32,6 +30,18 @@ RUN apt-get -y dist-upgrade
 RUN apt-get autoclean
 RUN apt-get autoremove
 
-#RUN apt-get install -y nodejs
-#RUN apt-get -y install iputils-ping
+
+#new user
+RUN useradd --create-home --shell /bin/bash amaskey 
+RUN echo 'amaskey:Docker!' | chpasswd
+RUN usermod -aG sudo amaskey
+
+USER amaskey
+WORKDIR /home/amaskey
+
+
+
+
+
+
 
