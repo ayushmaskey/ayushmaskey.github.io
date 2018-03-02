@@ -172,6 +172,18 @@ docker build -t <folder>/<new_imageName> .
 ```docker
 docker run -it --rm --name test --hostname test -p 3000:3000 amaskey/test
 
+#install meteor and download git repository
+RUN git clone https://github.com/ayushmaskey/equipment_log.git
+RUN curl https://install.meteor.com/ | sh
+RUN cd /equipment_log/app && meteor npm install
+
+
+#RUN chown amaskey -R /equipment_log && chmod 770 /equipment_log
+#RUN su amaskey && mv /equipment_log ~/meteor
+#RUN su amaskey && cd ~ && echo "export LC_ALL=en_US.UTF-8" >> ~/.bashrc
+#RUN su amaskey && cd ~/equipment_log/app && meteor npm run start
+
+
 #change password
 passwd
 su local && passwd
