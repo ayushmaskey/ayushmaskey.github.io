@@ -368,7 +368,18 @@ choose install package
 search rsub and install
 ```
 **ssh into remote machine**
-```ssh -R 52698:localhost:52698 user@serverIP```
+```
+#linux
+ssh -R 52698:localhost:52698 user@serverIP
+
+#putty
+host_ip 
+port - 22
+category --> connection --> SSH --> Tunnels
+source port: 52698
+Destination: localhost:52698
+remote and auto
+```
 
 **on server terminal**
 ```rsub ~/path_to_file/fileName```
@@ -439,3 +450,10 @@ no capture capout interface outside
 source ~/.bashrc	#reset terminal
 
 
+## add cert to trusted
+
+```bash
+sudo mkdir /usr/share/ca-certificates/folder
+sudo cp foo.crt /usr/share/ca-certificates/folder/foo.crt
+sudo dpkg-reconfigure ca-certificates
+```
