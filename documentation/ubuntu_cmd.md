@@ -450,3 +450,10 @@ no capture capout interface outside
 source ~/.bashrc	#reset terminal
 
 
+## add cert to trusted
+
+```bash
+sudo mkdir /usr/share/ca-certificates/folder
+sudo cp foo.crt /usr/share/ca-certificates/folder/foo.crt
+sudo dpkg-reconfigure ca-certificates
+```
