@@ -22,16 +22,6 @@ docker info
 https://stackoverflow.com/questions/37458814/how-to-open-remote-files-in-sublime-text-3 
 
 
-##### commit change to image and push to hub.docker.com
-```docker
-docker commit -m "message" -a "Ayush" [container-id] finid/ubuntu_nodejs
-
-docker login -u amaskey
-
-docker tag [image Repository Name] amaskey/[repoNameFromHub]:[newTagName]
-docker push amaskey/[repoNameFromHub]:[newTagName]
-```
-
 ## Images
 
 ##### download iamge
@@ -182,20 +172,27 @@ curl https://install.meteor.com/ | sh
 cd /equipment_log/app
 meteor npm install
 
-
 #RUN chown amaskey -R /equipment_log && chmod 770 /equipment_log
 #RUN su amaskey && mv /equipment_log ~/meteor
 #RUN su amaskey && cd ~ && echo "export LC_ALL=en_US.UTF-8" >> ~/.bashrc
 #RUN su amaskey && cd ~/equipment_log/app && meteor npm run start
 
-
 #change password
 passwd
 su local && passwd
 
-
-
 ```
+
+##### commit change to image and push to hub.docker.com
+```docker
+docker commit -m "message" -a "Ayush" [container-id] finid/ubuntu_nodejs
+
+docker login -u amaskey
+
+docker tag [image Repository Name] amaskey/[repoNameFromHub]:[newTagName]
+docker push amaskey/[repoNameFromHub]:[newTagName]
+```
+
 **DNS Routing**
 #place all routes and IPs in /etc/hosts/, hard coded ip routes
 vi /etc/hosts

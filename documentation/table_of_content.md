@@ -31,7 +31,7 @@
    * [sql server](./db_sql_server.md)
  * IDE shortcuts
    * [Eclipse](./ide_eclipse_shortcuts.md)
-   * [Intellij](./ide_intellij.shortcut.md)
+   * [Intellij](./ide_intellij_shortcut.md)
    * [Sublime](./ide_sublime_shortcut.md)
  * Security Onion
    * [ELK](./so_elk.md)
