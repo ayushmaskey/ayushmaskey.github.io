@@ -17,7 +17,7 @@
    * [JavaFx](./javafx.md)
    * [Powershell](./powershell.md)
    * [Meteor](./web_meteor.md)
-     * [islandwanderer](./islandwanderer.md)
+     * [cronicle](https://github.com/ayushmaskey/equipment_log)
      * [Semantic UI](./web_semantic-ui.md)
      * [Javascript](./javascript.md)
  * [Git](./git.md)
