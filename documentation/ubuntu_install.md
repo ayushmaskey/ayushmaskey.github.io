@@ -43,7 +43,8 @@ sudo apt-get install pyton3-sklearn
 sudo pip3 install pymining
 sudo pip3 install python-craigslist
 sudo pip3 install scapy-python3
-sudo pip install elasticsearch
+sudo pip3 install elasticsearch
+sudp pip3 install requests
 ```
 
 ## sublime
