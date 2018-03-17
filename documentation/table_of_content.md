@@ -17,7 +17,7 @@
    * [JavaFx](./javafx.md)
    * [Powershell](./ide_powershell.md)
    * [Meteor](./web_meteor.md)
-     * [islandwanderer](./islandwanderer.md)
+     * [cronicle](https://github.com/ayushmaskey/equipment_log)
      * [Semantic UI](./web_semantic-ui.md)
      * [Javascript](./javascript.md)
  * [Git](./git.md)
@@ -31,7 +31,7 @@
    * [sql server](./db_sql_server.md)
  * IDE shortcuts
    * [Eclipse](./ide_eclipse_shortcuts.md)
-   * [Intellij](./ide_intellij.shortcut.md)
+   * [Intellij](./ide_intellij_shortcut.md)
    * [Sublime](./ide_sublime_shortcut.md)
  * Security Onion
    * [ELK](./so_elk.md)
@@ -50,15 +50,15 @@
  * Warehouse
    * [schema](./warehouse_schema.md)
  * Certified Ethical Hacking
-   * [foot printing and reconnaissance](#foot-printing-and-reconnaissance) 
-   * [scanning networks](#scanning-networks)
-   * [enumeration](#enumeration)
-   * [System Hacking](#system-hacking)
-   * [Malware Threats]
-   * 
-   * 
-   * 
-   * 
+   * [foot printing and reconnaissance](./ceh_2_foorprinting.md) 
+   * [scanning networks](./ceh_3_network_scanning.md)
+   * [enumeration](./ceh_4_enumeration.md)
+   * [System Hacking](./ceh_5_system_hacking.md)
+   * [Malware Threats](./ceh_6_malware_threat.md)
+   * [Sniffing](./ceh_7_sniffing.md)
+   * [Social Engineering](./ceh_8_social_engineering.md)
+   * [Denial-of-Service]((./ceh_9_denial_of_service.md)
+   * [Session Hijacking](./ceh_10_session_hijacking.md)
    * 
    * 
    * 
