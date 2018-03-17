@@ -13,8 +13,6 @@
      * Libraries
        * [pyperclip](./py_lib_pyperclip.md)
        * [reading and writing files](./py_io.md)
-   * [Haskell](./haskell.md)
-   * [JavaFx](./javafx.md)
    * [Powershell](./ide_powershell.md)
    * [Meteor](./web_meteor.md)
      * [cronicle](https://github.com/ayushmaskey/equipment_log)
@@ -23,14 +21,11 @@
  * [Git](./git.md)
  * [Jekyll](./jekyll_site.md)
  * [Docker](./docker.md)
- * [Hadoop](./hadoop.md)
  * [WOD](./wodsetup.md)
  * Database
    * [mongo](./db_mongo.md)
-   * [sqlite3](./db_sqlite3.md)
    * [sql server](./db_sql_server.md)
  * IDE shortcuts
-   * [Eclipse](./ide_eclipse_shortcuts.md)
    * [Intellij](./ide_intellij_shortcut.md)
    * [Sublime](./ide_sublime_shortcut.md)
  * Security Onion

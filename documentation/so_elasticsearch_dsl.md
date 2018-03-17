@@ -32,3 +32,6 @@ curl 'localhost:9200/_cat/indices?v'
     * there should be something easier
   * each index find all the available doc_types
   * need to get time - total traffic in some time interval
+
+ 
+[django debug toolbar](https://github.com/Benoss/django-elasticsearch-debug-toolbar)
