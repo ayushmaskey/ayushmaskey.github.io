@@ -193,18 +193,24 @@ DBCC SQLPerf(logspace)
 
 	  
 ## detect index fragmentation
+
+> bad
+ avg_fragment_size_in_pages <= 1 
+ AND p.avg_fragmentation_in_percent >= 20 
+ AND p.page_count > 2000
 ```
 SELECT dbschemas.[name] AS 'Schema',
 dbtables.[name] AS 'Table',
 dbindexes.[name] AS 'Index',
+indexstats.index_type_desc,
 indexstats.avg_fragmentation_in_percent AS 'Frag (%)',
+indexstats.avg_fragment_size_in_pages AS 'Frag pages',
 indexstats.page_count AS 'Page count'
 
 FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS indexstats
 INNER JOIN sys.tables dbtables ON dbtables.[object_id] = indexstats.[object_id]
 INNER JOIN sys.schemas dbschemas ON dbtables.[schema_id] = dbschemas.[schema_id]
-INNER JOIN sys.indexes AS dbindexes ON dbindexes.[object_id] = indexstats.[object_id]
-AND indexstats.index_id = dbindexes.index_id
+INNER JOIN sys.indexes AS dbindexes ON dbindexes.[object_id] = indexstats.[object_id] AND indexstats.index_id = dbindexes.index_id
 WHERE indexstats.database_id = DB_ID()
 
 ORDER BY indexstats.avg_fragmentation_in_percent DESC

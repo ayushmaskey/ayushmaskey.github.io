@@ -15,7 +15,7 @@
        * [reading and writing files](./py_io.md)
    * [Haskell](./haskell.md)
    * [JavaFx](./javafx.md)
-   * [Powershell](./powershell.md)
+   * [Powershell](./ide_powershell.md)
    * [Meteor](./web_meteor.md)
      * [islandwanderer](./islandwanderer.md)
      * [Semantic UI](./web_semantic-ui.md)
