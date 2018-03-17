@@ -2,29 +2,30 @@
  * Ubuntu
    * [Ubuntu Installation](./ubuntu_install.md)
    * [Ubuntu Commands](./ubuntu_cmd.md)
- * Programming
-   * Python
-     * [python basic](./py_basics.md)
-     * [Sequences - list, dict, string...](./py_sequences.md)
-     * [Regular expression](./py_regular_exp.md)
-     * [functions](./py_functions.md)
-     * [Data Abstraction](./py_data_abstraction.md)
-     * [Trees](./py_trees.md)
-     * Libraries
-       * [pyperclip](./py_lib_pyperclip.md)
-       * [reading and writing files](./py_io.md)
-   * [Powershell](./ide_powershell.md)
+ * Python
+   * [python basic](./py_basics.md)
+   * [Sequences - list, dict, string...](./py_sequences.md)
+   * [Regular expression](./py_regular_exp.md)
+   * [functions](./py_functions.md)
+   * [Data Abstraction](./py_data_abstraction.md)
+   * [Trees](./py_trees.md)
+   * Libraries
+     * [pyperclip](./py_lib_pyperclip.md)
+     * [reading and writing files](./py_io.md)
+ * Powershell
+  * [Powershell](./powershell.md)
+ * Meteor
    * [Meteor](./web_meteor.md)
-     * [cronicle](https://github.com/ayushmaskey/equipment_log)
-     * [Semantic UI](./web_semantic-ui.md)
-     * [Javascript](./javascript.md)
- * [Git](./git.md)
- * [Jekyll](./jekyll_site.md)
+   * [cronicle](https://github.com/ayushmaskey/equipment_log)
+   * [Semantic UI](./web_semantic-ui.md)
+   * [Javascript](./javascript.md)
+ * Git
+   * [Git](./git.md)
+   * [Jekyll](./jekyll_site.md)
  * [Docker](./docker.md)
  * [WOD](./wodsetup.md)
- * Database
+ * Mongo
    * [mongo](./db_mongo.md)
-   * [sql server](./db_sql_server.md)
  * IDE shortcuts
    * [Intellij](./ide_intellij_shortcut.md)
    * [Sublime](./ide_sublime_shortcut.md)
@@ -42,6 +43,7 @@
    * [database migration](./upgrade_database_migration.md)
    * [app install](./upgrade_app_installation.md)
    * [12.2.2](./upgrade_cps_12_2_2.md)
+   * [sql server](./db_sql_server.md)
  * Warehouse
    * [schema](./warehouse_schema.md)
  * Certified Ethical Hacking
