@@ -12,6 +12,7 @@
  * [wget](#wget)
  * [tar](#tar)
  * [ssh with sublime](#ssh-with-sublime)
+ * [VPN](#vpn)
 
 ## maintenance
 ```
@@ -384,6 +385,9 @@ remote and auto
 **on server terminal**
 ```rsub ~/path_to_file/fileName```
 
+## VPN
+sudo openconnect -b https://
+sudo pkill -SIGINT openconnect
 
 
 ## remote login
@@ -431,10 +435,6 @@ install dependencies
 sudo dpkg --configure -a --force-depends
 sudo apt-get install -f
 
-
-# VPN
-sudo openconnect -b https://
-sudo pkill -SIGINT openconnect
 
 ssh - add deffiehellman sha1 to ~/.ssh/config
 
