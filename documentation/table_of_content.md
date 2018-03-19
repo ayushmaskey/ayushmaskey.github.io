@@ -13,7 +13,7 @@
      * [pyperclip](./py_lib_pyperclip.md)
      * [reading and writing files](./py_io.md)
  * Powershell
-  * [Powershell](./powershell.md)
+   * [Powershell](./powershell.md)
  * Meteor
    * [Meteor](./web_meteor.md)
    * [cronicle](https://github.com/ayushmaskey/equipment_log)
