@@ -1,10 +1,12 @@
-# 24 hour - total traffic
- * request
- * response
- * statistics
- * table
+24 hour - total traffic
+
+  * request
+  * response
+  * statistics
+  *  table
 
 > request
+
 ```json
 {
   "size": 0,
@@ -84,7 +86,6 @@
 ```
 
 > response
-
 ```json
 {
   "took": 448,
@@ -353,8 +354,8 @@
   },
   "status": 200
 }
-```
 
+```
 > statistics
 ```json
 Query Duration 	448ms
