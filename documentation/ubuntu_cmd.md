@@ -432,8 +432,10 @@ sudo dpkg --configure -a --force-depends
 sudo apt-get install -f
 
 
+# VPN
+sudo openconnect -b https://
+sudo pkill -SIGINT openconnect
 
-sudo openconnect https://
 ssh - add deffiehellman sha1 to ~/.ssh/config
 
 **cisco packet capture**
