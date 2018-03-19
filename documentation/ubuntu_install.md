@@ -44,7 +44,9 @@ sudo pip3 install pymining
 sudo pip3 install python-craigslist
 sudo pip3 install scapy-python3
 sudo pip3 install elasticsearch
-sudp pip3 install requests
+sudo pip3 install elasticsearch_dsl
+sudo pip3 install requests
+sudo pip3 install PyWavelets
 ```
 
 ## sublime
