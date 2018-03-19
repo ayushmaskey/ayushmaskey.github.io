@@ -1,7 +1,10 @@
-
+Exploratory Data Analysis - python(Matplotlib, seaborn), R(ggplot2)
  * [Python and Elasticsearch]
  * [Elasticsearch DSL - Honza Kral]
- * [Python Data Science]
+ * [Python Data Science - marcobonzanini]
+ * [Data Exploration - Analytics Vidhya]
+ * [qbox]
+ 
 
 ## [Python and Elasticsearch](https://www.bing.com/videos/search?q=elasticsearch-py+tutorial&view=detail&mid=38BF6563D4D78074BC0738BF6563D4D78074BC07&FORM=VIRE)
 Date histogram 11min 18sec
@@ -64,7 +67,7 @@ for h in response:
 top_tag = response.aggregations.per_tag.bucker[0]
 ```
 
-## [Python Data Science](https://marcobonzanini.com/2015/02/02/how-to-query-elasticsearch-with-python/)
+## [Python Data Science - marcobonzanini](https://marcobonzanini.com/2015/02/02/how-to-query-elasticsearch-with-python/)
 
 ```python
 http://hostname:port/index_name/doc_type/doc_id
@@ -134,6 +137,72 @@ print("%s) %s" % (doc['_id'], doc['_source']['content']) )
 
 es.create(index="test", doc_type='articles", body={"content": "One more fox"})
 ```
+
+[Data Exploration - Analytics Vidhya](https://www.analyticsvidhya.com/blog/2017/05/beginners-guide-to-data-exploration-using-elastic-search-and-kibana/)
+
+```python
+# read data
+
+import pandas as pd
+
+train_data_path = '../folder/train_file.csv'
+test_data_path = '../folder/test_file.csv'
+
+train = pd.read_csv(train_data_path;
+print(train.shape)
+train.head
+
+test = pd.read_csv(test_data_path;
+print(test.shape)
+test.head
+
+# load to elastic
+
+from time import time
+from pyelasticsearch import ElasticSearch
+
+CHUNKSIZE=100
+
+index_name_train = "loan_prediction_train"
+doc_type_train = "av-lp_train"
+
+index_name_test = "loan_prediction_test"
+doc_type_test = "av-lp_test"
+
+
+def index_data(data_path, chunksize, index_name, doc_type):
+	f =  open(data_path)
+	csvfile = pd.read_csv(f, interator=True, chunksize=chunksize)
+
+	es = ElasticSearch('http://localhost:9200')
+
+	try:
+		es.delete_index(index_name)
+	except:
+		pass
+
+	es.create_index(index_name)
+
+	for i, df in enumerate(csvfile):
+		records = df.where(pd.notnull(df), None).T.to_dict()
+		list_records = [records[it] for it in records]
+
+		try:
+			es.bulk_index(index_name, doc_type, list_records)
+		except:
+			print("error!! skipping chunk")
+		pass
+
+
+index_data(train_data_path, CHUNKSIZE, index_name_train, doc_type_train)
+index_data(test_data_path, CHUNKSIZE, index_name_test, doc_type_test)
+```
+[qbox](https://qbox.io/blog/python-scripts-interact-elasticsearch-examples)
+
+
+
+
+
 
 
 
