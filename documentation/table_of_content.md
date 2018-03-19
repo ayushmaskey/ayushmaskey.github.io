@@ -31,6 +31,7 @@
    * [Sublime](./ide_sublime_shortcut.md)
  * Security Onion
    * [ELK](./so_elk.md)
+   * [Elastic_Python](./so_elasticsearch_tut.md)
    * [ELSA](./so_elsa.md)
    * [Kibana](./so_kibana_search.md)
    * [Security Onion](./so_security_onion.md)
