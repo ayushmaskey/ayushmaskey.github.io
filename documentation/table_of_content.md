@@ -58,15 +58,12 @@
    * [Social Engineering](./ceh_8_social_engineering.md)
    * [Denial-of-Service]((./ceh_9_denial_of_service.md)
    * [Session Hijacking](./ceh_10_session_hijacking.md)
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
-   * 
+   * [Hacking Webservers](./ceh_11_hacking_webserver.md)
+   * [Hacking Web Application](./ceh_12_hacking_web_applications.md)
+   * [SQL Injection](./ceh_13_sql_injection.md)
+   * [Hacking Wireless Networks](./ceh_14_hacking_wireless_networks.md)
+   * [Hacking Mobile Platforms](./ceh_15_hacking_mobile_platforms.md)
+   * [Evading IDS, Firewalls, and Honeypots](./ceh_16_evading_ids_firewall_honeypots.md)
+   * [Cloud Computing](./ceh_17_cloud_computing.md)
+   * [Cryptography](./ceh_18_cryptography.md)
 

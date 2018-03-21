@@ -4,6 +4,8 @@ Exploratory Data Analysis - python(Matplotlib, seaborn), R(ggplot2)
  * [Python Data Science - marcobonzanini]
  * [Data Exploration - Analytics Vidhya]
  * [qbox]
+ * [bitquabit Part 1]
+ * [bitquabit Part 2]
  
 
 ## [Python and Elasticsearch](https://www.bing.com/videos/search?q=elasticsearch-py+tutorial&view=detail&mid=38BF6563D4D78074BC0738BF6563D4D78074BC07&FORM=VIRE)
@@ -200,6 +202,9 @@ index_data(test_data_path, CHUNKSIZE, index_name_test, doc_type_test)
 [qbox](https://qbox.io/blog/python-scripts-interact-elasticsearch-examples)
 
 
+[bitquabit Part 1](https://bitquabit.com/post/having-fun-python-and-elasticsearch-part-1/)
+
+[bitquabit Part 2](https://bitquabit.com/post/having-fun-python-and-elasticsearch-part-2/)
 
 
 

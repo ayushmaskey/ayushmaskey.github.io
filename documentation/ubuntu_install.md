@@ -33,6 +33,8 @@ sudo apt-get update -d packageName	#download files but not install
 
 ## python
 ```bash
+ls /usr/local/lib/python3.*/dist-packages
+
 sudo apt-get install -y python3-pip
 sudo apt-get install -y python-pip
 sudo apt-get install python3-numpy
