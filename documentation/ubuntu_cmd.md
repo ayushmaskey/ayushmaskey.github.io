@@ -386,9 +386,10 @@ remote and auto
 ```rsub ~/path_to_file/fileName```
 
 ## VPN
+```bash
 sudo openconnect -b https://
 sudo pkill -SIGINT openconnect
-
+```
 
 ## remote login
 **__ Host machine settings __**

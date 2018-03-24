@@ -1,6 +1,6 @@
 Exploratory Data Analysis - python(Matplotlib, seaborn), R(ggplot2)
  * [Elasticsearch py](./so_elasticsearch_py.md)
- * [Elasticsearch dsl](./so_elasticsearch_dsl.py)
+ * [Elasticsearch dsl](./so_elasticsearch_dsl.md)
  * [Python and Elasticsearch - full text search](#python-and-elasticsearch-full-text-search)
  * [Elasticsearch DSL - Honza Kral](#elasticsearch-dsl-honza-kral)
  * [Python Data Science - marcobonzanini](#python-data-science-marcobonzanini)
