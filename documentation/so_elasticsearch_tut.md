@@ -1,14 +1,16 @@
 Exploratory Data Analysis - python(Matplotlib, seaborn), R(ggplot2)
- * [Python and Elasticsearch]
- * [Elasticsearch DSL - Honza Kral]
- * [Python Data Science - marcobonzanini]
- * [Data Exploration - Analytics Vidhya]
- * [qbox]
- * [bitquabit Part 1]
- * [bitquabit Part 2]
+ * [Elasticsearch py](./so_elasticsearch_py.md)
+ * [Elasticsearch dsl](./so_elasticsearch_dsl.py)
+ * [Python and Elasticsearch - full text search](#python-and-elasticsearch-full-text-search)
+ * [Elasticsearch DSL - Honza Kral](#elasticsearch-dsl-honza-kral)
+ * [Python Data Science - marcobonzanini](#python-data-science-marcobonzanini)
+ * [Data Exploration - Analytics Vidhya](#data-exploration-analytics-vidhya)
+ * [qbox - python script than interact with es](#qbox-python-script-than-interact-with-es)
+ * [bitquabit - having fun Part 1](#bitquabit-having-fun-part-1)
+ * [bitquabit - having fun Part 2](#bitquabit-having-fun-part-2)
  
 
-## [Python and Elasticsearch](https://www.bing.com/videos/search?q=elasticsearch-py+tutorial&view=detail&mid=38BF6563D4D78074BC0738BF6563D4D78074BC07&FORM=VIRE)
+## [Python and Elasticsearch - full text search](https://www.bing.com/videos/search?q=elasticsearch-py+tutorial&view=detail&mid=38BF6563D4D78074BC0738BF6563D4D78074BC07&FORM=VIRE)
 Date histogram 11min 18sec
 
 ## [Elasticsearch DSL - Honza Kral](https://www.bing.com/videos/search?q=elasticsearch-py+tutorial&&view=detail&mid=5600FB18BE79857AAC575600FB18BE79857AAC57&&FORM=VDRVRV)
@@ -124,23 +126,9 @@ def create_doc(uri, doc_data={}):
 	print(response)
 ```
 
-## Elasticsearch-py
-```python
-pip3 install elasticsearch
-
-from elasticsearch import Elasticsearch
-
-es = Elasticsearch()
-res= es.search(index="test", doc_type="article, body={"query": {"match": {"content": "fox"}}})
-print("%d documents found" % res['hits']['total'])
-for doc in res['hits']['hits']:
-print("%s) %s" % (doc['_id'], doc['_source']['content']) )
 
 
-es.create(index="test", doc_type='articles", body={"content": "One more fox"})
-```
-
-[Data Exploration - Analytics Vidhya](https://www.analyticsvidhya.com/blog/2017/05/beginners-guide-to-data-exploration-using-elastic-search-and-kibana/)
+## [Data Exploration - Analytics Vidhya](https://www.analyticsvidhya.com/blog/2017/05/beginners-guide-to-data-exploration-using-elastic-search-and-kibana/)
 
 ```python
 # read data
@@ -199,12 +187,12 @@ def index_data(data_path, chunksize, index_name, doc_type):
 index_data(train_data_path, CHUNKSIZE, index_name_train, doc_type_train)
 index_data(test_data_path, CHUNKSIZE, index_name_test, doc_type_test)
 ```
-[qbox](https://qbox.io/blog/python-scripts-interact-elasticsearch-examples)
+## [qbox - python script than interact with es](https://qbox.io/blog/python-scripts-interact-elasticsearch-examples)
 
 
-[bitquabit Part 1](https://bitquabit.com/post/having-fun-python-and-elasticsearch-part-1/)
+## [bitquabit - having fun Part 1](https://bitquabit.com/post/having-fun-python-and-elasticsearch-part-1/)
 
-[bitquabit Part 2](https://bitquabit.com/post/having-fun-python-and-elasticsearch-part-2/)
+## [bitquabit - having fun Part 2](https://bitquabit.com/post/having-fun-python-and-elasticsearch-part-2/)
 
 
 
