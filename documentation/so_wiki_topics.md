@@ -11,7 +11,7 @@
 *   [Alert Data Fields](https://github.com/Security-Onion-Solutions/security-onion/wiki/Alert-Data-Fields)
 *   [Alienvault OTX](https://github.com/Security-Onion-Solutions/security-onion/wiki/Alienvault-OTX)
 *   [Analyst VM](https://github.com/Security-Onion-Solutions/security-onion/wiki/Analyst-VM)
-*   [Architecture](https://github.com/Security-Onion-Solutions/security-onion/wiki/Architecture)
+*   ~~[Architecture](https://github.com/Security-Onion-Solutions/security-onion/wiki/Architecture)~~
 *   [Automating Setup](https://github.com/Security-Onion-Solutions/security-onion/wiki/Automating-Setup)
 *   [Autoruns](https://github.com/Security-Onion-Solutions/security-onion/wiki/Autoruns)
 *   [Beats](https://github.com/Security-Onion-Solutions/security-onion/wiki/Beats)
@@ -22,10 +22,10 @@
 *   [Bro Fields](https://github.com/Security-Onion-Solutions/security-onion/wiki/Bro-Fields)
 *   [CapMe](https://github.com/Security-Onion-Solutions/security-onion/wiki/CapMe)
 *   [ChangingIPAddress](https://github.com/Security-Onion-Solutions/security-onion/wiki/ChangingIPAddress)
-*   [Cheat Sheet](https://github.com/Security-Onion-Solutions/security-onion/wiki/Cheat-Sheet)
+*   ~~[Cheat Sheet](https://github.com/Security-Onion-Solutions/security-onion/wiki/Cheat-Sheet)~~
 *   [CloudClient](https://github.com/Security-Onion-Solutions/security-onion/wiki/CloudClient)
 *   [CloudClient12.04](https://github.com/Security-Onion-Solutions/security-onion/wiki/CloudClient12.04)
-*   [Conference](https://github.com/Security-Onion-Solutions/security-onion/wiki/Conference)
+*   ~~[Conference](https://github.com/Security-Onion-Solutions/security-onion/wiki/Conference)~~
 *   [ConnectingtoSguil](https://github.com/Security-Onion-Solutions/security-onion/wiki/ConnectingtoSguil)
 *   [CriticalStackIntelClient](https://github.com/Security-Onion-Solutions/security-onion/wiki/CriticalStackIntelClient)
 *   [Curator](https://github.com/Security-Onion-Solutions/security-onion/wiki/Curator)
@@ -60,16 +60,16 @@
 *   [FreqServer](https://github.com/Security-Onion-Solutions/security-onion/wiki/FreqServer)
 *   [Full Packet Capture](https://github.com/Security-Onion-Solutions/security-onion/wiki/Full-Packet-Capture)
 *   [GRR](https://github.com/Security-Onion-Solutions/security-onion/wiki/GRR)
-*   [Hardware](https://github.com/Security-Onion-Solutions/security-onion/wiki/Hardware)
+*   ~~[Hardware](https://github.com/Security-Onion-Solutions/security-onion/wiki/Hardware)~~
 *   [Help](https://github.com/Security-Onion-Solutions/security-onion/wiki/Help)
 *   [High Performance Tuning](https://github.com/Security-Onion-Solutions/security-onion/wiki/High-Performance-Tuning)
 *   [http_agent](https://github.com/Security-Onion-Solutions/security-onion/wiki/http_agent)
 *   [HWE](https://github.com/Security-Onion-Solutions/security-onion/wiki/HWE)
 *   [ICMP Anomaly Detection](https://github.com/Security-Onion-Solutions/security-onion/wiki/ICMP-Anomaly-Detection)
-*   [Installation](https://github.com/Security-Onion-Solutions/security-onion/wiki/Installation)
+*   ~~[Installation](https://github.com/Security-Onion-Solutions/security-onion/wiki/Installation)~~
 *   [InstallingOnUbuntu](https://github.com/Security-Onion-Solutions/security-onion/wiki/InstallingOnUbuntu)
 *  ~~[IntroductionToSecurityOnion](https://github.com/Security-Onion-Solutions/security-onion/wiki/IntroductionToSecurityOnion)~~
-*   [IntroductionWalkthrough](https://github.com/Security-Onion-Solutions/security-onion/wiki/IntroductionWalkthrough)
+*   ~~[IntroductionWalkthrough](https://github.com/Security-Onion-Solutions/security-onion/wiki/IntroductionWalkthrough)~~
 *   [Kibana](https://github.com/Security-Onion-Solutions/security-onion/wiki/Kibana)
 *   [Links](https://github.com/Security-Onion-Solutions/security-onion/wiki/Links)
 *   [Logstash](https://github.com/Security-Onion-Solutions/security-onion/wiki/Logstash)
@@ -89,7 +89,7 @@
 *   [Passwords](https://github.com/Security-Onion-Solutions/security-onion/wiki/Passwords)
 *   [Pcaps](https://github.com/Security-Onion-Solutions/security-onion/wiki/Pcaps)
 *   [PF_RING](https://github.com/Security-Onion-Solutions/security-onion/wiki/PF_RING)
-*   [PostInstallation](https://github.com/Security-Onion-Solutions/security-onion/wiki/PostInstallation)
+*   ~~[PostInstallation](https://github.com/Security-Onion-Solutions/security-onion/wiki/PostInstallation)~~
 *   [ProductionDeployment](https://github.com/Security-Onion-Solutions/security-onion/wiki/ProductionDeployment)
 *   [ProjectHome](https://github.com/Security-Onion-Solutions/security-onion/wiki/ProjectHome)
 *   [Proxy](https://github.com/Security-Onion-Solutions/security-onion/wiki/Proxy)
@@ -105,7 +105,7 @@
 *   [Security](https://github.com/Security-Onion-Solutions/security-onion/wiki/Security)
 *   [Security Onion 14.04 Release Notes](https://github.com/Security-Onion-Solutions/security-onion/wiki/Security-Onion-14.04-Release-Notes)
 *   [SensorStopsSeeingTraffic](https://github.com/Security-Onion-Solutions/security-onion/wiki/SensorStopsSeeingTraffic)
-*   [Services](https://github.com/Security-Onion-Solutions/security-onion/wiki/Services)
+*   ~~[Services](https://github.com/Security-Onion-Solutions/security-onion/wiki/Services)~~
 *   [Sguil](https://github.com/Security-Onion-Solutions/security-onion/wiki/Sguil)
 *   [Snorby](https://github.com/Security-Onion-Solutions/security-onion/wiki/Snorby)
 *   [Snort](https://github.com/Security-Onion-Solutions/security-onion/wiki/Snort)
@@ -116,17 +116,17 @@
 *   [Suricata](https://github.com/Security-Onion-Solutions/security-onion/wiki/Suricata)
 *   [Syslog](https://github.com/Security-Onion-Solutions/security-onion/wiki/Syslog)
 *   [Sysmon](https://github.com/Security-Onion-Solutions/security-onion/wiki/Sysmon)
-*   [tcl](https://github.com/Security-Onion-Solutions/security-onion/wiki/tcl)
+*   e[tcl](https://github.com/Security-Onion-Solutions/security-onion/wiki/tcl)
 *   [TeamMembers](https://github.com/Security-Onion-Solutions/security-onion/wiki/TeamMembers)
 *   [ThirdPartyIntegration](https://github.com/Security-Onion-Solutions/security-onion/wiki/ThirdPartyIntegration)
-*   [TimeZones](https://github.com/Security-Onion-Solutions/security-onion/wiki/TimeZones)
+*   ~~[TimeZones](https://github.com/Security-Onion-Solutions/security-onion/wiki/TimeZones)~~
 *   [Tools](https://github.com/Security-Onion-Solutions/security-onion/wiki/Tools)
-*   [TroubleBooting](https://github.com/Security-Onion-Solutions/security-onion/wiki/TroubleBooting)
+*   ~~[TroubleBooting](https://github.com/Security-Onion-Solutions/security-onion/wiki/TroubleBooting)~~
 *   [Upgrade](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
 *   [Upgrading from 12.04 to 14.04](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrading-from-12.04-to-14.04)
-*   [Use Cases](https://github.com/Security-Onion-Solutions/security-onion/wiki/Use-Cases)
-*   [Videos](https://github.com/Security-Onion-Solutions/security-onion/wiki/Videos)
+*   ~~[Use Cases](https://github.com/Security-Onion-Solutions/security-onion/wiki/Use-Cases)~~
+*   ~~[Videos](https://github.com/Security-Onion-Solutions/security-onion/wiki/Videos)~~~~
 *   [VLAN Traffic](https://github.com/Security-Onion-Solutions/security-onion/wiki/VLAN-Traffic)
-*   [VMWare Walkthrough](https://github.com/Security-Onion-Solutions/security-onion/wiki/VMWare-Walkthrough)
+*   ~~[VMWare Walkthrough](https://github.com/Security-Onion-Solutions/security-onion/wiki/VMWare-Walkthrough)~~
 *   [WipingSnorby](https://github.com/Security-Onion-Solutions/security-onion/wiki/WipingSnorby)
 *   [Xplico](https://github.com/Security-Onion-Solutions/security-onion/wiki/Xplico)
