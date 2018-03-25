@@ -12,7 +12,7 @@
 *   [Alienvault OTX](https://github.com/Security-Onion-Solutions/security-onion/wiki/Alienvault-OTX)
 *   [Analyst VM](https://github.com/Security-Onion-Solutions/security-onion/wiki/Analyst-VM)
 *   ~~[Architecture](https://github.com/Security-Onion-Solutions/security-onion/wiki/Architecture)~~
-*   [Automating Setup](https://github.com/Security-Onion-Solutions/security-onion/wiki/Automating-Setup)
+*   ~~[Automating Setup](https://github.com/Security-Onion-Solutions/security-onion/wiki/Automating-Setup)~~
 *   [Autoruns](https://github.com/Security-Onion-Solutions/security-onion/wiki/Autoruns)
 *   [Beats](https://github.com/Security-Onion-Solutions/security-onion/wiki/Beats)
 *   [Best Practices](https://github.com/Security-Onion-Solutions/security-onion/wiki/Best-Practices)
@@ -25,7 +25,7 @@
 *   ~~[Cheat Sheet](https://github.com/Security-Onion-Solutions/security-onion/wiki/Cheat-Sheet)~~
 *   [CloudClient](https://github.com/Security-Onion-Solutions/security-onion/wiki/CloudClient)
 *   [CloudClient12.04](https://github.com/Security-Onion-Solutions/security-onion/wiki/CloudClient12.04)
-*   ~~[Conference](https://github.com/Security-Onion-Solutions/security-onion/wiki/Conference)~~
+*   [Conference](https://github.com/Security-Onion-Solutions/security-onion/wiki/Conference)
 *   [ConnectingtoSguil](https://github.com/Security-Onion-Solutions/security-onion/wiki/ConnectingtoSguil)
 *   [CriticalStackIntelClient](https://github.com/Security-Onion-Solutions/security-onion/wiki/CriticalStackIntelClient)
 *   [Curator](https://github.com/Security-Onion-Solutions/security-onion/wiki/Curator)
@@ -119,13 +119,13 @@
 *   e[tcl](https://github.com/Security-Onion-Solutions/security-onion/wiki/tcl)
 *   [TeamMembers](https://github.com/Security-Onion-Solutions/security-onion/wiki/TeamMembers)
 *   [ThirdPartyIntegration](https://github.com/Security-Onion-Solutions/security-onion/wiki/ThirdPartyIntegration)
-*   ~~[TimeZones](https://github.com/Security-Onion-Solutions/security-onion/wiki/TimeZones)~~
+*   [TimeZones](https://github.com/Security-Onion-Solutions/security-onion/wiki/TimeZones)
 *   [Tools](https://github.com/Security-Onion-Solutions/security-onion/wiki/Tools)
 *   ~~[TroubleBooting](https://github.com/Security-Onion-Solutions/security-onion/wiki/TroubleBooting)~~
 *   [Upgrade](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
 *   [Upgrading from 12.04 to 14.04](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrading-from-12.04-to-14.04)
 *   ~~[Use Cases](https://github.com/Security-Onion-Solutions/security-onion/wiki/Use-Cases)~~
-*   ~~[Videos](https://github.com/Security-Onion-Solutions/security-onion/wiki/Videos)~~~~
+*   [Videos](https://github.com/Security-Onion-Solutions/security-onion/wiki/Videos)
 *   [VLAN Traffic](https://github.com/Security-Onion-Solutions/security-onion/wiki/VLAN-Traffic)
 *   ~~[VMWare Walkthrough](https://github.com/Security-Onion-Solutions/security-onion/wiki/VMWare-Walkthrough)~~
 *   [WipingSnorby](https://github.com/Security-Onion-Solutions/security-onion/wiki/WipingSnorby)

@@ -13,6 +13,7 @@
  * [tar](#tar)
  * [ssh with sublime](#ssh-with-sublime)
  * [VPN](#vpn)
+ * [firewall](#firewall)
 
 ## maintenance
 ```
@@ -390,6 +391,14 @@ remote and auto
 sudo openconnect -b https://
 sudo pkill -SIGINT openconnect
 ```
+
+## [firewall](https://help.ubuntu.com/community/UFW)
+* enable `sudo ufw enable`
+* disbale `sudo ufw disable`
+* status `sudo ufw status`
+* allow `sudo ufw allow 443/tcp`
+* allow range `sudo ufw allow 6000:6010`
+* deny `sudo ufw deny 443`
 
 ## remote login
 **__ Host machine settings __**

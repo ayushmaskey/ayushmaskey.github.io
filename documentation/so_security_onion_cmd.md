@@ -81,66 +81,64 @@ sudo nsm_sensor_ps-stop --only-bro
 ## config
 
  
-* sensor config file ```bash /etc/nsm/$host-interface/snort.conf```
+* sensor config file `bash /etc/nsm/$host-interface/snort.conf`
 * update 
 ```bash 
 $HOME_NET 
 EXTERNAL_NET
 ```
 
-* bro config  file ```bash /opt/bro/etc/network.cfg```
+* bro config  file ` /opt/bro/etc/network.cfg`
 
-* create IDS alert ```bash curl http://testmyids.com ```
+* create IDS alert ` curl http://testmyids.com `
 
-* sguil --> open GUI
+* sguil -->  GUI
 
 * squert --> https://hostname
 
-* squil 
-```bash
-/etc/nsm/securityonion.conf
+* squil `/etc/nsm/securityonion.conf` change `DAYSTOKEEP: 30 (default)`
 
-DAYSTOKEEP: 30 (default)
-```
-
-## new user 
-```bash sudo nsm_server_user-add ```
+## new user ` sudo nsm_server_user-add `
 
 ## [firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/firewall)
+> new firewall - only 22 open by default
 
-[old firewall doc](https://github.com/Security-Onion-Solutions/security-onion/wiki/Firewall-old)
-> firewall - only 22 open by default
+* automate `so-allow`
 
+#### [old firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/Firewall-old)
+* allow
 ```bash
-
-so-allow 
-
 sudo ufw  allow proto tcp from ip_address to any port 22,443,7734,514,5601
 sudo ufw  allow proto udp from ip_address to any port 1514
-
+```
+* delete
+```bash
 sudo ufw delete allow proto tcp from ip_address to any port 22,443,7734,514,5601
 sudo ufw delete allow proto udp from ip_address to any port 1514
+```
+* firewall status `sudo ufw status`
 
-sudo ufw status
-
-#add rule to docker iptable
+* add rule to docker iptable
+```bash
 sudo iptables -I DOCKER-USER ! -i docker0 -o docker0 -s ip_address -p tcp --dport 5044 -j ACCEPT
+```
 
-#view rule from docker iptable
-sudo iptables -L DOCKER-USER rule_num
+* view rule from docker iptable `sudo iptables -L DOCKER-USER rule_num`
 
-#remove rule from docker iptable
-sudo iptables -D DOCKER-USER rule_num
+* remove rule from docker iptable `sudo iptables -D DOCKER-USER rule_num`
 
-# port number: app
+* port number: app
 5601: Kibana
-1514: ossec
+1514/udp: ossec
 22: ssh
-443: https
-514: syslog-ng
+443: https/ squert/ CapMe / Kibana
+514: syslog
 9200: elasticsearch
 444: 
-7734: 
+7734: sguil client
+7736: sguil sensor
+4505: salt??
+4506: salt??
 ```
 ## [update](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
 ```
