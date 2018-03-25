@@ -1,12 +1,15 @@
 ## Security Onion
- * [back to ToC](./table_of_content.md)
- * [security onion](#security-onion)
-  * [overview](#overview)
-  * [services running](#services-running)
-  * [so update](#so-update)
+
+Commands
+  * [services](#services)
+  * [config](#config)
+  * [new user](#new-user)
+  * [firewall](#firewall)
+  * [update](#update)
+  * [alerts](#alerts)
+
   * [interfaces](#interfaces)
   * [docker containers](#docker-containers)
-  * [so_firewall](#so-firewall)
   * [access components](#access-components)
   * [config files](#config-files)
   * [log files](#log-files)
@@ -26,34 +29,132 @@
  * [apache](#apache)
  * [my-sql](#my-sql)
  
-## security onion
 
-## overview 
-* linux distro build on ubuntu
-* includes tools like snorby, 
-## services running
+## services
+
+* all services
 ```bash
-sudo sostat |less
-```
-data source available from elastic search
-```
-curl 'localhost:9200/_cat/indices?v'
+sudo services nsm status
+sudo service nsm start
+sudo service nsm stop
+sudo service nsm restart
 ```
 
-## [so update](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
+* squil-server 
+```bash 
+sudo nsm_server_ps-status
+sudo nsm_server_ps-start
+sudo nsm_server_ps-stop
+sudo nsm_server_ps-restart 
 ```
+
+* sensors
+```bash
+sudo nsm_sensort_ps-* -?
+sudo nsm_sensor_ps-restart
+```
+
+* bro
+```bash
+sudo nsm_sensor_ps-status --only-bro
+sudo nsm_sensor_ps-stop --only-bro
+```
+
+* ossec_agent
+* betsniff-ng
+* pcap_agent
+* snort_agent-1
+* snort-1
+* banyard2-1
+
+* general statistics
+```
+sudo sostat |less
+
+```
+
+## config
+sosetup
+
+* sensor config file ```bash /etc/nsm/$host-interface/snort.conf```
+* update 
+```bash 
+$HOME_NET 
+EXTERNAL_NET
+```
+
+* bro config  file ```bash /opt/bro/etc/network.cfg```
+
+* create IDS alert ```bash curl http://testmyids.com ```
+
+* sguil --> open GUI
+
+* squert --> https://hostname
+
+* squil 
+```bash
+/etc/nsm/securityonion.conf
+
+DAYSTOKEEP: 30 (default)
+```
+
+## new user 
+```bash sudo nsm_server_user-add ```
+
+## [firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/firewall)
+
+> firewall - only 22 open by default
+
+```bash
+
+so-allow 
+
+sudo ufw  allow proto tcp from ip_address to any port 22,443,7734,514,5601
+sudo ufw  allow proto udp from ip_address to any port 1514
+
+sudo ufw delete allow proto tcp from ip_address to any port 22,443,7734,514,5601
+sudo ufw delete allow proto udp from ip_address to any port 1514
+
+sudo ufw status
+
+#add rule to docker iptable
+sudo iptables -I DOCKER-USER ! -i docker0 -o docker0 -s ip_address -p tcp --dport 5044 -j ACCEPT
+
+#view rule from docker iptable
+sudo iptables -L DOCKER-USER rule_num
+
+#remove rule from docker iptable
+sudo iptables -D DOCKER-USER rule_num
+
+# port number: app
+5601: Kibana
+1514: ossec
+22: ssh
+443: https
+514: syslog-ng
+9200: elasticsearch
+444: 
+7734: 
+```
+## [update](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
+```
+
 #byobu before updating
+
 # install byobu
 sudo apt-get install byobu
+
 # enable byobu
 byobu-enable
-# you're now ready to update
 
+# you're now ready to update
 
 #ubuntu and security onion
 sudo soup
+
 #snort/suricata rules
 sudo rule-update
+
 #bro
 sudo nsm_sensor_ps-restart --only-bro
 
@@ -64,15 +165,16 @@ sudo apt-get update ; sudo apt-get install securityonion-pfring-module ; sudo ap
 sudo apt-get install --reinstall securityonion-pfring-module
 ```
 
-## services
-* squil-server
-* ossec_agent
-* bro
-* betsniff-ng
-* pcap_agent
-* snort_agent-1
-* snort-1
-banyard2-1
+
+## [alerts](https://github.com/Security-Onion-Solutions/security-onion/wiki/ManagingAlerts)
+
+
+
+
+
+
+
+
 
 ## interfaces
 docker0 --> elk docker
@@ -97,33 +199,7 @@ lo --> 17.2GB in, 17.2GB out
 **so-domainstats**
 **so-freqserver** 
 
-## [so_firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/firewall)
-```
-sudo ufw  allow proto tcp from ip_address to any port 22,443,7734,514,5601
-sudo ufw  allow proto udp from ip_address to any port 1514
 
-sudo ufw delete allow proto tcp from ip_address to any port 22,443,7734,514,5601
-sudo ufw delete allow proto udp from ip_address to any port 1514
-
-sudo ufw status
-
-#add rule to docker iptable
-sudo iptables -I DOCKER-USER ! -i docker0 -o docker0 -s ip_address -p tcp --dport 5044 -j ACCEPT
-
-#view rule from docker iptable
-sudo iptables -L DOCKER-USER rule_num
-
-#remove rule from docker iptable
-sudo iptables -D DOCKER-USER rule_num
-#
-5601: Kibana
-1514: ossec data collection
-22: ssh
-443: https
-514: 
-444: 
-7734: 
-```
 
 ## access components
 
@@ -218,7 +294,10 @@ so-allow
 option - b
 ip of client
 ```
-
+data source available from elastic search
+```
+curl 'localhost:9200/_cat/indices?v'
+```
 
 ## [BRO](https://www.bro.org/)
 * [github](https://github.com/bro)

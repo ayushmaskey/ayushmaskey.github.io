@@ -59,7 +59,7 @@ Core Components
  * active response
  * corelate host-based events with network-based events to identify attack
 
-## Analysis Tool: [squil](./so_sguil.md)
+## Analysis Tool: [sguil](./so_sguil.md)
  * provides visibility into event data being collected and context to validate the detection
  * GUI to view snort, suricata, ossec and bro HTTP and PRADS (passive real-time asset detection system) alerts
  * allows pivot from alert into packet capture via wireshark or networkMiner
@@ -68,9 +68,25 @@ Core Components
  * query all packets captured
  * primary tool of so to provide context around given alert
 
+## Analysis tool: [squert](./so_squert.md)
+ * query sguil database
+ * provide visualization 
+
+## [ELSA](https://code.google.com/p/enterprise-log-search-and-archive/)
+
+## [ELK](./so_elk.md)
 
 
 
+# Deployment
+ * distributed client-server model
+ * sensors --> client
+ * can be run on single physical machine or virtual machine
+ * distributed sensors throughout infrastructure and report back to designated server
+
+ * Standalone
+ * Server-sensor
+ * Hybrid
 
 
 

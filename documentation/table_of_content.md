@@ -30,6 +30,7 @@
    * [Intellij](./ide_intellij_shortcut.md)
    * [Sublime](./ide_sublime_shortcut.md)
  * Security Onion
+   * [TODO](./so_todo.md)
    * [Security Onion Overview](./so_security_onion.md)
      * [Seurity Onion Cmd](./so_security_onion_cmd.md)
    * [ELK](./so_elk.md)
@@ -40,6 +41,8 @@
    * [Kibana](./so_kibana_search.md)
    * [bro](./so_bro.md)
    * [Snort](./so_snort.md)
+   * [sguil](./so_sguil.md)
+   * [squert](./so_squert.md)
    * [netsniff-ng](./so_netsniff-ng.md)
    * [ossec](./so_ossec.md)
    * [cif](./so_cif.md)
