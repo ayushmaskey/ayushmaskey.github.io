@@ -69,7 +69,7 @@
 *   ~~[Installation](https://github.com/Security-Onion-Solutions/security-onion/wiki/Installation)~~
 *   [InstallingOnUbuntu](https://github.com/Security-Onion-Solutions/security-onion/wiki/InstallingOnUbuntu)
 *  ~~[IntroductionToSecurityOnion](https://github.com/Security-Onion-Solutions/security-onion/wiki/IntroductionToSecurityOnion)~~
-*   ~~[IntroductionWalkthrough](https://github.com/Security-Onion-Solutions/security-onion/wiki/IntroductionWalkthrough)~~
+*   [IntroductionWalkthrough](https://github.com/Security-Onion-Solutions/security-onion/wiki/IntroductionWalkthrough)
 *   [Kibana](https://github.com/Security-Onion-Solutions/security-onion/wiki/Kibana)
 *   [Links](https://github.com/Security-Onion-Solutions/security-onion/wiki/Links)
 *   [Logstash](https://github.com/Security-Onion-Solutions/security-onion/wiki/Logstash)

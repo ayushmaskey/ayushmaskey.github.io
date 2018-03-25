@@ -1,36 +1,45 @@
 ## Security Onion
 
 Commands
+  * [automating setup](#automating-setup)
   * [services](#services)
   * [config](#config)
   * [new user](#new-user)
   * [firewall](#firewall)
   * [update](#update)
   * [alerts](#alerts)
-
   * [interfaces](#interfaces)
   * [docker containers](#docker-containers)
   * [access components](#access-components)
   * [config files](#config-files)
   * [log files](#log-files)
- * [SGUIL](#squil)
- * [SQUERT](#squert)
- * [ossec](#ossec)
- * [beat](#beat)
- * [BRO](#bro)
- * [SNORT](#snort)
- * [LOGSTASH](#logstash)
- * [ELASTICSEARCH](#elasticsearch)
- * [KIBANA](#kibana)
- * [pulled port](#pulled-pork)
- * [banyard2-1](#banyard2-1)
- * [pf_ring](#pf_ring)
- * [CapMe](#capme)
- * [apache](#apache)
- * [my-sql](#my-sql)
+  * [SGUIL](#squil)
+  * [SQUERT](#squert)
+  * [ossec](#ossec)
+  * [beat](#beat)
+  * [BRO](#bro)
+  * [SNORT](#snort)
+  * [LOGSTASH](#logstash)
+  * [ELASTICSEARCH](#elasticsearch)
+  * [KIBANA](#kibana)
+  * [pulled port](#pulled-pork)
+  * [banyard2-1](#banyard2-1)
+  * [pf_ring](#pf_ring)
+  * [CapMe](#capme)
+  * [apache](#apache)
+  * [my-sql](#my-sql)
  
+## [automating setup](https://github.com/Security-Onion-Solutions/security-onion/wiki/Automating-Setup) 
+* automating setup ` sosetup `
+* $location `/usr/share/securityonion/sosetup.conf`
+* make a copy before ending `cp $location ~ && nano ~/sosetup.conf`
+* another option ` sosetup -w ~/sosetup.conf ` and answer questions
+* testing / running setup ` sudo sosetup -f ~/sosetup.conf ` 
+
 
 ## services
+
+* general statistics ` sudo sostat | less `
 
 * all services
 ```bash
@@ -50,7 +59,7 @@ sudo nsm_server_ps-restart
 
 * sensors
 ```bash
-sudo nsm_sensort_ps-* -?
+sudo nsm_sensor_ps-* -?
 sudo nsm_sensor_ps-restart
 ```
 
@@ -67,15 +76,11 @@ sudo nsm_sensor_ps-stop --only-bro
 * snort-1
 * banyard2-1
 
-* general statistics
-```
-sudo sostat |less
 
-```
 
 ## config
-sosetup
 
+ 
 * sensor config file ```bash /etc/nsm/$host-interface/snort.conf```
 * update 
 ```bash 
