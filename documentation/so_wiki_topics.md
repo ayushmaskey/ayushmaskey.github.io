@@ -29,7 +29,7 @@
 *   [ConnectingtoSguil](https://github.com/Security-Onion-Solutions/security-onion/wiki/ConnectingtoSguil)
 *   [CriticalStackIntelClient](https://github.com/Security-Onion-Solutions/security-onion/wiki/CriticalStackIntelClient)
 *   [Curator](https://github.com/Security-Onion-Solutions/security-onion/wiki/Curator)
-*   [CustomELSAParsers](https://github.com/Security-Onion-Solutions/security-onion/wiki/CustomELSAParsers)
+*   ~~[CustomELSAParsers](https://github.com/Security-Onion-Solutions/security-onion/wiki/CustomELSAParsers)~~
 *   [CyberChef](https://github.com/Security-Onion-Solutions/security-onion/wiki/CyberChef)
 *   [Data Fields](https://github.com/Security-Onion-Solutions/security-onion/wiki/Data-Fields)
 *   [DeployingNtopng](https://github.com/Security-Onion-Solutions/security-onion/wiki/DeployingNtopng)
@@ -48,14 +48,14 @@
 *   [Elastic RC3](https://github.com/Security-Onion-Solutions/security-onion/wiki/Elastic-RC3)
 *   [Elastic RC4](https://github.com/Security-Onion-Solutions/security-onion/wiki/Elastic-RC4)
 *   [Elasticsearch](https://github.com/Security-Onion-Solutions/security-onion/wiki/Elasticsearch)
-*   [ELSA](https://github.com/Security-Onion-Solutions/security-onion/wiki/ELSA)
-*   [ELSA to Elastic](https://github.com/Security-Onion-Solutions/security-onion/wiki/ELSA-to-Elastic)
-*   [ELSAQueryTips](https://github.com/Security-Onion-Solutions/security-onion/wiki/ELSAQueryTips)
+*  ~~ [ELSA](https://github.com/Security-Onion-Solutions/security-onion/wiki/ELSA)~~
+*   ~~[ELSA to Elastic](https://github.com/Security-Onion-Solutions/security-onion/wiki/ELSA-to-Elastic)~~
+*   ~~[ELSAQueryTips](https://github.com/Security-Onion-Solutions/security-onion/wiki/ELSAQueryTips)~~
 *   [Email](https://github.com/Security-Onion-Solutions/security-onion/wiki/Email)
 *   [FAQ](https://github.com/Security-Onion-Solutions/security-onion/wiki/FAQ)
 *   [FIR](https://github.com/Security-Onion-Solutions/security-onion/wiki/FIR)
-*   [Firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/Firewall)
-*   [Firewall old](https://github.com/Security-Onion-Solutions/security-onion/wiki/Firewall-old)
+*   ~~[Firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/Firewall)~~
+*   ~~[Firewall old](https://github.com/Security-Onion-Solutions/security-onion/wiki/Firewall-old)~~
 *   [FreeNX](https://github.com/Security-Onion-Solutions/security-onion/wiki/FreeNX)
 *   [FreqServer](https://github.com/Security-Onion-Solutions/security-onion/wiki/FreqServer)
 *   [Full Packet Capture](https://github.com/Security-Onion-Solutions/security-onion/wiki/Full-Packet-Capture)
@@ -85,7 +85,7 @@
 *   [NIDS](https://github.com/Security-Onion-Solutions/security-onion/wiki/NIDS)
 *   [NTP](https://github.com/Security-Onion-Solutions/security-onion/wiki/NTP)
 *   [OSSEC](https://github.com/Security-Onion-Solutions/security-onion/wiki/OSSEC)
-*   [OSSECalertsToELSA](https://github.com/Security-Onion-Solutions/security-onion/wiki/OSSECalertsToELSA)
+*   ~~[OSSECalertsToELSA](https://github.com/Security-Onion-Solutions/security-onion/wiki/OSSECalertsToELSA)~~
 *   [Passwords](https://github.com/Security-Onion-Solutions/security-onion/wiki/Passwords)
 *   [Pcaps](https://github.com/Security-Onion-Solutions/security-onion/wiki/Pcaps)
 *   [PF_RING](https://github.com/Security-Onion-Solutions/security-onion/wiki/PF_RING)

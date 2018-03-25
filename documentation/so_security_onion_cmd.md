@@ -103,6 +103,7 @@ DAYSTOKEEP: 30 (default)
 
 ## [firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/firewall)
 
+[old firewall doc](https://github.com/Security-Onion-Solutions/security-onion/wiki/Firewall-old)
 > firewall - only 22 open by default
 
 ```bash
