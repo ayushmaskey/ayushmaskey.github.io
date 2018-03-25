@@ -30,7 +30,8 @@
    * [Intellij](./ide_intellij_shortcut.md)
    * [Sublime](./ide_sublime_shortcut.md)
  * Security Onion
-   * [Security Onion](./so_security_onion.md)
+   * [Security Onion Overview](./so_security_onion.md)
+     * [Seurity Onion Cmd](./so_security_onion_cmd.md)
    * [ELK](./so_elk.md)
      * [Elastic Tutorial](./so_elasticsearch_tut.md)
      * [Elastic 24hour](./so_elasticsearch_24hour.md)
@@ -39,6 +40,9 @@
    * [Kibana](./so_kibana_search.md)
    * [bro](./so_bro.md)
    * [Snort](./so_snort.md)
+   * [netsniff-ng](./so_netsniff-ng.md)
+   * [ossec](./so_ossec.md)
+   * [cif](./so_cif.md)
    * [Window Events](./so_windows_events.md)
  * Systems Admin
    * [VM](./sysadmin_vm.md)
