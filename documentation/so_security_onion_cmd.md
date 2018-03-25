@@ -7,13 +7,13 @@ Commands
   * [new user](#new-user)
   * [firewall](#firewall)
   * [update](#update)
-  * [alerts](#alerts)
   * [docker containers](#docker-containers)
   * [tools](#tools)
   * [config files](#config-files)
   * [log files](#log-files)
   * [data](#data)
   * [rules](#rules)
+  * [alerts](#alerts)
 
 
  

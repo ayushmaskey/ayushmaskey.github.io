@@ -3,7 +3,7 @@
 
 **Security Onion ToC**
  * [TODO](./so_todo.md)
- * [Security Onion Overview](./so_security_onion.md)
+ * [Security Onion Overview](./so_security_onion_overview.md)
    * [Seurity Onion Cmd](./so_security_onion_cmd.md)
    * [security onion wiki](./so_wiki_topics.md)
  * [ELK](./so_elk.md)

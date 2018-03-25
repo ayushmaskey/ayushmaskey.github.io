@@ -64,7 +64,7 @@
 *   [Help](https://github.com/Security-Onion-Solutions/security-onion/wiki/Help)
 *   [High Performance Tuning](https://github.com/Security-Onion-Solutions/security-onion/wiki/High-Performance-Tuning)
 *   [http_agent](https://github.com/Security-Onion-Solutions/security-onion/wiki/http_agent)
-*   [HWE](https://github.com/Security-Onion-Solutions/security-onion/wiki/HWE)
+*   ~~[HWE](https://github.com/Security-Onion-Solutions/security-onion/wiki/HWE)~~
 *   [ICMP Anomaly Detection](https://github.com/Security-Onion-Solutions/security-onion/wiki/ICMP-Anomaly-Detection)
 *   ~~[Installation](https://github.com/Security-Onion-Solutions/security-onion/wiki/Installation)~~
 *   [InstallingOnUbuntu](https://github.com/Security-Onion-Solutions/security-onion/wiki/InstallingOnUbuntu)
@@ -122,8 +122,8 @@
 *   [TimeZones](https://github.com/Security-Onion-Solutions/security-onion/wiki/TimeZones)
 *   [Tools](https://github.com/Security-Onion-Solutions/security-onion/wiki/Tools)
 *   ~~[TroubleBooting](https://github.com/Security-Onion-Solutions/security-onion/wiki/TroubleBooting)~~
-*   [Upgrade](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
-*   [Upgrading from 12.04 to 14.04](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrading-from-12.04-to-14.04)
+*   ~~[Upgrade](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)~~
+*   ~~[Upgrading from 12.04 to 14.04](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrading-from-12.04-to-14.04)~~
 *   ~~[Use Cases](https://github.com/Security-Onion-Solutions/security-onion/wiki/Use-Cases)~~
 *   [Videos](https://github.com/Security-Onion-Solutions/security-onion/wiki/Videos)
 *   [VLAN Traffic](https://github.com/Security-Onion-Solutions/security-onion/wiki/VLAN-Traffic)
