@@ -33,6 +33,7 @@
    * [TODO](./so_todo.md)
    * [Security Onion Overview](./so_security_onion.md)
      * [Seurity Onion Cmd](./so_security_onion_cmd.md)
+     * [security onion wiki](./so_wiki_topics)
    * [ELK](./so_elk.md)
      * [Elastic Tutorial](./so_elasticsearch_tut.md)
      * [Elastic 24hour](./so_elasticsearch_24hour.md)
