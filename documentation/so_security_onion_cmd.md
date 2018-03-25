@@ -98,7 +98,8 @@ EXTERNAL_NET
 
 * squil `/etc/nsm/securityonion.conf` change `DAYSTOKEEP: 30 (default)`
 
-## new user ` sudo nsm_server_user-add `
+## new user 
+add user ` sudo nsm_server_user-add `
 
 ## [firewall](https://github.com/Security-Onion-Solutions/security-onion/wiki/firewall)
 > new firewall - only 22 open by default
@@ -128,6 +129,7 @@ sudo iptables -I DOCKER-USER ! -i docker0 -o docker0 -s ip_address -p tcp --dpor
 * remove rule from docker iptable `sudo iptables -D DOCKER-USER rule_num`
 
 * port number: app
+```bash
 5601: Kibana
 1514/udp: ossec
 22: ssh
@@ -140,34 +142,21 @@ sudo iptables -I DOCKER-USER ! -i docker0 -o docker0 -s ip_address -p tcp --dpor
 4505: salt??
 4506: salt??
 ```
+
 ## [update](https://github.com/Security-Onion-Solutions/security-onion/wiki/Upgrade)
+
+* byobu --> necessary for updates
+  * install byobu `sudo apt-get install byobu`
+  * enable byobu `byobu-enable`
+* ubuntu and security onion `sudo soup`
+* snort/suricata rules `sudo rule-update`
+* update pf_ring 
+```bash
+sudo apt-get update 
+sudo apt-get install securityonion-pfring-module 
+sudo apt-get dist-upgrade
 ```
-
-#byobu before updating
-
-# install byobu
-sudo apt-get install byobu
-
-# enable byobu
-byobu-enable
-
-# you're now ready to update
-
-#ubuntu and security onion
-sudo soup
-
-#snort/suricata rules
-sudo rule-update
-
-#bro
-sudo nsm_sensor_ps-restart --only-bro
-
-#update pf_ring 
-sudo apt-get update ; sudo apt-get install securityonion-pfring-module ; sudo apt-get dist-upgrade
-
-#if snort dails after update
-sudo apt-get install --reinstall securityonion-pfring-module
-```
+* if snort dails after update `sudo apt-get install --reinstall securityonion-pfring-module`
 
 
 ## [alerts](https://github.com/Security-Onion-Solutions/security-onion/wiki/ManagingAlerts)
